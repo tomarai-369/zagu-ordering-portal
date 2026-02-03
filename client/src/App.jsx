@@ -194,8 +194,8 @@ export default function App() {
       {/* Header */}
       <header className="app-header">
         <div className="header-left">
-          <div className="logo-mark">Z</div>
-          <div><div className="logo-title">Zagu Shakes</div><div className="logo-subtitle">Dealer Ordering Portal</div></div>
+          <img src="./zagu-logo.png" alt="Zagu Shakes" className="header-logo" />
+          <div className="logo-subtitle">Dealer Portal</div>
         </div>
         <div className="header-right">
           {isLive && <span className="live-badge"><span className="live-dot" />LIVE</span>}
@@ -300,8 +300,7 @@ function LoginScreen({ onLogin, loading, isLive }) {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
-            <div className="login-logo">Z</div>
-            <h1>Zagu Shakes</h1>
+            <img src="./zagu-logo.png" alt="Zagu Shakes" className="login-logo-img" />
             <p>Dealer Ordering Portal</p>
           </div>
           <div className="login-form">
@@ -330,7 +329,7 @@ function StoreSelectScreen({ dealer, onSelect }) {
       <div className="login-container">
         <div className="login-card">
           <div className="login-header" style={{ marginBottom: 24 }}>
-            <div className="login-logo">Z</div>
+            <img src="./zagu-logo.png" alt="Zagu Shakes" className="login-logo-img" />
             <h1>Select Store</h1>
             <p>Choose which store you're ordering for</p>
           </div>
