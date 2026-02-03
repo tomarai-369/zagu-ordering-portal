@@ -13,6 +13,9 @@ const APPS = {
   orders:   { id: process.env.KINTONE_ORDERS_APP_ID,   token: process.env.KINTONE_ORDERS_TOKEN },
 };
 
+// Combined token for orders (needs products + dealers for lookup resolution)
+const ORDERS_COMBINED_TOKEN = [APPS.orders.token, APPS.products.token, APPS.dealers.token].join(",");
+
 const ALLOWED_ORIGINS = [
   "http://localhost:5173", "http://localhost:3000", "http://localhost:3001",
   "https://tomarai-369.github.io",
@@ -29,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // ─── Kintone Proxy ──────────────────────────────────────────
-async function kintoneRequest(appKey, endpoint, method = "GET", body = null, query = {}) {
+async function kintoneRequest(appKey, endpoint, method = "GET", body = null, query = {}, overrideToken = null) {
   const appConfig = APPS[appKey];
   if (!appConfig) throw new Error(`Unknown app: ${appKey}`);
 
@@ -42,7 +45,10 @@ async function kintoneRequest(appKey, endpoint, method = "GET", body = null, que
 
   const options = {
     method,
-    headers: { "X-Cybozu-API-Token": appConfig.token, "Content-Type": "application/json" },
+    headers: {
+      "X-Cybozu-API-Token": overrideToken || appConfig.token,
+      "Content-Type": "application/json",
+    },
   };
   if (body && method !== "GET") options.body = JSON.stringify(body);
 
@@ -86,9 +92,11 @@ app.get("/api/:appKey/record/:id", async (req, res) => {
 app.post("/api/:appKey/record", async (req, res) => {
   try {
     const { appKey } = req.params;
+    // Use combined tokens for orders (lookups need access to products + dealers apps)
+    const token = appKey === "orders" ? ORDERS_COMBINED_TOKEN : null;
     const data = await kintoneRequest(appKey, "/k/v1/record.json", "POST", {
       app: APPS[appKey].id, record: req.body.record,
-    });
+    }, {}, token);
     res.json(data);
   } catch (err) { res.status(err.status || 500).json({ error: err.message, details: err.details }); }
 });
@@ -160,6 +168,54 @@ app.post("/api/orders/status", async (req, res) => {
 
     const data = await kintoneRequest("orders", "/k/v1/record/status.json", "PUT", body);
     res.json(data);
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message, details: err.details });
+  }
+});
+
+// ─── Composite: Create order + advance status ───────────────
+// Creates the order and immediately advances through process management
+// New → Submit Order → Send for Approval (Pending ONB Approval)
+app.post("/api/orders/submit-order", async (req, res) => {
+  try {
+    const { record, isDraft } = req.body;
+
+    // Step 1: Create the record (with combined tokens for lookup resolution)
+    const createResult = await kintoneRequest("orders", "/k/v1/record.json", "POST", {
+      app: APPS.orders.id, record,
+    }, {}, ORDERS_COMBINED_TOKEN);
+
+    const recordId = createResult.id;
+
+    // Step 2: If not a draft, advance the process management status
+    if (!isDraft) {
+      try {
+        // New → Submitted
+        await kintoneRequest("orders", "/k/v1/record/status.json", "PUT", {
+          app: APPS.orders.id, id: recordId, action: "Submit Order",
+        });
+
+        // Submitted → Pending ONB Approval (requires assignee)
+        await kintoneRequest("orders", "/k/v1/record/status.json", "PUT", {
+          app: APPS.orders.id, id: recordId, action: "Send for Approval", assignee: "Administrator",
+        });
+      } catch (statusErr) {
+        // Order was created but status advancement failed — log but don't fail the whole request
+        console.error(`[Zagu] Status advancement failed for record ${recordId}:`, statusErr.message);
+        return res.json({
+          id: recordId,
+          revision: createResult.revision,
+          status: "created_but_status_pending",
+          statusError: statusErr.message,
+        });
+      }
+    }
+
+    res.json({
+      id: recordId,
+      revision: createResult.revision,
+      status: isDraft ? "draft" : "pending_approval",
+    });
   } catch (err) {
     res.status(err.status || 500).json({ error: err.message, details: err.details });
   }
