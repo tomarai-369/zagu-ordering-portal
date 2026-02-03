@@ -31,12 +31,12 @@ const CART_KEY = "zagu_cart";
 export const session = {
   save(dealer, selectedStore) {
     try {
-      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ dealer, selectedStore, ts: Date.now() }));
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ dealer, selectedStore, ts: Date.now() }));
     } catch {}
   },
   restore() {
     try {
-      const raw = sessionStorage.getItem(SESSION_KEY);
+      const raw = localStorage.getItem(SESSION_KEY);
       if (!raw) return null;
       const data = JSON.parse(raw);
       // Expire sessions after 8 hours
@@ -46,16 +46,16 @@ export const session = {
   },
   clear() {
     try {
-      sessionStorage.removeItem(SESSION_KEY);
-      sessionStorage.removeItem(CART_KEY);
+      localStorage.removeItem(SESSION_KEY);
+      localStorage.removeItem(CART_KEY);
     } catch {}
   },
   saveCart(cart) {
-    try { sessionStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch {}
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch {}
   },
   restoreCart() {
     try {
-      const raw = sessionStorage.getItem(CART_KEY);
+      const raw = localStorage.getItem(CART_KEY);
       return raw ? JSON.parse(raw) : [];
     } catch { return []; }
   },
