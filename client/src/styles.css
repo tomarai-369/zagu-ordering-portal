@@ -334,3 +334,45 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
 }
 .profile-store.active { border-color: #D4A017; background: #FFFEF9; }
 .current-tag { margin-left: auto; font-size: 10px; background: #D4A017; color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+
+/* ─── Registration ─────────────────────────────────────────── */
+.login-register-link {
+  text-align: center; padding: 14px 0 4px; font-size: 13px; color: #8B7355;
+}
+.link-btn {
+  background: none; border: none; color: #D4A017; font-family: inherit;
+  font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: underline;
+  padding: 0;
+}
+.link-btn:hover { color: #8B5E3C; }
+.reg-form { max-height: 60vh; overflow-y: auto; padding-right: 4px; }
+.reg-title { font-size: 17px; font-weight: 700; color: #3D2B1F; margin-bottom: 4px; }
+.reg-subtitle { font-size: 12px; color: #8B7355; margin-bottom: 16px; line-height: 1.5; }
+.reg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .reg-row { grid-template-columns: 1fr; } }
+.reg-form .field { margin-bottom: 12px; }
+.reg-form .field label { font-size: 12px; color: #8B7355; display: block; margin-bottom: 4px; }
+.reg-form .field input, .reg-form .field select {
+  width: 100%; padding: 9px 12px; border: 1px solid #E8DCC8; border-radius: 8px;
+  font-family: inherit; font-size: 13px; background: #fff;
+}
+.reg-form .field select { appearance: auto; }
+.reg-form .field input:focus, .reg-form .field select:focus {
+  outline: none; border-color: #D4A017; box-shadow: 0 0 0 3px #D4A01720;
+}
+.reg-error {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  background: #FEE2E2; border-radius: 8px; font-size: 12px; color: #DC2626;
+  margin-bottom: 12px;
+}
+.reg-success {
+  text-align: center; padding: 20px 10px;
+}
+.reg-success-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: #DCFCE7;
+  color: #16A34A; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.reg-success h3 { font-size: 18px; color: #3D2B1F; margin-bottom: 8px; }
+.reg-success p { font-size: 13px; color: #555; line-height: 1.5; }
+.reg-success-note { font-size: 12px; color: #8B7355; margin-top: 8px; margin-bottom: 20px; font-style: italic; }

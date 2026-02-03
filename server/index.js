@@ -222,6 +222,54 @@ app.post("/api/orders/submit-order", async (req, res) => {
   }
 });
 
+// ─── Dealer Registration ────────────────────────────────────
+app.post("/api/auth/register", async (req, res) => {
+  try {
+    const { email, dealerCode, password, dealerName, contactPerson, phone, region } = req.body;
+    if (!email || !dealerCode || !password || !dealerName || !contactPerson) {
+      return res.status(400).json({ error: "Email, dealer code, password, dealer name, and contact person are required" });
+    }
+    if (password.length < 6) return res.status(400).json({ error: "Password must be at least 6 characters" });
+
+    // Check if dealer code or email already exists
+    const existing = await kintoneRequest("dealers", "/k/v1/records.json", "GET", null, {
+      app: APPS.dealers.id, query: `dealer_code = "${dealerCode}" or email = "${email}" limit 1`,
+    });
+    if (existing.records.length > 0) {
+      const match = existing.records[0];
+      if (match.dealer_code.value === dealerCode) return res.status(409).json({ error: "Dealer code already registered" });
+      if (match.email.value === email) return res.status(409).json({ error: "Email already registered" });
+    }
+
+    // Set password expiry 90 days from now
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 90);
+
+    // Create dealer record with Pending Approval status
+    const record = {
+      dealer_code: { value: dealerCode },
+      dealer_name: { value: dealerName },
+      email: { value: email },
+      contact_person: { value: contactPerson },
+      phone: { value: phone || "" },
+      region: { value: region || "NCR" },
+      login_password: { value: password },
+      password_expiry: { value: expiry.toISOString().split("T")[0] },
+      dealer_status: { value: "Pending Approval" },
+      credit_terms: { value: "None" },
+      mfa_enabled: { value: "No" },
+    };
+
+    const result = await kintoneRequest("dealers", "/k/v1/record.json", "POST", {
+      app: APPS.dealers.id, record,
+    });
+
+    res.json({ success: true, id: result.id, message: "Registration submitted. Your account will be reviewed by Zagu back office." });
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message, details: err.details });
+  }
+});
+
 // ─── Change Password ────────────────────────────────────────
 app.put("/api/auth/change-password", async (req, res) => {
   try {

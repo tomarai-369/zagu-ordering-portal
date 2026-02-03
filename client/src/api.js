@@ -169,6 +169,15 @@ export const api = {
     });
   },
 
+  register: async (data) => {
+    await backendReady;
+    if (IS_DEMO) return { success: true, id: "99", message: "Registration submitted (demo mode)." };
+    return proxyRequest("/auth/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  },
+
   get isDemo() { return IS_DEMO; },
   get backendUrl() { return API_BASE; },
   ready: backendReady,

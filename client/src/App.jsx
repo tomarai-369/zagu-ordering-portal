@@ -409,9 +409,47 @@ function NavBtn({ icon, label, active, count, onClick }) {
 }
 
 function LoginScreen({ onLogin, loading, isLive }) {
+  const [mode, setMode] = useState("login"); // "login" or "register"
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const submit = () => code && password && onLogin(code, password);
+
+  // Registration fields
+  const [regEmail, setRegEmail] = useState("");
+  const [regCode, setRegCode] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regConfirm, setRegConfirm] = useState("");
+  const [regName, setRegName] = useState("");
+  const [regContact, setRegContact] = useState("");
+  const [regPhone, setRegPhone] = useState("");
+  const [regRegion, setRegRegion] = useState("NCR");
+  const [regLoading, setRegLoading] = useState(false);
+  const [regMessage, setRegMessage] = useState(null); // { text, type: "success"|"error" }
+
+  const submitLogin = () => code && password && onLogin(code, password);
+
+  const submitRegister = async () => {
+    if (!regEmail || !regCode || !regPassword || !regName || !regContact) {
+      setRegMessage({ text: "Please fill in all required fields.", type: "error" }); return;
+    }
+    if (regPassword.length < 6) {
+      setRegMessage({ text: "Password must be at least 6 characters.", type: "error" }); return;
+    }
+    if (regPassword !== regConfirm) {
+      setRegMessage({ text: "Passwords do not match.", type: "error" }); return;
+    }
+    setRegLoading(true); setRegMessage(null);
+    try {
+      const result = await api.register({
+        email: regEmail, dealerCode: regCode, password: regPassword,
+        dealerName: regName, contactPerson: regContact, phone: regPhone, region: regRegion,
+      });
+      setRegMessage({ text: result.message || "Registration submitted! Awaiting approval from Zagu back office.", type: "success" });
+    } catch (err) {
+      setRegMessage({ text: err.message || "Registration failed. Please try again.", type: "error" });
+    }
+    setRegLoading(false);
+  };
+
   return (
     <div className="login-page">
       <div className="login-container">
@@ -420,17 +458,97 @@ function LoginScreen({ onLogin, loading, isLive }) {
             <img src="./zagu-logo.png" alt="Zagu Shakes" className="login-logo-img" />
             <p>Dealer Ordering Portal</p>
           </div>
-          <div className="login-form">
-            <div className="field"><label>Dealer Code</label>
-              <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Enter your dealer code" onKeyDown={(e) => e.key === "Enter" && submit()} />
-            </div>
-            <div className="field"><label>Password</label>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" onKeyDown={(e) => e.key === "Enter" && submit()} />
-            </div>
-            <button className="btn-primary login-btn" onClick={submit} disabled={loading || !code || !password}>
-              {loading ? <><Loader2 size={18} className="spinner" /> Signing in...</> : <>Sign In <ChevronRight size={18} /></>}
-            </button>
-          </div>
+
+          {mode === "login" ? (
+            <>
+              <div className="login-form">
+                <div className="field"><label>Dealer Code</label>
+                  <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Enter your dealer code" onKeyDown={(e) => e.key === "Enter" && submitLogin()} />
+                </div>
+                <div className="field"><label>Password</label>
+                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" onKeyDown={(e) => e.key === "Enter" && submitLogin()} />
+                </div>
+                <button className="btn-primary login-btn" onClick={submitLogin} disabled={loading || !code || !password}>
+                  {loading ? <><Loader2 size={18} className="spinner" /> Signing in...</> : <>Sign In <ChevronRight size={18} /></>}
+                </button>
+              </div>
+              <div className="login-register-link">
+                Don't have an account? <button className="link-btn" onClick={() => { setMode("register"); setRegMessage(null); }}>Register as a Dealer</button>
+              </div>
+            </>
+          ) : (
+            <>
+              {regMessage?.type === "success" ? (
+                <div className="reg-success">
+                  <div className="reg-success-icon"><Check size={32} /></div>
+                  <h3>Registration Submitted!</h3>
+                  <p>{regMessage.text}</p>
+                  <p className="reg-success-note">You will be able to log in once Zagu back office approves your account.</p>
+                  <button className="btn-primary login-btn" onClick={() => { setMode("login"); setRegMessage(null); }}>
+                    <ArrowLeft size={16} /> Back to Login
+                  </button>
+                </div>
+              ) : (
+                <div className="login-form reg-form">
+                  <div className="reg-title">Dealer Registration</div>
+                  <div className="reg-subtitle">Fill in your details below. Your account will be reviewed and approved by Zagu back office before you can log in.</div>
+
+                  {regMessage?.type === "error" && (
+                    <div className="reg-error"><AlertCircle size={14} /> {regMessage.text}</div>
+                  )}
+
+                  <div className="reg-row">
+                    <div className="field"><label>Email Address *</label>
+                      <input type="email" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} placeholder="dealer@example.com" />
+                    </div>
+                    <div className="field"><label>Dealer Code *</label>
+                      <input value={regCode} onChange={(e) => setRegCode(e.target.value.toUpperCase())} placeholder="e.g. DLR-100" />
+                    </div>
+                  </div>
+
+                  <div className="field"><label>Dealer / Business Name *</label>
+                    <input value={regName} onChange={(e) => setRegName(e.target.value)} placeholder="e.g. Juan's Zagu Franchise" />
+                  </div>
+
+                  <div className="reg-row">
+                    <div className="field"><label>Contact Person *</label>
+                      <input value={regContact} onChange={(e) => setRegContact(e.target.value)} placeholder="Full name" />
+                    </div>
+                    <div className="field"><label>Phone</label>
+                      <input value={regPhone} onChange={(e) => setRegPhone(e.target.value)} placeholder="09XX XXX XXXX" />
+                    </div>
+                  </div>
+
+                  <div className="field"><label>Region</label>
+                    <select value={regRegion} onChange={(e) => setRegRegion(e.target.value)}>
+                      <option value="NCR">NCR</option>
+                      <option value="North Luzon">North Luzon</option>
+                      <option value="South Luzon">South Luzon</option>
+                    </select>
+                  </div>
+
+                  <div className="reg-row">
+                    <div className="field"><label>Password *</label>
+                      <input type="password" value={regPassword} onChange={(e) => setRegPassword(e.target.value)} placeholder="Min 6 characters" />
+                    </div>
+                    <div className="field"><label>Confirm Password *</label>
+                      <input type="password" value={regConfirm} onChange={(e) => setRegConfirm(e.target.value)} placeholder="Re-enter password" />
+                    </div>
+                  </div>
+
+                  <button className="btn-primary login-btn" onClick={submitRegister} disabled={regLoading || !regEmail || !regCode || !regPassword || !regName || !regContact}>
+                    {regLoading ? <><Loader2 size={18} className="spinner" /> Submitting...</> : <>Register <ChevronRight size={18} /></>}
+                  </button>
+                </div>
+              )}
+              {regMessage?.type !== "success" && (
+                <div className="login-register-link">
+                  Already have an account? <button className="link-btn" onClick={() => { setMode("login"); setRegMessage(null); }}>Sign In</button>
+                </div>
+              )}
+            </>
+          )}
+
           <div className="login-status">
             {isLive ? <><Wifi size={14} color="#22C55E" /> Connected to Kintone</> : <><WifiOff size={14} color="#DC2626" /> Server offline — start the proxy</>}
           </div>
