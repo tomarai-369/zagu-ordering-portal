@@ -160,6 +160,15 @@ export const api = {
     return proxyRequest("/health");
   },
 
+  changePassword: async (code, currentPassword, newPassword) => {
+    await backendReady;
+    if (IS_DEMO) return { success: true, newExpiry: "2026-05-03" };
+    return proxyRequest("/auth/change-password", {
+      method: "PUT",
+      body: JSON.stringify({ code, currentPassword, newPassword }),
+    });
+  },
+
   get isDemo() { return IS_DEMO; },
   get backendUrl() { return API_BASE; },
   ready: backendReady,

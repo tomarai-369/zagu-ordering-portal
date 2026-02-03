@@ -249,3 +249,88 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
   .dealer-bar { flex-direction: column; gap: 8px; align-items: flex-start; }
 }
+
+/* ─── Password Expiry Banner ───────────────────────────────── */
+.pw-expiry-banner {
+  display: flex; align-items: center; gap: 8px; padding: 8px 20px;
+  background: linear-gradient(90deg, #FEF3C7, #FDE68A); color: #92400E;
+  font-size: 13px; font-weight: 600;
+}
+.pw-expiry-btn {
+  margin-left: auto; background: #92400E; color: #fff; border: none;
+  padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;
+  font-family: inherit;
+}
+.pw-expiry-btn:hover { background: #78350F; }
+
+/* ─── Order Action Buttons ─────────────────────────────────── */
+.order-actions { display: flex; gap: 8px; padding: 12px 0; border-bottom: 1px solid #F0E8D8; }
+.order-action-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 6px 14px; }
+
+/* ─── Dashboard ────────────────────────────────────────────── */
+.dashboard { padding-bottom: 40px; }
+.dash-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.time-filters { display: flex; gap: 4px; }
+.time-btn {
+  padding: 6px 14px; border: 1px solid #E8DCC8; border-radius: 8px; background: #fff;
+  font-family: inherit; font-size: 12px; color: #8B7355; cursor: pointer; transition: all .15s;
+}
+.time-btn:hover { border-color: #D4A017; }
+.time-btn.active { background: #D4A017; color: #fff; border-color: #D4A017; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.kpi-card {
+  display: flex; align-items: center; gap: 14px; padding: 18px 16px;
+  background: #fff; border-radius: 12px; border: 1px solid #F0E8D8;
+}
+.kpi-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.kpi-value { font-size: 18px; font-weight: 700; color: #3D2B1F; line-height: 1.2; }
+.kpi-label { font-size: 11px; color: #8B7355; margin-top: 2px; }
+.charts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.chart-card { padding: 16px; }
+.chart-card.wide { grid-column: span 1; }
+@media (min-width: 768px) { .chart-card.wide { min-width: 400px; } }
+
+/* ─── Profile ──────────────────────────────────────────────── */
+.profile { padding-bottom: 40px; }
+.profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.profile-card { padding: 20px; }
+.profile-header-section { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.profile-avatar {
+  width: 56px; height: 56px; border-radius: 14px; background: linear-gradient(135deg, #D4A017, #8B5E3C);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; flex-shrink: 0;
+}
+.profile-name { font-size: 17px; font-weight: 700; color: #3D2B1F; }
+.profile-code { font-size: 13px; color: #8B7355; margin-right: 8px; }
+.profile-sap { font-size: 11px; color: #aaa; background: #f5f0e8; padding: 2px 8px; border-radius: 4px; }
+.profile-fields { display: flex; flex-direction: column; gap: 12px; }
+.profile-field { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #F8F0DD; }
+.pf-label { font-size: 12px; color: #8B7355; display: flex; align-items: center; gap: 6px; }
+.pf-value { font-size: 13px; font-weight: 600; color: #3D2B1F; text-align: right; }
+.pf-warn { color: #DC2626; }
+.profile-balance-warn {
+  display: flex; align-items: center; gap: 8px; margin-top: 12px; padding: 10px 12px;
+  background: #FEF3C7; border-radius: 8px; font-size: 12px; color: #92400E;
+}
+.profile-pw-btn { margin-top: 16px; width: 100%; justify-content: center; gap: 8px; }
+.change-pw-form { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.change-pw-form .field label { font-size: 12px; color: #8B7355; margin-bottom: 4px; display: block; }
+.change-pw-form .field input {
+  width: 100%; padding: 8px 12px; border: 1px solid #E8DCC8; border-radius: 8px;
+  font-family: inherit; font-size: 13px;
+}
+.pw-input-wrap { position: relative; }
+.pw-input-wrap input { padding-right: 36px; }
+.pw-toggle {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: #8B7355; cursor: pointer; padding: 4px;
+}
+.change-pw-actions { display: flex; gap: 8px; margin-top: 4px; }
+.change-pw-actions .btn-primary, .change-pw-actions .btn-outline { flex: 1; justify-content: center; }
+.profile-stores { display: flex; flex-direction: column; gap: 8px; }
+.profile-store {
+  display: flex; align-items: center; gap: 12px; padding: 12px;
+  border: 1px solid #F0E8D8; border-radius: 10px;
+}
+.profile-store.active { border-color: #D4A017; background: #FFFEF9; }
+.current-tag { margin-left: auto; font-size: 10px; background: #D4A017; color: #fff; padding: 2px 8px; border-radius: 4px; font-weight: 600; }

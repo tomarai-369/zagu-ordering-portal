@@ -151,6 +151,7 @@ app.post("/api/auth/login", async (req, res) => {
         creditLimit: Number(d.credit_limit?.value || 0),
         creditTerms: d.credit_terms?.value || "None",
         mfaEnabled: d.mfa_enabled?.value || "No",
+        passwordExpiry: d.password_expiry?.value || "",
         stores,
       },
     });
@@ -221,8 +222,39 @@ app.post("/api/orders/submit-order", async (req, res) => {
   }
 });
 
+// ─── Change Password ────────────────────────────────────────
+app.put("/api/auth/change-password", async (req, res) => {
+  try {
+    const { code, currentPassword, newPassword } = req.body;
+    if (!code || !currentPassword || !newPassword) return res.status(400).json({ error: "All fields required" });
+    if (newPassword.length < 6) return res.status(400).json({ error: "New password must be at least 6 characters" });
+
+    // Verify current credentials
+    const data = await kintoneRequest("dealers", "/k/v1/records.json", "GET", null, {
+      app: APPS.dealers.id, query: `dealer_code = "${code}" and dealer_status in ("Active") limit 1`,
+    });
+    if (data.records.length === 0) return res.status(401).json({ error: "Dealer not found" });
+    const d = data.records[0];
+    if (d.login_password.value !== currentPassword) return res.status(401).json({ error: "Current password incorrect" });
+
+    // Update password + set new expiry (90 days)
+    const newExpiry = new Date();
+    newExpiry.setDate(newExpiry.getDate() + 90);
+    await kintoneRequest("dealers", "/k/v1/record.json", "PUT", {
+      app: APPS.dealers.id, id: d.$id.value,
+      record: {
+        login_password: { value: newPassword },
+        password_expiry: { value: newExpiry.toISOString().split("T")[0] },
+      },
+    });
+
+    res.json({ success: true, newExpiry: newExpiry.toISOString().split("T")[0] });
+  } catch (err) {
+    res.status(err.status || 500).json({ error: err.message });
+  }
+});
+
 if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
   });
 }

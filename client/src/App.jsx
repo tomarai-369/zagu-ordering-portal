@@ -4,8 +4,12 @@ import {
   Search, ChevronRight, Check, X, Loader2, AlertCircle, Store,
   ArrowLeft, CreditCard, Banknote, Clock, Wifi, WifiOff, Save,
   Building2, Smartphone, Landmark, MapPin, FileText, AlertTriangle,
+  BarChart3, User, Download, RefreshCw, ShieldAlert,
 } from "lucide-react";
 import { api, session } from "./api.js";
+import { generateOrderPDF } from "./OrderPDF.js";
+import Dashboard from "./Dashboard.jsx";
+import DealerProfile from "./DealerProfile.jsx";
 import "./styles.css";
 
 // ─── Constants (aligned with SAP data) ──────────────────────
@@ -266,8 +270,10 @@ export default function App() {
         </div>
         <div className="header-right">
           {isLive && <span className="live-badge"><span className="live-dot" />LIVE</span>}
+          <NavBtn icon={<BarChart3 size={18} />} label="Dashboard" active={screen === "dashboard"} onClick={() => { setScreen("dashboard"); setViewOrder(null); }} />
           <NavBtn icon={<Package size={18} />} label="Catalog" active={screen === "catalog"} onClick={() => { setScreen("catalog"); setViewOrder(null); }} />
           <NavBtn icon={<ClipboardList size={18} />} label="Orders" active={screen === "history"} count={orders.length} onClick={() => { setScreen("history"); setViewOrder(null); }} />
+          <NavBtn icon={<User size={16} />} label="Profile" active={screen === "profile"} onClick={() => { setScreen("profile"); setViewOrder(null); }} />
           <button className="icon-btn cart-btn" onClick={() => setCartOpen(true)}>
             <ShoppingCart size={18} />{cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
@@ -291,7 +297,32 @@ export default function App() {
         )}
       </div>
 
+      {/* Password expiry warning */}
+      {(() => {
+        if (!dealer?.passwordExpiry) return null;
+        const days = Math.ceil((new Date(dealer.passwordExpiry) - new Date()) / (1000 * 60 * 60 * 24));
+        if (days > 7) return null;
+        return (
+          <div className="pw-expiry-banner">
+            <ShieldAlert size={15} />
+            <span>
+              {days <= 0
+                ? "Your password has expired! Please change it now."
+                : `Your password expires in ${days} day${days === 1 ? "" : "s"}. Please change it soon.`}
+            </span>
+            <button className="pw-expiry-btn" onClick={() => setScreen("profile")}>Change Password</button>
+          </div>
+        );
+      })()}
+
       <main className="main-content">
+        {screen === "dashboard" && <Dashboard orders={orders} dealer={dealer} />}
+
+        {screen === "profile" && (
+          <DealerProfile dealer={dealer} selectedStore={selectedStore} showToast={showToast}
+            onPasswordChanged={(newExpiry) => setDealer((d) => ({ ...d, passwordExpiry: newExpiry }))} />
+        )}
+
         {screen === "catalog" && (
           <>
             <div className="catalog-controls">
@@ -340,7 +371,26 @@ export default function App() {
           </div>
         )}
 
-        {screen === "history" && <OrderHistory orders={orders} viewOrder={viewOrder} setViewOrder={setViewOrder} />}
+        {screen === "history" && <OrderHistory orders={orders} viewOrder={viewOrder} setViewOrder={setViewOrder}
+          onReorder={(order) => {
+            const newItems = order.items.map((item) => ({
+              code: item.code, name: item.name, price: item.price, qty: item.qty,
+              img: CATEGORY_ICONS[products.find((p) => p.code === item.code)?.category] || "📦",
+            }));
+            setCart((prev) => {
+              const merged = [...prev];
+              newItems.forEach((ni) => {
+                const exists = merged.find((i) => i.code === ni.code);
+                if (exists) exists.qty += ni.qty;
+                else merged.push(ni);
+              });
+              return merged;
+            });
+            showToast(`${newItems.length} items added to cart from ${order.number}`);
+          }}
+          onDownloadPDF={(order) => generateOrderPDF(order, dealer, selectedStore)}
+          dealer={dealer} selectedStore={selectedStore}
+        />}
       </main>
 
       {cartOpen && <CartDrawer cart={cart} cartTotal={cartTotal} updateQty={updateQty} removeFromCart={removeFromCart} onClose={() => setCartOpen(false)} onCheckout={() => { setCartOpen(false); setScreen("checkout"); }} />}
@@ -571,7 +621,7 @@ function CheckoutScreen({ cart, cartTotal, dealer, store, selectedPayment, setSe
   );
 }
 
-function OrderHistory({ orders, viewOrder, setViewOrder }) {
+function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPDF, dealer, selectedStore }) {
   if (viewOrder) {
     const st = STATUS_MAP[viewOrder.status] || { color: "#888", label: viewOrder.status };
     return (
@@ -584,6 +634,15 @@ function OrderHistory({ orders, viewOrder, setViewOrder }) {
               <span className="order-meta">{viewOrder.date} • {viewOrder.payment}{viewOrder.storeName && ` • ${viewOrder.storeName}`}</span>
             </div>
             <span className="status-badge" style={{ background: st.color }}>{st.label}</span>
+          </div>
+          {/* Action buttons */}
+          <div className="order-actions">
+            <button className="btn-outline order-action-btn" onClick={() => onReorder(viewOrder)}>
+              <RefreshCw size={14} /> Reorder Items
+            </button>
+            <button className="btn-outline order-action-btn" onClick={() => onDownloadPDF(viewOrder)}>
+              <Download size={14} /> Download PDF
+            </button>
           </div>
           {viewOrder.isDraft && (
             <div className="draft-banner"><FileText size={14} /> This is a draft order — submit when ready.</div>
