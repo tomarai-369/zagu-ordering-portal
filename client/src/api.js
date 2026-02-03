@@ -117,7 +117,7 @@ export const api = {
   getProducts: async (query) => {
     await backendReady;
     if (IS_DEMO) return { records: DEMO_PRODUCTS, totalCount: String(DEMO_PRODUCTS.length) };
-    return proxyRequest(`/products/records?query=${encodeURIComponent(query || 'product_status = "Active" order by product_code asc')}`);
+    return proxyRequest(`/products/records?query=${encodeURIComponent(query || 'product_status in ("Active") order by product_code asc')}`);
   },
 
   getOrders: async (query) => {
