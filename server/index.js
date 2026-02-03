@@ -118,7 +118,7 @@ app.post("/api/auth/login", async (req, res) => {
     if (!code || !password) return res.status(400).json({ error: "Code and password required" });
 
     const data = await kintoneRequest("dealers", "/k/v1/records.json", "GET", null, {
-      app: APPS.dealers.id, query: `dealer_code = "${code}" and dealer_status = "Active" limit 1`,
+      app: APPS.dealers.id, query: `dealer_code = "${code}" and dealer_status in ("Active") limit 1`,
     });
 
     if (data.records.length === 0) return res.status(401).json({ error: "Dealer not found or inactive" });
