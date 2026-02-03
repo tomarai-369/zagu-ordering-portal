@@ -5,7 +5,7 @@ import {
   ArrowLeft, CreditCard, Banknote, Clock, Wifi, WifiOff, Save,
   Building2, Smartphone, Landmark, MapPin, FileText, AlertTriangle,
 } from "lucide-react";
-import { api } from "./api.js";
+import { api, session } from "./api.js";
 import "./styles.css";
 
 // ─── Constants (aligned with SAP data) ──────────────────────
@@ -61,6 +61,7 @@ export default function App() {
   const [selectedPayment, setSelectedPayment] = useState("Cash on Pick Up");
   const [orderNotes, setOrderNotes] = useState("");
   const [viewOrder, setViewOrder] = useState(null);
+  const [restoringSession, setRestoringSession] = useState(true);
 
   const showToast = useCallback((msg, type = "success") => {
     setToast({ msg, type });
@@ -109,14 +110,49 @@ export default function App() {
     } catch { return []; }
   }, []);
 
+  // ─── Session restoration on mount ───────────────────────────
+  useEffect(() => {
+    const restoreSession = async () => {
+      const saved = session.restore();
+      if (!saved || !saved.dealer) {
+        setRestoringSession(false);
+        return;
+      }
+      try {
+        setDealer(saved.dealer);
+        setSelectedStore(saved.selectedStore);
+        const savedCart = session.restoreCart();
+        if (savedCart.length > 0) setCart(savedCart);
+        await loadProducts();
+        const o = await loadOrders(saved.dealer.code);
+        setOrders(o);
+        setScreen("catalog");
+        setIsLive(true);
+      } catch {
+        // Session restore failed — fall back to login
+        session.clear();
+      }
+      setRestoringSession(false);
+    };
+    restoreSession();
+  }, [loadProducts, loadOrders]);
+
+  // ─── Persist cart changes ───────────────────────────────────
+  useEffect(() => {
+    if (dealer) session.saveCart(cart);
+  }, [cart, dealer]);
+
   const handleLogin = useCallback(async (code, password) => {
     setLoading(true);
     try {
       const { dealer: d } = await api.login(code, password);
       setDealer(d);
       setIsLive(true);
-      if (d.stores.length === 1) setSelectedStore(d.stores[0]);
-      else if (d.stores.length === 0) setSelectedStore({ code: d.code, name: d.name, address: "" });
+      let store = null;
+      if (d.stores.length === 1) { store = d.stores[0]; setSelectedStore(store); }
+      else if (d.stores.length === 0) { store = { code: d.code, name: d.name, address: "" }; setSelectedStore(store); }
+      // Save session immediately
+      session.save(d, store);
       await loadProducts();
       const o = await loadOrders(d.code);
       setOrders(o);
@@ -139,14 +175,14 @@ export default function App() {
   const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
-  // Submit order (or save draft)
+  // Submit order (or save draft) — now uses composite endpoint for non-drafts
   const submitOrder = async (isDraft = false) => {
     if (cart.length === 0) return;
     setSubmitting(true);
     const today = new Date().toISOString().split("T")[0];
     const orderNum = `ORD-${Date.now().toString(36).toUpperCase()}`;
     try {
-      await api.createOrder({
+      const record = {
         order_number: { value: orderNum },
         order_date: { value: today },
         dealer_lookup: { value: dealer.code },
@@ -161,8 +197,16 @@ export default function App() {
             value: { product_lookup: { value: i.code }, quantity: { value: String(i.qty) } },
           })),
         },
-      });
-      showToast(isDraft ? "Draft saved!" : "Order submitted!");
+      };
+
+      // Use composite endpoint — creates record AND advances process management
+      const result = await api.submitOrder(record, isDraft);
+
+      if (result.statusError) {
+        showToast("Order created but status update pending — staff will process manually", "success");
+      } else {
+        showToast(isDraft ? "Draft saved!" : "Order submitted for approval!");
+      }
     } catch {
       showToast("Failed to submit order", "error");
       setSubmitting(false);
@@ -182,10 +226,33 @@ export default function App() {
     const matchSearch = !searchTerm || p.name.toLowerCase().includes(searchTerm.toLowerCase()) || p.code.toLowerCase().includes(searchTerm.toLowerCase());
     return matchCat && matchSearch;
   });
-  const logout = () => { setDealer(null); setCart([]); setOrders([]); setSelectedStore(null); setScreen("login"); };
+  const logout = () => {
+    setDealer(null); setCart([]); setOrders([]); setSelectedStore(null); setScreen("login");
+    session.clear();
+  };
+
+  // Show loading spinner while restoring session
+  if (restoringSession) {
+    return (
+      <div className="login-page">
+        <div className="login-container">
+          <div style={{ textAlign: "center", padding: "60px 20px" }}>
+            <Loader2 size={36} className="spinner" style={{ color: "#D4A017" }} />
+            <p style={{ marginTop: 16, color: "#8B7355" }}>Restoring session...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (screen === "login") return <LoginScreen onLogin={handleLogin} loading={loading} isLive={isLive} />;
-  if (screen === "store-select") return <StoreSelectScreen dealer={dealer} onSelect={(s) => { setSelectedStore(s); setScreen("catalog"); }} />;
+  if (screen === "store-select") return (
+    <StoreSelectScreen dealer={dealer} onSelect={(s) => {
+      setSelectedStore(s);
+      session.save(dealer, s);
+      setScreen("catalog");
+    }} />
+  );
 
   const hasBalance = dealer?.outstandingBalance > 0;
 
