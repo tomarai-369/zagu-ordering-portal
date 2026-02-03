@@ -5,6 +5,7 @@ const BACKEND_URLS = [
   import.meta.env.VITE_API_URL,          // explicit env override
   window.__ZAGU_API_URL__,               // runtime config
   window.location.hostname === "localhost" ? "/api" : null,
+  "https://zagu-api.tom-arai.workers.dev/api", // Cloudflare Worker (production)
 ].filter(Boolean);
 
 let API_BASE = null;
@@ -182,3 +183,4 @@ export const api = {
   get backendUrl() { return API_BASE; },
   ready: backendReady,
 };
+
