@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: zagu-ordering-api
+    runtime: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: KINTONE_BASE_URL
+        sync: false
+      - key: KINTONE_PRODUCTS_APP_ID
+        value: "1"
+      - key: KINTONE_DEALERS_APP_ID
+        value: "2"
+      - key: KINTONE_ORDERS_APP_ID
+        value: "3"
+      - key: KINTONE_PRODUCTS_TOKEN
+        sync: false
+      - key: KINTONE_DEALERS_TOKEN
+        sync: false
+      - key: KINTONE_ORDERS_TOKEN
+        sync: false
+      - key: FRONTEND_URL
+        value: "https://tomarai-369.github.io"
