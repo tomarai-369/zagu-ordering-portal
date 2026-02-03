@@ -7,8 +7,15 @@ const CORS_HEADERS = {
   "Access-Control-Max-Age": "86400",
 };
 
-function json(data, status = 200) {
+function jsonResponse(data, status = 200) {
   return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+  });
+}
+
+function errorResponse(message, status = 500, details) {
+  return new Response(JSON.stringify({ error: message, details }), {
     status,
     headers: { "Content-Type": "application/json", ...CORS_HEADERS },
   });
@@ -26,10 +33,11 @@ function getCombinedToken(apps) {
   return [apps.orders.token, apps.products.token, apps.dealers.token].join(",");
 }
 
-async function kintoneRequest(env, appKey, endpoint, method = "GET", body = null, query = {}, overrideToken = null) {
+// Returns { ok, data, status } — never throws
+async function kintone(env, appKey, endpoint, method = "GET", body = null, query = {}, overrideToken = null) {
   const apps = getApps(env);
   const appConfig = apps[appKey];
-  if (!appConfig) throw Object.assign(new Error(`Unknown app: ${appKey}`), { status: 400 });
+  if (!appConfig) return { ok: false, status: 400, data: { message: `Unknown app: ${appKey}` } };
 
   const url = new URL(`${env.KINTONE_BASE_URL}${endpoint}`);
   if (method === "GET") {
@@ -48,91 +56,82 @@ async function kintoneRequest(env, appKey, endpoint, method = "GET", body = null
   });
 
   const data = await res.json();
-  if (!res.ok) {
-    const err = new Error(data.message || `Kintone error ${res.status}`);
-    err.status = res.status;
-    err.details = data;
-    throw err;
-  }
-  return data;
+  return { ok: res.ok, status: res.status, data };
 }
 
 // ─── Route handlers ─────────────────────────────────────────
 
 async function handleHealth(env) {
-  return json({ status: "ok", kintone: env.KINTONE_BASE_URL, timestamp: new Date().toISOString() });
+  return jsonResponse({ status: "ok", kintone: env.KINTONE_BASE_URL, timestamp: new Date().toISOString() });
 }
 
 async function handleGetRecords(env, appKey, url) {
   const apps = getApps(env);
-  if (!apps[appKey]) return json({ error: `Unknown app: ${appKey}` }, 400);
+  if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
   const query = url.searchParams.get("query") || "";
   const fields = url.searchParams.get("fields") || undefined;
   const totalCount = url.searchParams.get("totalCount") || "true";
-  const data = await kintoneRequest(env, appKey, "/k/v1/records.json", "GET", null, {
+  const r = await kintone(env, appKey, "/k/v1/records.json", "GET", null, {
     app: apps[appKey].id, query, fields, totalCount,
   });
-  return json(data);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 async function handleGetRecord(env, appKey, id) {
   const apps = getApps(env);
-  if (!apps[appKey]) return json({ error: `Unknown app: ${appKey}` }, 400);
-  const data = await kintoneRequest(env, appKey, "/k/v1/record.json", "GET", null, {
+  if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
+  const r = await kintone(env, appKey, "/k/v1/record.json", "GET", null, {
     app: apps[appKey].id, id,
   });
-  return json(data);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 async function handleCreateRecord(env, appKey, body) {
   const apps = getApps(env);
-  if (!apps[appKey]) return json({ error: `Unknown app: ${appKey}` }, 400);
+  if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
   const token = appKey === "orders" ? getCombinedToken(apps) : null;
-  const data = await kintoneRequest(env, appKey, "/k/v1/record.json", "POST", {
+  const r = await kintone(env, appKey, "/k/v1/record.json", "POST", {
     app: apps[appKey].id, record: body.record,
   }, {}, token);
-  return json(data);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 async function handleUpdateRecord(env, appKey, body) {
   const apps = getApps(env);
-  if (!apps[appKey]) return json({ error: `Unknown app: ${appKey}` }, 400);
-  const data = await kintoneRequest(env, appKey, "/k/v1/record.json", "PUT", {
+  if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
+  const r = await kintone(env, appKey, "/k/v1/record.json", "PUT", {
     app: apps[appKey].id, id: body.id, record: body.record,
   });
-  return json(data);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 async function handleLogin(env, body) {
   const { code, password } = body;
-  if (!code || !password) return json({ error: "Code and password required" }, 400);
+  if (!code || !password) return errorResponse("Code and password required", 400);
 
   const apps = getApps(env);
-  const data = await kintoneRequest(env, "dealers", "/k/v1/records.json", "GET", null, {
+  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
     app: apps.dealers.id, query: `dealer_code = "${code}" limit 1`,
   });
-  if (data.records.length === 0) return json({ error: "Dealer not found" }, 401);
+  if (!r.ok) return errorResponse(r.data.message, r.status, r.data);
+  if (r.data.records.length === 0) return errorResponse("Dealer not found", 401);
 
-  const d = data.records[0];
+  const d = r.data.records[0];
   const pmStatus = d.Status?.value || d.dealer_status?.value || "";
 
-  // Only Active dealers can log in
   if (pmStatus !== "Active") {
-    if (pmStatus === "Pending Review" || pmStatus === "Pending Approval") {
-      return json({ error: "Your account is pending approval. Please wait for activation." }, 401);
-    }
-    if (pmStatus === "Inactive") {
-      return json({ error: "Your account has been deactivated. Please contact Zagu back office." }, 401);
-    }
-    return json({ error: "Dealer not found or inactive" }, 401);
+    if (pmStatus === "Pending Review" || pmStatus === "Pending Approval")
+      return errorResponse("Your account is pending approval. Please wait for activation.", 401);
+    if (pmStatus === "Inactive")
+      return errorResponse("Your account has been deactivated. Please contact Zagu back office.", 401);
+    return errorResponse("Dealer not found or inactive", 401);
   }
 
-  if (d.login_password.value !== password) return json({ error: "Invalid password" }, 401);
+  if (d.login_password.value !== password) return errorResponse("Invalid password", 401);
 
   const expiry = d.password_expiry?.value;
-  if (expiry && new Date(expiry) < new Date()) {
-    return json({ error: "Password expired. Please contact your administrator." }, 401);
-  }
+  if (expiry && new Date(expiry) < new Date())
+    return errorResponse("Password expired. Please contact your administrator.", 401);
 
   const stores = (d.dealer_stores?.value || []).map((row) => ({
     code: row.value.ds_store_code?.value || "",
@@ -140,7 +139,7 @@ async function handleLogin(env, body) {
     address: row.value.ds_store_address?.value || "",
   }));
 
-  return json({
+  return jsonResponse({
     dealer: {
       code: d.dealer_code.value,
       name: d.dealer_name.value,
@@ -163,63 +162,61 @@ async function handleOrderStatus(env, body) {
   const apps = getApps(env);
   const payload = { app: apps.orders.id, id, action };
   if (assignee) payload.assignee = assignee;
-  const data = await kintoneRequest(env, "orders", "/k/v1/record/status.json", "PUT", payload);
-  return json(data);
+  const r = await kintone(env, "orders", "/k/v1/record/status.json", "PUT", payload);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 async function handleSubmitOrder(env, body) {
   const { record, isDraft } = body;
   const apps = getApps(env);
 
-  const createResult = await kintoneRequest(env, "orders", "/k/v1/record.json", "POST", {
+  const cr = await kintone(env, "orders", "/k/v1/record.json", "POST", {
     app: apps.orders.id, record,
   }, {}, getCombinedToken(apps));
+  if (!cr.ok) return errorResponse(cr.data.message, cr.status, cr.data);
 
-  const recordId = createResult.id;
+  const recordId = cr.data.id;
 
   if (!isDraft) {
-    try {
-      await kintoneRequest(env, "orders", "/k/v1/record/status.json", "PUT", {
-        app: apps.orders.id, id: recordId, action: "Submit Order",
-      });
-      await kintoneRequest(env, "orders", "/k/v1/record/status.json", "PUT", {
-        app: apps.orders.id, id: recordId, action: "Send for Approval", assignee: "Administrator",
-      });
-    } catch (statusErr) {
-      return json({
-        id: recordId, revision: createResult.revision,
-        status: "created_but_status_pending", statusError: statusErr.message,
-      });
+    const s1 = await kintone(env, "orders", "/k/v1/record/status.json", "PUT", {
+      app: apps.orders.id, id: recordId, action: "Submit Order",
+    });
+    if (!s1.ok) {
+      return jsonResponse({ id: recordId, revision: cr.data.revision, status: "created_but_status_pending", statusError: s1.data.message });
+    }
+
+    const s2 = await kintone(env, "orders", "/k/v1/record/status.json", "PUT", {
+      app: apps.orders.id, id: recordId, action: "Send for Approval", assignee: "Administrator",
+    });
+    if (!s2.ok) {
+      return jsonResponse({ id: recordId, revision: cr.data.revision, status: "created_but_status_pending", statusError: s2.data.message });
     }
   }
 
-  return json({
-    id: recordId, revision: createResult.revision,
-    status: isDraft ? "draft" : "pending_approval",
-  });
+  return jsonResponse({ id: recordId, revision: cr.data.revision, status: isDraft ? "draft" : "pending_approval" });
 }
 
 async function handleRegister(env, body) {
   const { email, dealerCode, password, dealerName, contactPerson, phone, region } = body;
-  if (!email || !dealerCode || !password || !dealerName || !contactPerson) {
-    return json({ error: "Email, dealer code, password, dealer name, and contact person are required" }, 400);
-  }
-  if (password.length < 6) return json({ error: "Password must be at least 6 characters" }, 400);
+  if (!email || !dealerCode || !password || !dealerName || !contactPerson)
+    return errorResponse("Email, dealer code, password, dealer name, and contact person are required", 400);
+  if (password.length < 6) return errorResponse("Password must be at least 6 characters", 400);
 
   const apps = getApps(env);
-  const existing = await kintoneRequest(env, "dealers", "/k/v1/records.json", "GET", null, {
+  const existing = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
     app: apps.dealers.id, query: `dealer_code = "${dealerCode}" or email = "${email}" limit 1`,
   });
-  if (existing.records.length > 0) {
-    const match = existing.records[0];
-    if (match.dealer_code.value === dealerCode) return json({ error: "Dealer code already registered" }, 409);
-    if (match.email.value === email) return json({ error: "Email already registered" }, 409);
+  if (!existing.ok) return errorResponse(existing.data.message, existing.status, existing.data);
+  if (existing.data.records.length > 0) {
+    const match = existing.data.records[0];
+    if (match.dealer_code.value === dealerCode) return errorResponse("Dealer code already registered", 409);
+    if (match.email.value === email) return errorResponse("Email already registered", 409);
   }
 
   const expiry = new Date();
   expiry.setDate(expiry.getDate() + 90);
 
-  const result = await kintoneRequest(env, "dealers", "/k/v1/record.json", "POST", {
+  const cr = await kintone(env, "dealers", "/k/v1/record.json", "POST", {
     app: apps.dealers.id,
     record: {
       dealer_code: { value: dealerCode },
@@ -234,49 +231,51 @@ async function handleRegister(env, body) {
       mfa_enabled: { value: "No" },
     },
   });
+  if (!cr.ok) return errorResponse(cr.data.message, cr.status, cr.data);
 
-  const recordId = result.id;
+  const recordId = cr.data.id;
 
   // Advance PM: New → Pending Review (notifies Administrator)
-  try {
-    await kintoneRequest(env, "dealers", "/k/v1/record/status.json", "PUT", {
-      app: apps.dealers.id, id: recordId, action: "Submit for Review", assignee: "Administrator",
-    });
-  } catch (pmErr) {
-    // Record created but PM advancement failed — still report success
-    return json({ success: true, id: recordId, message: "Registration submitted. Your account will be reviewed by Zagu back office.", pmWarning: pmErr.message });
-  }
+  const pm = await kintone(env, "dealers", "/k/v1/record/status.json", "PUT", {
+    app: apps.dealers.id, id: recordId, action: "Submit for Review", assignee: "Administrator",
+  });
 
-  return json({ success: true, id: result.id, message: "Registration submitted. Your account will be reviewed by Zagu back office." });
+  return jsonResponse({
+    success: true, id: recordId,
+    message: "Registration submitted. Your account will be reviewed by Zagu back office.",
+    ...(pm.ok ? {} : { pmWarning: pm.data.message }),
+  });
 }
 
 async function handleChangePassword(env, body) {
   const { code, currentPassword, newPassword } = body;
-  if (!code || !currentPassword || !newPassword) return json({ error: "All fields required" }, 400);
-  if (newPassword.length < 6) return json({ error: "New password must be at least 6 characters" }, 400);
+  if (!code || !currentPassword || !newPassword) return errorResponse("All fields required", 400);
+  if (newPassword.length < 6) return errorResponse("New password must be at least 6 characters", 400);
 
   const apps = getApps(env);
-  const data = await kintoneRequest(env, "dealers", "/k/v1/records.json", "GET", null, {
+  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
     app: apps.dealers.id, query: `dealer_code = "${code}" limit 1`,
   });
-  if (data.records.length === 0) return json({ error: "Dealer not found" }, 401);
+  if (!r.ok) return errorResponse(r.data.message, r.status, r.data);
+  if (r.data.records.length === 0) return errorResponse("Dealer not found", 401);
 
-  const d = data.records[0];
+  const d = r.data.records[0];
   const pmStatus = d.Status?.value || d.dealer_status?.value || "";
-  if (pmStatus !== "Active") return json({ error: "Dealer not active" }, 401);
-  if (d.login_password.value !== currentPassword) return json({ error: "Current password incorrect" }, 401);
+  if (pmStatus !== "Active") return errorResponse("Dealer not active", 401);
+  if (d.login_password.value !== currentPassword) return errorResponse("Current password incorrect", 401);
 
   const newExpiry = new Date();
   newExpiry.setDate(newExpiry.getDate() + 90);
-  await kintoneRequest(env, "dealers", "/k/v1/record.json", "PUT", {
+  const u = await kintone(env, "dealers", "/k/v1/record.json", "PUT", {
     app: apps.dealers.id, id: d.$id.value,
     record: {
       login_password: { value: newPassword },
       password_expiry: { value: newExpiry.toISOString().split("T")[0] },
     },
   });
+  if (!u.ok) return errorResponse(u.data.message, u.status, u.data);
 
-  return json({ success: true, newExpiry: newExpiry.toISOString().split("T")[0] });
+  return jsonResponse({ success: true, newExpiry: newExpiry.toISOString().split("T")[0] });
 }
 
 async function handleDealerStatus(env, body) {
@@ -284,76 +283,47 @@ async function handleDealerStatus(env, body) {
   const apps = getApps(env);
   const payload = { app: apps.dealers.id, id, action };
   if (assignee) payload.assignee = assignee;
-  const data = await kintoneRequest(env, "dealers", "/k/v1/record/status.json", "PUT", payload);
-  return json(data);
+  const r = await kintone(env, "dealers", "/k/v1/record/status.json", "PUT", payload);
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
 // ─── Router ─────────────────────────────────────────────────
 
 export default {
   async fetch(request, env) {
-    if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: CORS_HEADERS });
-    }
-
-    const url = new URL(request.url);
-    const path = url.pathname;
-    const method = request.method;
-
     try {
-      // Health check
-      if (path === "/api/health" && method === "GET") {
-        return handleHealth(env);
+      if (request.method === "OPTIONS") {
+        return new Response(null, { status: 204, headers: CORS_HEADERS });
       }
 
-      // Auth routes
-      if (path === "/api/auth/login" && method === "POST") {
-        return handleLogin(env, await request.json());
-      }
-      if (path === "/api/auth/register" && method === "POST") {
-        return handleRegister(env, await request.json());
-      }
-      if (path === "/api/auth/change-password" && method === "PUT") {
-        return handleChangePassword(env, await request.json());
-      }
+      const url = new URL(request.url);
+      const path = url.pathname;
+      const method = request.method;
 
-      // Order-specific routes
-      if (path === "/api/orders/status" && method === "POST") {
-        return handleOrderStatus(env, await request.json());
-      }
-      if (path === "/api/orders/submit-order" && method === "POST") {
-        return handleSubmitOrder(env, await request.json());
-      }
+      if (path === "/api/health" && method === "GET") return handleHealth(env);
+      if (path === "/api/auth/login" && method === "POST") return handleLogin(env, await request.json());
+      if (path === "/api/auth/register" && method === "POST") return handleRegister(env, await request.json());
+      if (path === "/api/auth/change-password" && method === "PUT") return handleChangePassword(env, await request.json());
+      if (path === "/api/orders/status" && method === "POST") return handleOrderStatus(env, await request.json());
+      if (path === "/api/orders/submit-order" && method === "POST") return handleSubmitOrder(env, await request.json());
+      if (path === "/api/dealers/status" && method === "POST") return handleDealerStatus(env, await request.json());
 
-      // Dealer PM status advancement
-      if (path === "/api/dealers/status" && method === "POST") {
-        return handleDealerStatus(env, await request.json());
-      }
-
-      // Generic CRUD: /api/{appKey}/records
       const recordsMatch = path.match(/^\/api\/(\w+)\/records$/);
-      if (recordsMatch && method === "GET") {
-        return handleGetRecords(env, recordsMatch[1], url);
-      }
+      if (recordsMatch && method === "GET") return handleGetRecords(env, recordsMatch[1], url);
 
-      // Generic CRUD: /api/{appKey}/record/{id}
       const recordIdMatch = path.match(/^\/api\/(\w+)\/record\/(\d+)$/);
-      if (recordIdMatch && method === "GET") {
-        return handleGetRecord(env, recordIdMatch[1], recordIdMatch[2]);
-      }
+      if (recordIdMatch && method === "GET") return handleGetRecord(env, recordIdMatch[1], recordIdMatch[2]);
 
-      // Generic CRUD: /api/{appKey}/record (POST/PUT)
       const recordMatch = path.match(/^\/api\/(\w+)\/record$/);
-      if (recordMatch && method === "POST") {
-        return handleCreateRecord(env, recordMatch[1], await request.json());
-      }
-      if (recordMatch && method === "PUT") {
-        return handleUpdateRecord(env, recordMatch[1], await request.json());
-      }
+      if (recordMatch && method === "POST") return handleCreateRecord(env, recordMatch[1], await request.json());
+      if (recordMatch && method === "PUT") return handleUpdateRecord(env, recordMatch[1], await request.json());
 
-      return json({ error: "Not found" }, 404);
-    } catch (err) {
-      return json({ error: err.message, details: err.details }, err.status || 500);
+      return errorResponse("Not found", 404);
+    } catch (e) {
+      return new Response(JSON.stringify({ error: String(e.message || e) }), {
+        status: 500,
+        headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+      });
     }
   },
 };
