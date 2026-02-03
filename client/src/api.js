@@ -24,6 +24,43 @@ async function resolveBackend() {
 
 const backendReady = resolveBackend();
 
+// ─── Session persistence ─────────────────────────────────────
+const SESSION_KEY = "zagu_session";
+const CART_KEY = "zagu_cart";
+
+export const session = {
+  save(dealer, selectedStore) {
+    try {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify({ dealer, selectedStore, ts: Date.now() }));
+    } catch {}
+  },
+  restore() {
+    try {
+      const raw = sessionStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      // Expire sessions after 8 hours
+      if (Date.now() - data.ts > 8 * 60 * 60 * 1000) { session.clear(); return null; }
+      return data;
+    } catch { return null; }
+  },
+  clear() {
+    try {
+      sessionStorage.removeItem(SESSION_KEY);
+      sessionStorage.removeItem(CART_KEY);
+    } catch {}
+  },
+  saveCart(cart) {
+    try { sessionStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch {}
+  },
+  restoreCart() {
+    try {
+      const raw = sessionStorage.getItem(CART_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  },
+};
+
 // ─── Demo data (fallback only) ──────────────────────────────
 const DEMO_PRODUCTS = [
   {$id:{value:"1"},product_code:{value:"ITM-BV-001"},product_name:{value:"Classic Pearl Shake"},category:{value:"Beverages"},unit_price:{value:"85"},stock_qty:{value:"500"},description:{value:"Signature Zagu tapioca pearl shake"},product_status:{value:"Active"},item_category:{value:"Shakes"},variant_label:{value:"Regular"},has_variants:{value:"Yes"}},
@@ -88,10 +125,21 @@ export const api = {
     return proxyRequest(`/orders/records?query=${encodeURIComponent(query || "order by order_date desc")}`);
   },
 
+  // Original create (kept for backward compat, used for drafts)
   createOrder: async (record) => {
     await backendReady;
     if (IS_DEMO) return { id: String(Date.now()), revision: "1" };
     return proxyRequest("/orders/record", { method: "POST", body: JSON.stringify({ record }) });
+  },
+
+  // Composite: create + advance process management (for non-draft submissions)
+  submitOrder: async (record, isDraft = false) => {
+    await backendReady;
+    if (IS_DEMO) return { id: String(Date.now()), revision: "1", status: isDraft ? "draft" : "pending_approval" };
+    return proxyRequest("/orders/submit-order", {
+      method: "POST",
+      body: JSON.stringify({ record, isDraft }),
+    });
   },
 
   updateOrder: async (id, record) => {
@@ -100,10 +148,10 @@ export const api = {
     return proxyRequest("/orders/record", { method: "PUT", body: JSON.stringify({ id, record }) });
   },
 
-  updateOrderStatus: async (id, action) => {
+  updateOrderStatus: async (id, action, assignee) => {
     await backendReady;
     if (IS_DEMO) return { revision: "1" };
-    return proxyRequest("/orders/status", { method: "POST", body: JSON.stringify({ id, action }) });
+    return proxyRequest("/orders/status", { method: "POST", body: JSON.stringify({ id, action, assignee }) });
   },
 
   health: async () => {
