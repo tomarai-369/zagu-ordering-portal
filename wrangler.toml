@@ -1,0 +1,9 @@
+name = "zagu-api"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+KINTONE_BASE_URL = "https://zagushakes.kintone.com"
+KINTONE_PRODUCTS_APP_ID = "1"
+KINTONE_DEALERS_APP_ID = "2"
+KINTONE_ORDERS_APP_ID = "3"
