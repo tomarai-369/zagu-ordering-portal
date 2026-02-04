@@ -2,9 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Zagu Shakes — Dealer Ordering Portal</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥤</text></svg>" />
+
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#FFD51E" />
+    <meta name="description" content="Zagu Dealer Ordering Portal — Browse products, place orders, track status" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Zagu Orders" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Zagu Orders" />
+    <meta name="msapplication-TileColor" content="#FFD51E" />
+    <meta name="msapplication-TileImage" content="icon-144x144.png" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,5 +33,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("sw.js")
+            .then((reg) => console.log("[Zagu] SW registered:", reg.scope))
+            .catch((err) => console.warn("[Zagu] SW registration failed:", err));
+        });
+      }
+    </script>
   </body>
 </html>
