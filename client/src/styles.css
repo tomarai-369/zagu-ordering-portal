@@ -237,29 +237,64 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
 .toast-success { background: #16A34A; }
 .toast-error { background: var(--coral); }
 
+/* ─── Mobile bottom nav ────────────────────────────────────── */
+.mobile-bottom-nav {
+  display: none; /* Hidden on desktop */
+}
+
 /* Responsive */
 
 /* ─── Tablet (≤ 768px) ─────────────────────────────────────── */
 @media (max-width:768px) {
   .checkout-grid { grid-template-columns: 1fr; }
   .checkout-right { position: static; }
-  .app-header { padding: 0 12px; gap: 6px; }
-  .header-logo { height: 28px; }
-  .logo-subtitle { display: none; }
-  .live-badge { display: none; }
-  .main-content { padding: 16px 12px; }
+  .main-content { padding: 16px 12px 90px; } /* extra bottom for bottom nav */
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-  .dealer-bar { flex-direction: column; gap: 6px; align-items: flex-start; padding: 8px 12px; font-size: 12px; }
   .login-logo-img { max-width: 180px; }
   .section-title { font-size: 20px; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .charts-row { grid-template-columns: 1fr; }
   .profile-grid { grid-template-columns: 1fr; }
 
-  /* Nav: icon-only buttons */
-  .nav-btn { padding: 6px 10px; }
-  .nav-btn span:not(.nav-count) { display: none; }
-  .nav-count { display: none; }
+  /* Header: logo + cart + logout only */
+  .app-header { padding: 0 12px; }
+  .header-logo { height: 28px; }
+  .logo-subtitle { display: none; }
+  .live-badge { display: none; }
+  .header-right .nav-btn { display: none; } /* hide nav from header */
+
+  /* Dealer bar compact */
+  .dealer-bar { padding: 8px 12px; font-size: 12px; overflow-x: auto; white-space: nowrap; }
+  .dealer-info { flex-wrap: nowrap; min-width: 0; }
+  .dealer-bar { flex-direction: column; gap: 6px; align-items: flex-start; }
+
+  /* Bottom nav visible */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    padding: 6px 0 env(safe-area-inset-bottom, 8px);
+    z-index: 55;
+    box-shadow: 0 -2px 12px rgba(0,0,0,.06);
+  }
+  .bottom-nav-item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 10px; font-family: var(--font);
+    padding: 6px 0; transition: .15s;
+  }
+  .bottom-nav-item.active { color: var(--orange); }
+  .bottom-nav-item.active span { font-weight: 700; }
+  .bottom-cart-wrap { position: relative; }
+  .bottom-cart-badge {
+    position: absolute; top: -6px; right: -10px;
+    background: var(--coral); color: #fff; font-size: 10px; font-weight: 700;
+    border-radius: 10px; min-width: 16px; height: 16px;
+    display: flex; align-items: center; justify-content: center; padding: 0 4px;
+  }
 
   /* Order rows: stack on mobile */
   .order-row { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 16px; }
@@ -278,7 +313,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
   .notes-input { margin: 0 16px 16px; width: calc(100% - 32px); }
   .payment-options { padding: 14px 16px; }
 
-  /* Cart drawer */
+  /* Cart drawer full width */
   .cart-drawer { width: 100vw; }
   .drawer-body { padding: 12px 16px; }
   .drawer-header { padding: 16px; }
@@ -299,13 +334,12 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
   .in-cart-badge { font-size: 10px; padding: 2px 7px; }
   .product-emoji { font-size: 36px; }
 
-  .category-filters { gap: 6px; }
-  .cat-btn { padding: 6px 12px; font-size: 12px; }
+  .category-filters { gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .cat-btn { padding: 6px 12px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
   .search-input { font-size: 13px; padding: 10px 14px 10px 38px; }
 
   .header-right { gap: 4px; }
   .icon-btn { width: 36px; height: 36px; }
-  .nav-btn { padding: 6px 8px; }
 
   .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .kpi-card { padding: 12px 10px; gap: 10px; }
@@ -324,6 +358,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
   .confirmation h2 { font-size: 22px; }
   .confirm-actions { flex-direction: column; }
   .confirm-actions .btn-primary, .confirm-actions .btn-outline { width: 100%; }
+
+  /* Dealer bar: scrollable single line */
+  .dealer-bar { padding: 6px 12px; }
+  .dealer-info { font-size: 11px; gap: 6px; }
 }
 
 /* ─── Password Expiry Banner ───────────────────────────────── */
