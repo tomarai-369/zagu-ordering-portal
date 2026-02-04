@@ -308,6 +308,42 @@ async function handleFileProxy(env, fileKey) {
   });
 }
 
+// ─── News & Announcements ─────────────────────────────────
+
+async function handleGetNews(env) {
+  const today = new Date().toISOString().split("T")[0];
+  const query = `is_active in ("Yes") and publish_date <= "${today}" order by is_pinned desc, priority asc, publish_date desc limit 20`;
+  const url = new URL(`${env.KINTONE_BASE_URL}/k/v1/records.json`);
+  url.searchParams.set("app", env.KINTONE_NEWS_APP_ID);
+  url.searchParams.set("query", query);
+
+  const res = await fetch(url.toString(), {
+    headers: { "X-Cybozu-Authorization": env.KINTONE_AUTH },
+  });
+  const data = await res.json();
+  if (!res.ok) return errorResponse(data.message || "Failed to fetch news", res.status);
+
+  // Filter out expired announcements
+  const records = (data.records || []).filter((r) => {
+    const expiry = r.expiry_date?.value;
+    return !expiry || expiry >= today;
+  });
+
+  return jsonResponse({ records });
+}
+
+// ─── Delete record ─────────────────────────────────────────
+
+async function handleDeleteRecord(env, appKey, ids) {
+  const apps = getApps(env);
+  if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
+  const r = await kintone(env, appKey, "/k/v1/records.json", "DELETE", {
+    app: apps[appKey].id,
+    ids: Array.isArray(ids) ? ids : [ids],
+  });
+  return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
+}
+
 // ─── Router ─────────────────────────────────────────────────
 
 export default {
@@ -328,6 +364,7 @@ export default {
       if (path === "/api/orders/status" && method === "POST") return handleOrderStatus(env, await request.json());
       if (path === "/api/orders/submit-order" && method === "POST") return handleSubmitOrder(env, await request.json());
       if (path === "/api/dealers/status" && method === "POST") return handleDealerStatus(env, await request.json());
+      if (path === "/api/news" && method === "GET") return handleGetNews(env);
 
       // File proxy: /api/file?fileKey=xxx
       if (path === "/api/file" && method === "GET") {
@@ -338,6 +375,10 @@ export default {
 
       const recordsMatch = path.match(/^\/api\/(\w+)\/records$/);
       if (recordsMatch && method === "GET") return handleGetRecords(env, recordsMatch[1], url);
+      if (recordsMatch && method === "DELETE") {
+        const body = await request.json();
+        return handleDeleteRecord(env, recordsMatch[1], body.ids);
+      }
 
       const recordIdMatch = path.match(/^\/api\/(\w+)\/record\/(\d+)$/);
       if (recordIdMatch && method === "GET") return handleGetRecord(env, recordIdMatch[1], recordIdMatch[2]);
