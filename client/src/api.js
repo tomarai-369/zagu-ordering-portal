@@ -198,5 +198,91 @@ export const api = {
       body: JSON.stringify({ ids: Array.isArray(ids) ? ids : [ids] }),
     });
   },
+
+  registerFcmToken: async (dealerCode, token) => {
+    await backendReady;
+    if (IS_DEMO) return { success: true };
+    return proxyRequest("/fcm/register", {
+      method: "POST",
+      body: JSON.stringify({ dealerCode, token }),
+    });
+  },
+
+  sendNotification: async (dealerCode, title, message, data) => {
+    await backendReady;
+    if (IS_DEMO) return { sent: 0 };
+    return proxyRequest("/fcm/send", {
+      method: "POST",
+      body: JSON.stringify({ dealerCode, title, message, data }),
+    });
+  },
 };
+
+// ─── Firebase Cloud Messaging ──────────────────────────────
+
+const FCM_CONFIG = {
+  apiKey: "AIzaSyDKQ_xUD8taMNk1kYuKX580Yc1ccMEA7_4",
+  authDomain: "zagu-ordering-portal.firebaseapp.com",
+  projectId: "zagu-ordering-portal",
+  storageBucket: "zagu-ordering-portal.firebasestorage.app",
+  messagingSenderId: "699948373847",
+  appId: "1:699948373847:web:7271be6c7f6e3a4b551012",
+};
+
+const VAPID_KEY = "BO0PsxjPHiZP2oFDSDH6ncf9T7HC17dTgEngvY6Id_6kNz1R5DAT0wZamYoqAwUEzaTYPhM8zK-GITqan3-moSo";
+
+let fcmApp = null;
+let fcmMessaging = null;
+
+export async function initFirebaseMessaging(dealerCode, onMessage) {
+  if (!("Notification" in window) || !("serviceWorker" in navigator)) {
+    console.log("[Zagu FCM] Push not supported in this browser");
+    return null;
+  }
+
+  try {
+    // Dynamically import Firebase SDK
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getMessaging, getToken, onMessage: onFcmMessage } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js");
+
+    if (!fcmApp) fcmApp = initializeApp(FCM_CONFIG);
+    
+    // Register Firebase messaging SW
+    const swReg = await navigator.serviceWorker.register("firebase-messaging-sw.js");
+    
+    fcmMessaging = getMessaging(fcmApp);
+
+    // Request permission
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") {
+      console.log("[Zagu FCM] Notification permission denied");
+      return null;
+    }
+
+    // Get FCM token
+    const token = await getToken(fcmMessaging, {
+      vapidKey: VAPID_KEY,
+      serviceWorkerRegistration: swReg,
+    });
+
+    if (token) {
+      console.log("[Zagu FCM] Token obtained, registering...");
+      await api.registerFcmToken(dealerCode, token);
+      console.log("[Zagu FCM] ✅ Push notifications enabled");
+    }
+
+    // Handle foreground messages
+    if (onMessage) {
+      onFcmMessage(fcmMessaging, (payload) => {
+        console.log("[Zagu FCM] Foreground message:", payload);
+        onMessage(payload);
+      });
+    }
+
+    return token;
+  } catch (err) {
+    console.error("[Zagu FCM] Setup error:", err);
+    return null;
+  }
+}
 

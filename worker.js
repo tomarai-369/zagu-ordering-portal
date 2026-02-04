@@ -1,4 +1,5 @@
 // Zagu Ordering Portal — Kintone API Proxy (Cloudflare Worker)
+// v2: + Firebase Cloud Messaging push notifications
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -33,7 +34,6 @@ function getCombinedToken(apps) {
   return [apps.orders.token, apps.products.token, apps.dealers.token].join(",");
 }
 
-// Returns { ok, data, status } — never throws
 async function kintone(env, appKey, endpoint, method = "GET", body = null, query = {}, overrideToken = null) {
   const apps = getApps(env);
   const appConfig = apps[appKey];
@@ -59,10 +59,196 @@ async function kintone(env, appKey, endpoint, method = "GET", body = null, query
   return { ok: res.ok, status: res.status, data };
 }
 
+// ─── FCM Push Notifications ──────────────────────────────────
+
+function base64url(str) {
+  return btoa(str).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function base64urlEncode(buffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function pemToArrayBuffer(pem) {
+  const b64 = pem.replace(/-----BEGIN PRIVATE KEY-----/g, "")
+    .replace(/-----END PRIVATE KEY-----/g, "")
+    .replace(/\s/g, "");
+  const binary = atob(b64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+async function createJWT(serviceAccount) {
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: "RS256", typ: "JWT" };
+  const payload = {
+    iss: serviceAccount.client_email,
+    scope: "https://www.googleapis.com/auth/firebase.messaging",
+    aud: "https://oauth2.googleapis.com/token",
+    iat: now,
+    exp: now + 3600,
+  };
+
+  const headerB64 = base64url(JSON.stringify(header));
+  const payloadB64 = base64url(JSON.stringify(payload));
+  const unsigned = `${headerB64}.${payloadB64}`;
+
+  const keyData = pemToArrayBuffer(serviceAccount.private_key);
+  const cryptoKey = await crypto.subtle.importKey(
+    "pkcs8", keyData, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["sign"]
+  );
+
+  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", cryptoKey, new TextEncoder().encode(unsigned));
+  return `${unsigned}.${base64urlEncode(signature)}`;
+}
+
+async function getAccessToken(env) {
+  const sa = JSON.parse(env.FCM_SERVICE_ACCOUNT);
+  const jwt = await createJWT(sa);
+
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`,
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(`OAuth2 error: ${data.error_description || data.error}`);
+  return data.access_token;
+}
+
+async function sendFcmNotification(env, token, title, body, data = {}) {
+  const accessToken = await getAccessToken(env);
+  const sa = JSON.parse(env.FCM_SERVICE_ACCOUNT);
+
+  const res = await fetch(
+    `https://fcm.googleapis.com/v1/projects/${sa.project_id}/messages:send`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: {
+          token,
+          notification: { title, body },
+          webpush: {
+            notification: {
+              icon: "https://tomarai-369.github.io/zagu-ordering-portal/icon-192x192.png",
+              badge: "https://tomarai-369.github.io/zagu-ordering-portal/icon-72x72.png",
+              tag: data.orderId || "zagu-general",
+              data,
+            },
+            fcm_options: {
+              link: "https://tomarai-369.github.io/zagu-ordering-portal/",
+            },
+          },
+        },
+      }),
+    }
+  );
+
+  const result = await res.json();
+  return { ok: res.ok, result };
+}
+
+async function notifyDealer(env, dealerCode, title, body, data = {}) {
+  if (!env.FCM_SERVICE_ACCOUNT) return { sent: 0, note: "FCM not configured" };
+
+  const apps = getApps(env);
+  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
+    app: apps.dealers.id,
+    query: `dealer_code = "${dealerCode}" limit 1`,
+    fields: "fcm_tokens",
+  });
+
+  if (!r.ok || !r.data.records.length) return { sent: 0, note: "Dealer not found" };
+
+  const tokensRaw = r.data.records[0].fcm_tokens?.value;
+  if (!tokensRaw) return { sent: 0, note: "No FCM tokens registered" };
+
+  let tokens;
+  try { tokens = JSON.parse(tokensRaw); } catch { return { sent: 0, note: "Invalid token data" }; }
+  if (!Array.isArray(tokens) || tokens.length === 0) return { sent: 0, note: "No tokens" };
+
+  const results = [];
+  const validTokens = [];
+  for (const token of tokens) {
+    try {
+      const r = await sendFcmNotification(env, token, title, body, data);
+      results.push(r);
+      if (r.ok) validTokens.push(token);
+    } catch (e) {
+      results.push({ ok: false, error: e.message });
+    }
+  }
+
+  // Clean up expired/invalid tokens
+  if (validTokens.length < tokens.length) {
+    await kintone(env, "dealers", "/k/v1/record.json", "PUT", {
+      app: apps.dealers.id,
+      updateKey: { field: "dealer_code", value: dealerCode },
+      record: { fcm_tokens: { value: JSON.stringify(validTokens) } },
+    });
+  }
+
+  return { sent: validTokens.length, total: tokens.length, results };
+}
+
+async function handleRegisterFcmToken(env, body) {
+  const { dealerCode, token } = body;
+  if (!dealerCode || !token) return errorResponse("dealerCode and token required", 400);
+
+  const apps = getApps(env);
+  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
+    app: apps.dealers.id,
+    query: `dealer_code = "${dealerCode}" limit 1`,
+    fields: "$id,fcm_tokens",
+  });
+
+  if (!r.ok || !r.data.records.length) return errorResponse("Dealer not found", 404);
+
+  const record = r.data.records[0];
+  const existing = record.fcm_tokens?.value;
+  let tokens = [];
+  try { tokens = existing ? JSON.parse(existing) : []; } catch { tokens = []; }
+
+  if (tokens.includes(token)) return jsonResponse({ success: true, registered: true, tokenCount: tokens.length });
+  tokens.push(token);
+  if (tokens.length > 10) tokens = tokens.slice(-10);
+
+  const u = await kintone(env, "dealers", "/k/v1/record.json", "PUT", {
+    app: apps.dealers.id,
+    id: record.$id.value,
+    record: { fcm_tokens: { value: JSON.stringify(tokens) } },
+  });
+
+  return u.ok
+    ? jsonResponse({ success: true, registered: true, tokenCount: tokens.length })
+    : errorResponse(u.data.message, u.status);
+}
+
+async function handleSendNotification(env, body) {
+  const { dealerCode, title, message, data } = body;
+  if (!dealerCode || !title) return errorResponse("dealerCode and title required", 400);
+  const result = await notifyDealer(env, dealerCode, title, message || "", data || {});
+  return jsonResponse(result);
+}
+
 // ─── Route handlers ─────────────────────────────────────────
 
 async function handleHealth(env) {
-  return jsonResponse({ status: "ok", kintone: env.KINTONE_BASE_URL, timestamp: new Date().toISOString() });
+  return jsonResponse({
+    status: "ok",
+    kintone: env.KINTONE_BASE_URL,
+    fcm: !!env.FCM_SERVICE_ACCOUNT,
+    timestamp: new Date().toISOString(),
+  });
 }
 
 async function handleGetRecords(env, appKey, url) {
@@ -163,6 +349,33 @@ async function handleOrderStatus(env, body) {
   const payload = { app: apps.orders.id, id, action };
   if (assignee) payload.assignee = assignee;
   const r = await kintone(env, "orders", "/k/v1/record/status.json", "PUT", payload);
+
+  // Send push notification on status change (fire-and-forget)
+  if (r.ok) {
+    try {
+      const orderRec = await kintone(env, "orders", "/k/v1/record.json", "GET", null, {
+        app: apps.orders.id, id,
+      });
+      if (orderRec.ok) {
+        const rec = orderRec.data.record;
+        const dealerCode = rec.dealer_lookup?.value;
+        const orderNum = rec.order_number?.value || `#${id}`;
+        const statusMessages = {
+          "Approve": { title: "✅ Order Approved!", body: `Your order ${orderNum} has been approved.` },
+          "Reject": { title: "❌ Order Rejected", body: `Your order ${orderNum} was rejected. ${rec.rejection_reason?.value || "See details in app."}` },
+          "Post to SAP": { title: "📋 Order Processing", body: `Your order ${orderNum} has been posted to SAP.` },
+          "Begin Picking": { title: "📦 Order Being Prepared", body: `Your order ${orderNum} is being picked and packed.` },
+          "Ready": { title: "🎉 Ready for Pickup!", body: `Your order ${orderNum} is ready for pickup!` },
+          "Complete": { title: "🏆 Order Completed", body: `Your order ${orderNum} is complete. Thank you!` },
+        };
+        const msg = statusMessages[action];
+        if (msg && dealerCode) {
+          notifyDealer(env, dealerCode, msg.title, msg.body, { orderId: id, orderNumber: orderNum, action }).catch(() => {});
+        }
+      }
+    } catch {}
+  }
+
   return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
@@ -197,9 +410,8 @@ async function handleSubmitOrder(env, body) {
 }
 
 async function handleRegister(env, body) {
-  const { email, dealerCode, password, dealerName, contactPerson, phone, region } = body;
-  if (!email || !dealerCode || !password || !dealerName || !contactPerson)
-    return errorResponse("Email, dealer code, password, dealer name, and contact person are required", 400);
+  const { dealerCode, dealerName, email, contactPerson, phone, password, region } = body;
+  if (!dealerCode || !dealerName || !email || !contactPerson || !password) return errorResponse("All required fields must be provided", 400);
   if (password.length < 6) return errorResponse("Password must be at least 6 characters", 400);
 
   const apps = getApps(env);
@@ -234,8 +446,6 @@ async function handleRegister(env, body) {
   if (!cr.ok) return errorResponse(cr.data.message, cr.status, cr.data);
 
   const recordId = cr.data.id;
-
-  // Advance PM: New → Pending Review (notifies Administrator)
   const pm = await kintone(env, "dealers", "/k/v1/record/status.json", "PUT", {
     app: apps.dealers.id, id: recordId, action: "Submit for Review", assignee: "Administrator",
   });
@@ -260,8 +470,7 @@ async function handleChangePassword(env, body) {
   if (r.data.records.length === 0) return errorResponse("Dealer not found", 401);
 
   const d = r.data.records[0];
-  const pmStatus = d.Status?.value || "";
-  if (pmStatus !== "Active") return errorResponse("Dealer not active", 401);
+  if (d.Status?.value !== "Active") return errorResponse("Dealer not active", 401);
   if (d.login_password.value !== currentPassword) return errorResponse("Current password incorrect", 401);
 
   const newExpiry = new Date();
@@ -274,7 +483,6 @@ async function handleChangePassword(env, body) {
     },
   });
   if (!u.ok) return errorResponse(u.data.message, u.status, u.data);
-
   return jsonResponse({ success: true, newExpiry: newExpiry.toISOString().split("T")[0] });
 }
 
@@ -287,28 +495,21 @@ async function handleDealerStatus(env, body) {
   return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
-// ─── File proxy (serves Kintone attachments as images) ──────
-
 async function handleFileProxy(env, fileKey) {
-  // Any app token can download files — use products token
   const url = `${env.KINTONE_BASE_URL}/k/v1/file.json?fileKey=${encodeURIComponent(fileKey)}`;
   const res = await fetch(url, {
     headers: { "X-Cybozu-API-Token": env.KINTONE_PRODUCTS_TOKEN },
   });
   if (!res.ok) return errorResponse("File not found", 404);
-
-  const contentType = res.headers.get("Content-Type") || "application/octet-stream";
   return new Response(res.body, {
     status: 200,
     headers: {
-      "Content-Type": contentType,
+      "Content-Type": res.headers.get("Content-Type") || "application/octet-stream",
       "Cache-Control": "public, max-age=86400",
       ...CORS_HEADERS,
     },
   });
 }
-
-// ─── News & Announcements ─────────────────────────────────
 
 async function handleGetNews(env) {
   const today = new Date().toISOString().split("T")[0];
@@ -316,30 +517,23 @@ async function handleGetNews(env) {
   const url = new URL(`${env.KINTONE_BASE_URL}/k/v1/records.json`);
   url.searchParams.set("app", env.KINTONE_NEWS_APP_ID);
   url.searchParams.set("query", query);
-
   const res = await fetch(url.toString(), {
     headers: { "X-Cybozu-Authorization": env.KINTONE_AUTH },
   });
   const data = await res.json();
   if (!res.ok) return errorResponse(data.message || "Failed to fetch news", res.status);
-
-  // Filter out expired announcements
   const records = (data.records || []).filter((r) => {
     const expiry = r.expiry_date?.value;
     return !expiry || expiry >= today;
   });
-
   return jsonResponse({ records });
 }
-
-// ─── Delete record ─────────────────────────────────────────
 
 async function handleDeleteRecord(env, appKey, ids) {
   const apps = getApps(env);
   if (!apps[appKey]) return errorResponse(`Unknown app: ${appKey}`, 400);
   const r = await kintone(env, appKey, "/k/v1/records.json", "DELETE", {
-    app: apps[appKey].id,
-    ids: Array.isArray(ids) ? ids : [ids],
+    app: apps[appKey].id, ids: Array.isArray(ids) ? ids : [ids],
   });
   return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
@@ -366,7 +560,10 @@ export default {
       if (path === "/api/dealers/status" && method === "POST") return handleDealerStatus(env, await request.json());
       if (path === "/api/news" && method === "GET") return handleGetNews(env);
 
-      // File proxy: /api/file?fileKey=xxx
+      // FCM endpoints
+      if (path === "/api/fcm/register" && method === "POST") return handleRegisterFcmToken(env, await request.json());
+      if (path === "/api/fcm/send" && method === "POST") return handleSendNotification(env, await request.json());
+
       if (path === "/api/file" && method === "GET") {
         const fileKey = url.searchParams.get("fileKey");
         if (!fileKey) return errorResponse("fileKey required", 400);

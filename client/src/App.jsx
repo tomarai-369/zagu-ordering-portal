@@ -7,7 +7,7 @@ import {
   BarChart3, User, Download, RefreshCw, ShieldAlert, Megaphone,
   ChevronDown, Bell, Tag, Info, Sparkles,
 } from "lucide-react";
-import { api, session } from "./api.js";
+import { api, session, initFirebaseMessaging } from "./api.js";
 import { generateOrderPDF } from "./OrderPDF.js";
 import Dashboard from "./Dashboard.jsx";
 import DealerProfile from "./DealerProfile.jsx";
@@ -73,9 +73,9 @@ export default function App() {
   const [showNewsModal, setShowNewsModal] = useState(false);
   const [storeSwitcherOpen, setStoreSwitcherOpen] = useState(false);
 
-  const showToast = useCallback((msg, type = "success") => {
+  const showToast = useCallback((msg, type = "success", duration = 3000) => {
     setToast({ msg, type });
-    setTimeout(() => setToast(null), 3000);
+    setTimeout(() => setToast(null), duration);
   }, []);
 
   useEffect(() => { api.health().then(() => setIsLive(true)).catch(() => setIsLive(false)); }, []);
@@ -187,6 +187,11 @@ export default function App() {
       setNews(n);
       setScreen(d.stores.length > 1 ? "store-select" : "catalog");
       if (n.length > 0) setTimeout(() => setShowNewsModal(true), 500);
+      // Initialize push notifications (fire-and-forget)
+      initFirebaseMessaging(d.code, (payload) => {
+        const { title, body } = payload.notification || {};
+        if (title) showToast(`${title}${body ? " — " + body : ""}`, "success", 6000);
+      }).catch(() => {});
     } catch (err) { showToast(err.message || "Login failed", "error"); }
     setLoading(false);
   }, [loadProducts, loadOrders, showToast]);
