@@ -78,14 +78,18 @@ export default function App() {
     setLoading(true);
     try {
       const data = await api.getProducts();
-      setProducts(data.records.map((r) => ({
-        id: r.$id.value, code: r.product_code.value, name: r.product_name.value,
-        category: r.category.value, price: Number(r.unit_price.value),
-        stock: Number(r.stock_qty.value || 0), desc: r.description.value || "",
-        itemCategory: r.item_category?.value || "", variant: r.variant_label?.value || "",
-        hasVariants: r.has_variants?.value === "Yes",
-        img: CATEGORY_ICONS[r.category.value] || "📦",
-      })));
+      setProducts(data.records.map((r) => {
+        const imgFile = r.product_image?.value?.[0];
+        return {
+          id: r.$id.value, code: r.product_code.value, name: r.product_name.value,
+          category: r.category.value, price: Number(r.unit_price.value),
+          stock: Number(r.stock_qty.value || 0), desc: r.description.value || "",
+          itemCategory: r.item_category?.value || "", variant: r.variant_label?.value || "",
+          hasVariants: r.has_variants?.value === "Yes",
+          img: CATEGORY_ICONS[r.category.value] || "📦",
+          imageUrl: imgFile ? `${api.getBaseUrl()}/file?fileKey=${encodeURIComponent(imgFile.fileKey)}` : null,
+        };
+      }));
       setIsLive(true);
     } catch { showToast("Could not load products", "error"); }
     setLoading(false);
@@ -590,8 +594,11 @@ function ProductCard({ product, onAdd, inCart }) {
   const catColor = CATEGORY_COLORS[product.category] || "#888";
   return (
     <div className="product-card">
-      <div className="product-image" style={{ background: `linear-gradient(135deg, ${catColor}15, ${catColor}08)` }}>
-        <span className="product-emoji">{product.img}</span>
+      <div className="product-image" style={{ background: product.imageUrl ? "#fff" : `linear-gradient(135deg, ${catColor}15, ${catColor}08)` }}>
+        {product.imageUrl
+          ? <img src={product.imageUrl} alt={product.name} className="product-img-real" />
+          : <span className="product-emoji">{product.img}</span>
+        }
         {inCart > 0 && <div className="in-cart-badge">{inCart} in cart</div>}
         <div className="category-tag" style={{ background: catColor }}>{product.category}</div>
       </div>
@@ -835,3 +842,4 @@ function OrderRow({ order, onClick }) {
     </div>
   );
 }
+
