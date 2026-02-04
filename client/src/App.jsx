@@ -401,6 +401,29 @@ export default function App() {
       </main>
 
       {cartOpen && <CartDrawer cart={cart} cartTotal={cartTotal} updateQty={updateQty} removeFromCart={removeFromCart} onClose={() => setCartOpen(false)} onCheckout={() => { setCartOpen(false); setScreen("checkout"); }} />}
+
+      {/* Mobile bottom nav */}
+      <nav className="mobile-bottom-nav">
+        <button className={`bottom-nav-item ${screen === "dashboard" ? "active" : ""}`} onClick={() => { setScreen("dashboard"); setViewOrder(null); }}>
+          <BarChart3 size={20} /><span>Dashboard</span>
+        </button>
+        <button className={`bottom-nav-item ${screen === "catalog" ? "active" : ""}`} onClick={() => { setScreen("catalog"); setViewOrder(null); }}>
+          <Package size={20} /><span>Catalog</span>
+        </button>
+        <button className="bottom-nav-item cart-tab" onClick={() => setCartOpen(true)}>
+          <div className="bottom-cart-wrap">
+            <ShoppingCart size={20} />
+            {cartCount > 0 && <span className="bottom-cart-badge">{cartCount}</span>}
+          </div>
+          <span>Cart</span>
+        </button>
+        <button className={`bottom-nav-item ${screen === "history" ? "active" : ""}`} onClick={() => { setScreen("history"); setViewOrder(null); }}>
+          <ClipboardList size={20} /><span>Orders</span>
+        </button>
+        <button className={`bottom-nav-item ${screen === "profile" ? "active" : ""}`} onClick={() => { setScreen("profile"); setViewOrder(null); }}>
+          <User size={20} /><span>Profile</span>
+        </button>
+      </nav>
       {toast && (<div className={`toast toast-${toast.type}`}>{toast.type === "error" ? <AlertCircle size={16} /> : <Check size={16} />}{toast.msg}</div>)}
     </div>
   );
@@ -410,7 +433,7 @@ export default function App() {
 function NavBtn({ icon, label, active, count, onClick }) {
   return (
     <button className={`nav-btn ${active ? "active" : ""}`} onClick={onClick}>
-      {icon}{label}{count > 0 && <span className="nav-count">{count}</span>}
+      {icon}<span className="nav-label">{label}</span>{count > 0 && <span className="nav-count">{count}</span>}
     </button>
   );
 }
