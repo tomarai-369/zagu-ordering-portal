@@ -117,7 +117,7 @@ async function handleLogin(env, body) {
   if (r.data.records.length === 0) return errorResponse("Dealer not found", 401);
 
   const d = r.data.records[0];
-  const pmStatus = d.Status?.value || d.dealer_status?.value || "";
+  const pmStatus = d.Status?.value || "";
 
   if (pmStatus !== "Active") {
     if (pmStatus === "Pending Review" || pmStatus === "Pending Approval")
@@ -260,7 +260,7 @@ async function handleChangePassword(env, body) {
   if (r.data.records.length === 0) return errorResponse("Dealer not found", 401);
 
   const d = r.data.records[0];
-  const pmStatus = d.Status?.value || d.dealer_status?.value || "";
+  const pmStatus = d.Status?.value || "";
   if (pmStatus !== "Active") return errorResponse("Dealer not active", 401);
   if (d.login_password.value !== currentPassword) return errorResponse("Current password incorrect", 401);
 
@@ -287,6 +287,27 @@ async function handleDealerStatus(env, body) {
   return r.ok ? jsonResponse(r.data) : errorResponse(r.data.message, r.status, r.data);
 }
 
+// ─── File proxy (serves Kintone attachments as images) ──────
+
+async function handleFileProxy(env, fileKey) {
+  // Any app token can download files — use products token
+  const url = `${env.KINTONE_BASE_URL}/k/v1/file.json?fileKey=${encodeURIComponent(fileKey)}`;
+  const res = await fetch(url, {
+    headers: { "X-Cybozu-API-Token": env.KINTONE_PRODUCTS_TOKEN },
+  });
+  if (!res.ok) return errorResponse("File not found", 404);
+
+  const contentType = res.headers.get("Content-Type") || "application/octet-stream";
+  return new Response(res.body, {
+    status: 200,
+    headers: {
+      "Content-Type": contentType,
+      "Cache-Control": "public, max-age=86400",
+      ...CORS_HEADERS,
+    },
+  });
+}
+
 // ─── Router ─────────────────────────────────────────────────
 
 export default {
@@ -307,6 +328,13 @@ export default {
       if (path === "/api/orders/status" && method === "POST") return handleOrderStatus(env, await request.json());
       if (path === "/api/orders/submit-order" && method === "POST") return handleSubmitOrder(env, await request.json());
       if (path === "/api/dealers/status" && method === "POST") return handleDealerStatus(env, await request.json());
+
+      // File proxy: /api/file?fileKey=xxx
+      if (path === "/api/file" && method === "GET") {
+        const fileKey = url.searchParams.get("fileKey");
+        if (!fileKey) return errorResponse("fileKey required", 400);
+        return handleFileProxy(env, fileKey);
+      }
 
       const recordsMatch = path.match(/^\/api\/(\w+)\/records$/);
       if (recordsMatch && method === "GET") return handleGetRecords(env, recordsMatch[1], url);
