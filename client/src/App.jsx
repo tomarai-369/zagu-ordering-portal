@@ -380,6 +380,7 @@ export default function App() {
             const newItems = order.items.map((item) => ({
               code: item.code, name: item.name, price: item.price, qty: item.qty,
               img: CATEGORY_ICONS[products.find((p) => p.code === item.code)?.category] || "📦",
+              imageUrl: products.find((p) => p.code === item.code)?.imageUrl || null,
             }));
             setCart((prev) => {
               const merged = [...prev];
@@ -390,6 +391,8 @@ export default function App() {
               });
               return merged;
             });
+            setScreen("catalog");
+            setViewOrder(null);
             showToast(`${newItems.length} items added to cart from ${order.number}`);
           }}
           onDownloadPDF={(order) => generateOrderPDF(order, dealer, selectedStore)}
@@ -810,14 +813,14 @@ function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPD
             <div className="orders-section">
               <div className="orders-section-title"><FileText size={16} /> Drafts ({drafts.length})</div>
               <div className="orders-list">
-                {drafts.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} />)}
+                {drafts.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} onReorder={onReorder} />)}
               </div>
             </div>
           )}
           <div className="orders-section">
             {drafts.length > 0 && <div className="orders-section-title"><ClipboardList size={16} /> Submitted ({submitted.length})</div>}
             <div className="orders-list">
-              {submitted.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} />)}
+              {submitted.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} onReorder={onReorder} />)}
             </div>
           </div>
         </>
@@ -826,7 +829,7 @@ function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPD
   );
 }
 
-function OrderRow({ order, onClick }) {
+function OrderRow({ order, onClick, onReorder }) {
   const st = STATUS_MAP[order.status] || { color: "#888", label: order.status };
   return (
     <div className="order-row" onClick={onClick}>
@@ -837,6 +840,7 @@ function OrderRow({ order, onClick }) {
       <div className="order-row-right">
         <span className="status-badge" style={{ background: st.color }}>{st.label}</span>
         <span className="order-total">{peso(order.total)}</span>
+        <button className="reorder-btn" title="Reorder" onClick={(e) => { e.stopPropagation(); onReorder(order); }}><RefreshCw size={14} /></button>
         <ChevronRight size={16} color="#ccc" />
       </div>
     </div>
