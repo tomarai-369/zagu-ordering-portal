@@ -181,6 +181,7 @@ export const api = {
 
   get isDemo() { return IS_DEMO; },
   get backendUrl() { return API_BASE; },
+  getBaseUrl: () => API_BASE,
   ready: backendReady,
 };
 
