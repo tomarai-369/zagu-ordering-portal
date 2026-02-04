@@ -183,5 +183,20 @@ export const api = {
   get backendUrl() { return API_BASE; },
   getBaseUrl: () => API_BASE,
   ready: backendReady,
+
+  getNews: async () => {
+    await backendReady;
+    if (IS_DEMO) return { records: [] };
+    return proxyRequest("/news");
+  },
+
+  deleteOrder: async (ids) => {
+    await backendReady;
+    if (IS_DEMO) return {};
+    return proxyRequest("/orders/records", {
+      method: "DELETE",
+      body: JSON.stringify({ ids: Array.isArray(ids) ? ids : [ids] }),
+    });
+  },
 };
 
