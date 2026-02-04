@@ -161,15 +161,20 @@ async function notifyDealer(env, dealerCode, title, body, data = {}) {
   if (!env.FCM_SERVICE_ACCOUNT) return { sent: 0, note: "FCM not configured" };
 
   const apps = getApps(env);
-  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
-    app: apps.dealers.id,
-    query: `dealer_code = "${dealerCode}" limit 1`,
-    fields: "fcm_tokens",
+  
+  // Fetch dealer's FCM tokens
+  const url = new URL(`${env.KINTONE_BASE_URL}/k/v1/records.json`);
+  url.searchParams.set("app", apps.dealers.id);
+  url.searchParams.set("query", `dealer_code = "${dealerCode}" limit 1`);
+  url.searchParams.set("fields[0]", "fcm_tokens");
+  
+  const res = await fetch(url.toString(), {
+    headers: { "X-Cybozu-API-Token": apps.dealers.token },
   });
+  const fetchData = await res.json();
+  if (!res.ok || !fetchData.records || fetchData.records.length === 0) return { sent: 0, note: "Dealer not found" };
 
-  if (!r.ok || !r.data.records.length) return { sent: 0, note: "Dealer not found" };
-
-  const tokensRaw = r.data.records[0].fcm_tokens?.value;
+  const tokensRaw = fetchData.records[0].fcm_tokens?.value;
   if (!tokensRaw) return { sent: 0, note: "No FCM tokens registered" };
 
   let tokens;
@@ -205,15 +210,21 @@ async function handleRegisterFcmToken(env, body) {
   if (!dealerCode || !token) return errorResponse("dealerCode and token required", 400);
 
   const apps = getApps(env);
-  const r = await kintone(env, "dealers", "/k/v1/records.json", "GET", null, {
-    app: apps.dealers.id,
-    query: `dealer_code = "${dealerCode}" limit 1`,
-    fields: "$id,fcm_tokens",
+  
+  // Fetch dealer record directly
+  const url = new URL(`${env.KINTONE_BASE_URL}/k/v1/records.json`);
+  url.searchParams.set("app", apps.dealers.id);
+  url.searchParams.set("query", `dealer_code = "${dealerCode}" limit 1`);
+  url.searchParams.set("fields[0]", "$id");
+  url.searchParams.set("fields[1]", "fcm_tokens");
+  
+  const res = await fetch(url.toString(), {
+    headers: { "X-Cybozu-API-Token": apps.dealers.token },
   });
+  const data = await res.json();
+  if (!res.ok || !data.records || data.records.length === 0) return errorResponse("Dealer not found", 404);
 
-  if (!r.ok || !r.data.records.length) return errorResponse("Dealer not found", 404);
-
-  const record = r.data.records[0];
+  const record = data.records[0];
   const existing = record.fcm_tokens?.value;
   let tokens = [];
   try { tokens = existing ? JSON.parse(existing) : []; } catch { tokens = []; }
