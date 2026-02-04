@@ -4,7 +4,8 @@ import {
   Search, ChevronRight, Check, X, Loader2, AlertCircle, Store,
   ArrowLeft, CreditCard, Banknote, Clock, Wifi, WifiOff, Save,
   Building2, Smartphone, Landmark, MapPin, FileText, AlertTriangle,
-  BarChart3, User, Download, RefreshCw, ShieldAlert,
+  BarChart3, User, Download, RefreshCw, ShieldAlert, Megaphone,
+  ChevronDown, Bell, Tag, Info, Sparkles,
 } from "lucide-react";
 import { api, session } from "./api.js";
 import { generateOrderPDF } from "./OrderPDF.js";
@@ -47,6 +48,8 @@ const PAYMENT_OPTIONS = [
 
 const peso = (n) => `₱${Number(n || 0).toLocaleString("en-PH", { minimumFractionDigits: 2 })}`;
 
+const NEWS_ICONS = { General: Info, Promo: Tag, "Product Update": Sparkles, Policy: FileText, Maintenance: AlertTriangle };
+const NEWS_COLORS = { General: "#3B82F6", Promo: "#F59E0B", "Product Update": "#8B5CF6", Policy: "#059669", Maintenance: "#DC2626" };
 // ─── Main App ───────────────────────────────────────────────
 export default function App() {
   const [screen, setScreen] = useState("login");
@@ -66,6 +69,9 @@ export default function App() {
   const [orderNotes, setOrderNotes] = useState("");
   const [viewOrder, setViewOrder] = useState(null);
   const [restoringSession, setRestoringSession] = useState(true);
+  const [news, setNews] = useState([]);
+  const [showNewsModal, setShowNewsModal] = useState(false);
+  const [storeSwitcherOpen, setStoreSwitcherOpen] = useState(false);
 
   const showToast = useCallback((msg, type = "success") => {
     setToast({ msg, type });
@@ -118,6 +124,17 @@ export default function App() {
     } catch { return []; }
   }, []);
 
+  const loadNews = useCallback(async () => {
+    try {
+      const data = await api.getNews();
+      return (data.records || []).map((r) => ({
+        id: r.$id.value, title: r.title.value, content: r.content.value,
+        category: r.category.value, date: r.publish_date.value,
+        pinned: r.is_pinned?.value === "Yes",
+      }));
+    } catch { return []; }
+  }, []);
+
   // ─── Session restoration on mount ───────────────────────────
   useEffect(() => {
     const restoreSession = async () => {
@@ -134,6 +151,8 @@ export default function App() {
         await loadProducts();
         const o = await loadOrders(saved.dealer.code);
         setOrders(o);
+        const n = await loadNews();
+        setNews(n);
         setScreen("catalog");
         setIsLive(true);
       } catch {
@@ -164,7 +183,10 @@ export default function App() {
       await loadProducts();
       const o = await loadOrders(d.code);
       setOrders(o);
+      const n = await loadNews();
+      setNews(n);
       setScreen(d.stores.length > 1 ? "store-select" : "catalog");
+      if (n.length > 0) setTimeout(() => setShowNewsModal(true), 500);
     } catch (err) { showToast(err.message || "Login failed", "error"); }
     setLoading(false);
   }, [loadProducts, loadOrders, showToast]);
@@ -182,6 +204,16 @@ export default function App() {
   const removeFromCart = (code) => setCart((p) => p.filter((i) => i.code !== code));
   const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
+
+  const deleteDraft = async (order) => {
+    if (!confirm(`Delete draft "${order.number}"? This cannot be undone.`)) return;
+    try {
+      await api.deleteOrder([Number(order.id)]);
+      setOrders((prev) => prev.filter((o) => o.id !== order.id));
+      setViewOrder(null);
+      showToast(`Draft ${order.number} deleted`);
+    } catch { showToast("Failed to delete draft", "error"); }
+  };
 
   // Submit order (or save draft) — now uses composite endpoint for non-drafts
   const submitOrder = async (isDraft = false) => {
@@ -278,6 +310,7 @@ export default function App() {
           <NavBtn icon={<Package size={18} />} label="Catalog" active={screen === "catalog"} onClick={() => { setScreen("catalog"); setViewOrder(null); }} />
           <NavBtn icon={<ClipboardList size={18} />} label="Orders" active={screen === "history"} count={orders.length} onClick={() => { setScreen("history"); setViewOrder(null); }} />
           <NavBtn icon={<User size={16} />} label="Profile" active={screen === "profile"} onClick={() => { setScreen("profile"); setViewOrder(null); }} />
+          <NavBtn icon={<Megaphone size={16} />} label="News" active={screen === "news"} count={news.filter((n) => n.pinned).length} onClick={() => { setScreen("news"); setViewOrder(null); }} />
           <button className="icon-btn cart-btn" onClick={() => setCartOpen(true)}>
             <ShoppingCart size={18} />{cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
@@ -291,7 +324,13 @@ export default function App() {
           <Store size={14} />
           <span className="dealer-name">{dealer?.name}</span>
           <span className="dot">•</span><span>{dealer?.code}</span>
-          {selectedStore && (<><span className="dot">•</span><MapPin size={12} /><span>{selectedStore.name}</span></>)}
+          {selectedStore && dealer?.stores?.length > 1 ? (
+            <button className="store-switch-btn" onClick={() => setStoreSwitcherOpen(!storeSwitcherOpen)}>
+              <MapPin size={12} /><span>{selectedStore.name}</span><ChevronDown size={12} />
+            </button>
+          ) : selectedStore ? (
+            <><span className="dot">•</span><MapPin size={12} /><span>{selectedStore.name}</span></>
+          ) : null}
           <span className="dot">•</span><span>{dealer?.region}</span>
         </div>
         {hasBalance && (
@@ -300,6 +339,24 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* Store switcher dropdown */}
+      {storeSwitcherOpen && (
+        <>
+          <div className="store-switcher-overlay" onClick={() => setStoreSwitcherOpen(false)} />
+          <div className="store-switcher-dropdown">
+            <div className="store-switcher-title">Switch Store</div>
+            {dealer?.stores?.map((s) => (
+              <button key={s.code} className={`store-switcher-item ${s.code === selectedStore?.code ? "active" : ""}`}
+                onClick={() => { setSelectedStore(s); session.save(dealer, s); setStoreSwitcherOpen(false); showToast(`Switched to ${s.name}`); }}>
+                <Building2 size={16} />
+                <div><div className="store-name">{s.name}</div><div className="store-meta">{s.code}{s.address && ` • ${s.address}`}</div></div>
+                {s.code === selectedStore?.code && <Check size={16} style={{ color: "#22C55E", marginLeft: "auto" }} />}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Password expiry warning */}
       {(() => {
@@ -321,6 +378,8 @@ export default function App() {
 
       <main className="main-content">
         {screen === "dashboard" && <Dashboard orders={orders} dealer={dealer} />}
+
+        {screen === "news" && <NewsScreen news={news} />}
 
         {screen === "profile" && (
           <DealerProfile dealer={dealer} selectedStore={selectedStore} showToast={showToast}
@@ -396,19 +455,57 @@ export default function App() {
             showToast(`${newItems.length} items added to cart from ${order.number}`);
           }}
           onDownloadPDF={(order) => generateOrderPDF(order, dealer, selectedStore)}
+          onDeleteDraft={deleteDraft}
           dealer={dealer} selectedStore={selectedStore}
         />}
       </main>
 
       {cartOpen && <CartDrawer cart={cart} cartTotal={cartTotal} updateQty={updateQty} removeFromCart={removeFromCart} onClose={() => setCartOpen(false)} onCheckout={() => { setCartOpen(false); setScreen("checkout"); }} />}
 
+      {/* News modal on login */}
+      {showNewsModal && news.length > 0 && (
+        <div className="drawer-overlay" onClick={() => setShowNewsModal(false)}>
+          <div className="news-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="news-modal-header">
+              <div className="news-modal-title"><Megaphone size={20} /> News & Announcements</div>
+              <button className="close-btn" onClick={() => setShowNewsModal(false)}><X size={20} /></button>
+            </div>
+            <div className="news-modal-body">
+              {news.slice(0, 5).map((item) => {
+                const Icon = NEWS_ICONS[item.category] || Info;
+                const color = NEWS_COLORS[item.category] || "#888";
+                return (
+                  <div key={item.id} className="news-modal-item">
+                    <div className="news-item-icon" style={{ background: `${color}15`, color }}><Icon size={16} /></div>
+                    <div className="news-item-content">
+                      <div className="news-item-header">
+                        <span className="news-item-cat" style={{ color }}>{item.category}</span>
+                        {item.pinned && <span className="news-pinned-tag">📌 Pinned</span>}
+                        <span className="news-item-date">{item.date}</span>
+                      </div>
+                      <div className="news-item-title">{item.title}</div>
+                      <div className="news-item-preview">{item.content.substring(0, 120)}{item.content.length > 120 ? "..." : ""}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="news-modal-footer">
+              <button className="btn-primary" style={{ width: "100%" }} onClick={() => { setShowNewsModal(false); setScreen("news"); }}>
+                View All Announcements <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Mobile bottom nav */}
       <nav className="mobile-bottom-nav">
-        <button className={`bottom-nav-item ${screen === "dashboard" ? "active" : ""}`} onClick={() => { setScreen("dashboard"); setViewOrder(null); }}>
-          <BarChart3 size={20} /><span>Dashboard</span>
-        </button>
         <button className={`bottom-nav-item ${screen === "catalog" ? "active" : ""}`} onClick={() => { setScreen("catalog"); setViewOrder(null); }}>
           <Package size={20} /><span>Catalog</span>
+        </button>
+        <button className={`bottom-nav-item ${screen === "history" ? "active" : ""}`} onClick={() => { setScreen("history"); setViewOrder(null); }}>
+          <ClipboardList size={20} /><span>Orders</span>
         </button>
         <button className="bottom-nav-item cart-tab" onClick={() => setCartOpen(true)}>
           <div className="bottom-cart-wrap">
@@ -417,11 +514,11 @@ export default function App() {
           </div>
           <span>Cart</span>
         </button>
-        <button className={`bottom-nav-item ${screen === "history" ? "active" : ""}`} onClick={() => { setScreen("history"); setViewOrder(null); }}>
-          <ClipboardList size={20} /><span>Orders</span>
+        <button className={`bottom-nav-item ${screen === "news" ? "active" : ""}`} onClick={() => { setScreen("news"); setViewOrder(null); }}>
+          <Megaphone size={20} /><span>News</span>
         </button>
-        <button className={`bottom-nav-item ${screen === "profile" ? "active" : ""}`} onClick={() => { setScreen("profile"); setViewOrder(null); }}>
-          <User size={20} /><span>Profile</span>
+        <button className={`bottom-nav-item ${screen === "dashboard" || screen === "profile" ? "active" : ""}`} onClick={() => { setScreen("profile"); setViewOrder(null); }}>
+          <User size={20} /><span>More</span>
         </button>
       </nav>
       {toast && (<div className={`toast toast-${toast.type}`}>{toast.type === "error" ? <AlertCircle size={16} /> : <Check size={16} />}{toast.msg}</div>)}
@@ -772,7 +869,7 @@ function CheckoutScreen({ cart, cartTotal, dealer, store, selectedPayment, setSe
   );
 }
 
-function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPDF, dealer, selectedStore }) {
+function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPDF, onDeleteDraft, dealer, selectedStore }) {
   if (viewOrder) {
     const st = STATUS_MAP[viewOrder.status] || { color: "#888", label: viewOrder.status };
     return (
@@ -794,6 +891,11 @@ function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPD
             <button className="btn-outline order-action-btn" onClick={() => onDownloadPDF(viewOrder)}>
               <Download size={14} /> Download PDF
             </button>
+            {viewOrder.isDraft && (
+              <button className="btn-outline order-action-btn" style={{ color: "#DC2626", borderColor: "#FECACA" }} onClick={() => onDeleteDraft(viewOrder)}>
+                <Trash2 size={14} /> Delete Draft
+              </button>
+            )}
           </div>
           {viewOrder.isDraft && (
             <div className="draft-banner"><FileText size={14} /> This is a draft order — submit when ready.</div>
@@ -836,7 +938,7 @@ function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPD
             <div className="orders-section">
               <div className="orders-section-title"><FileText size={16} /> Drafts ({drafts.length})</div>
               <div className="orders-list">
-                {drafts.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} onReorder={onReorder} />)}
+                {drafts.map((order) => <OrderRow key={order.id} order={order} onClick={() => setViewOrder(order)} onReorder={onReorder} onDeleteDraft={onDeleteDraft} />)}
               </div>
             </div>
           )}
@@ -852,7 +954,7 @@ function OrderHistory({ orders, viewOrder, setViewOrder, onReorder, onDownloadPD
   );
 }
 
-function OrderRow({ order, onClick, onReorder }) {
+function OrderRow({ order, onClick, onReorder, onDeleteDraft }) {
   const st = STATUS_MAP[order.status] || { color: "#888", label: order.status };
   return (
     <div className="order-row" onClick={onClick}>
@@ -864,9 +966,48 @@ function OrderRow({ order, onClick, onReorder }) {
         <span className="status-badge" style={{ background: st.color }}>{st.label}</span>
         <span className="order-total">{peso(order.total)}</span>
         <button className="reorder-btn" title="Reorder" onClick={(e) => { e.stopPropagation(); onReorder(order); }}><RefreshCw size={14} /></button>
+        {order.isDraft && onDeleteDraft && (
+          <button className="reorder-btn" title="Delete draft" style={{ color: "#DC2626" }} onClick={(e) => { e.stopPropagation(); onDeleteDraft(order); }}><Trash2 size={14} /></button>
+        )}
         <ChevronRight size={16} color="#ccc" />
       </div>
     </div>
   );
 }
 
+function NewsScreen({ news }) {
+  const [expandedId, setExpandedId] = useState(null);
+  return (
+    <div>
+      <h2 className="section-title"><Megaphone size={22} style={{ verticalAlign: "middle", marginRight: 8 }} />News & Announcements</h2>
+      {news.length === 0 ? (
+        <div className="card empty-orders"><Megaphone size={48} strokeWidth={1} /><p>No announcements</p></div>
+      ) : (
+        <div className="news-list">
+          {news.map((item) => {
+            const Icon = NEWS_ICONS[item.category] || Info;
+            const color = NEWS_COLORS[item.category] || "#888";
+            const isExpanded = expandedId === item.id;
+            return (
+              <div key={item.id} className={`news-card card ${item.pinned ? "news-pinned" : ""}`} onClick={() => setExpandedId(isExpanded ? null : item.id)}>
+                <div className="news-card-top">
+                  <div className="news-card-icon" style={{ background: `${color}15`, color }}><Icon size={18} /></div>
+                  <div className="news-card-info">
+                    <div className="news-card-meta">
+                      <span style={{ color, fontWeight: 600 }}>{item.category}</span>
+                      {item.pinned && <span className="news-pinned-tag">📌 Pinned</span>}
+                      <span className="news-item-date">{item.date}</span>
+                    </div>
+                    <div className="news-card-title">{item.title}</div>
+                  </div>
+                  <ChevronRight size={16} color="#ccc" style={{ transform: isExpanded ? "rotate(90deg)" : "none", transition: ".2s", flexShrink: 0 }} />
+                </div>
+                {isExpanded && <div className="news-card-body">{item.content}</div>}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
