@@ -179,6 +179,22 @@ export const api = {
     });
   },
 
+  forgotPassword: async (dealerCode) => {
+    await backendReady;
+    return proxyRequest("/auth/forgot-password", {
+      method: "POST",
+      body: JSON.stringify({ dealerCode }),
+    });
+  },
+
+  resetPassword: async (token, dealerCode, newPassword) => {
+    await backendReady;
+    return proxyRequest("/auth/reset-password", {
+      method: "POST",
+      body: JSON.stringify({ token, dealerCode, newPassword }),
+    });
+  },
+
   get isDemo() { return IS_DEMO; },
   get backendUrl() { return API_BASE; },
   getBaseUrl: () => API_BASE,

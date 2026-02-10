@@ -609,7 +609,7 @@ function NavBtn({ icon, label, active, count, onClick }) {
 }
 
 function LoginScreen({ onLogin, loading, isLive, error, clearError }) {
-  const [mode, setMode] = useState("login"); // "login" or "register"
+  const [mode, setMode] = useState("login"); // "login" | "register" | "forgot" | "reset"
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [showPw, setShowPw] = useState(false);
@@ -627,7 +627,60 @@ function LoginScreen({ onLogin, loading, isLive, error, clearError }) {
   const [regMessage, setRegMessage] = useState(null); // { text, type: "success"|"error" }
   const [showRegPw, setShowRegPw] = useState(false);
 
+  // Forgot password fields
+  const [forgotCode, setForgotCode] = useState("");
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotMessage, setForgotMessage] = useState(null);
+
+  // Reset password fields
+  const [resetToken, setResetToken] = useState("");
+  const [resetCode, setResetCode] = useState("");
+  const [resetPw, setResetPw] = useState("");
+  const [resetConfirm, setResetConfirm] = useState("");
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetMessage, setResetMessage] = useState(null);
+
+  // Detect ?reset=TOKEN&code=DLR-001 in URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("reset");
+    const dealerCode = params.get("code");
+    if (token && dealerCode) {
+      setResetToken(token);
+      setResetCode(dealerCode);
+      setMode("reset");
+      // Clean URL without reloading
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
   const submitLogin = () => code.trim() && password && onLogin(code.trim(), password);
+
+  const submitForgotPassword = async () => {
+    if (!forgotCode.trim()) { setForgotMessage({ text: "Please enter your dealer code.", type: "error" }); return; }
+    setForgotLoading(true); setForgotMessage(null);
+    try {
+      const result = await api.forgotPassword(forgotCode.trim());
+      setForgotMessage({ text: result.message || "If an account exists, a reset email has been sent.", type: "success" });
+    } catch (err) {
+      setForgotMessage({ text: err.message || "Something went wrong. Please try again.", type: "error" });
+    }
+    setForgotLoading(false);
+  };
+
+  const submitResetPassword = async () => {
+    if (!resetPw || !resetConfirm) { setResetMessage({ text: "Please fill in all fields.", type: "error" }); return; }
+    if (resetPw.length < 6) { setResetMessage({ text: "Password must be at least 6 characters.", type: "error" }); return; }
+    if (resetPw !== resetConfirm) { setResetMessage({ text: "Passwords do not match.", type: "error" }); return; }
+    setResetLoading(true); setResetMessage(null);
+    try {
+      const result = await api.resetPassword(resetToken, resetCode, resetPw);
+      setResetMessage({ text: result.message || "Password reset successfully! You can now log in.", type: "success" });
+    } catch (err) {
+      setResetMessage({ text: err.message || "Reset failed. The link may have expired.", type: "error" });
+    }
+    setResetLoading(false);
+  };
 
   const submitRegister = async () => {
     if (!regEmail || !regCode || !regPassword || !regName || !regContact) {
@@ -684,10 +737,81 @@ function LoginScreen({ onLogin, loading, isLive, error, clearError }) {
                 <button className="btn-primary login-btn" onClick={submitLogin} disabled={loading || !code.trim() || !password}>
                   {loading ? <><Loader2 size={18} className="spinner" /> Signing in...</> : <>Sign In <ChevronRight size={18} /></>}
                 </button>
+                <div style={{ textAlign: "right", marginTop: 4 }}>
+                  <button className="link-btn" onClick={() => { setMode("forgot"); setForgotMessage(null); setForgotCode(""); }} style={{ fontSize: 12, color: "#D4A017" }}>Forgot Password?</button>
+                </div>
               </div>
               <div className="login-register-link">
                 Don't have an account? <button className="link-btn" onClick={() => { setMode("register"); setRegMessage(null); }}>Register as a Dealer</button>
               </div>
+            </>
+          ) : mode === "forgot" ? (
+            <>
+              {forgotMessage?.type === "success" ? (
+                <div className="reg-success">
+                  <div className="reg-success-icon" style={{ background: "#FEF3C7", color: "#D4A017" }}>📧</div>
+                  <h3>Check Your Email</h3>
+                  <p>{forgotMessage.text}</p>
+                  <p className="reg-success-note">The reset link will expire in 30 minutes. Check your spam folder if you don't see it.</p>
+                  <button className="btn-primary login-btn" onClick={() => { setMode("login"); setForgotMessage(null); }}>
+                    <ArrowLeft size={16} /> Back to Login
+                  </button>
+                </div>
+              ) : (
+                <div className="login-form">
+                  <div className="reg-title">Forgot Password</div>
+                  <div className="reg-subtitle">Enter your dealer code below. We'll send a password reset link to the email address registered with your account.</div>
+                  {forgotMessage?.type === "error" && (
+                    <div className="reg-error"><AlertCircle size={14} /> {forgotMessage.text}</div>
+                  )}
+                  <div className="field"><label>Dealer Code</label>
+                    <input value={forgotCode} onChange={(e) => setForgotCode(e.target.value.toUpperCase())} placeholder="e.g. DLR-001" onKeyDown={(e) => e.key === "Enter" && submitForgotPassword()} autoCapitalize="characters" />
+                  </div>
+                  <button className="btn-primary login-btn" onClick={submitForgotPassword} disabled={forgotLoading || !forgotCode.trim()}>
+                    {forgotLoading ? <><Loader2 size={18} className="spinner" /> Sending...</> : <>Send Reset Link <ChevronRight size={18} /></>}
+                  </button>
+                </div>
+              )}
+              {forgotMessage?.type !== "success" && (
+                <div className="login-register-link">
+                  Remember your password? <button className="link-btn" onClick={() => { setMode("login"); setForgotMessage(null); }}>Sign In</button>
+                </div>
+              )}
+            </>
+          ) : mode === "reset" ? (
+            <>
+              {resetMessage?.type === "success" ? (
+                <div className="reg-success">
+                  <div className="reg-success-icon" style={{ background: "#D1FAE5", color: "#059669" }}><Check size={32} /></div>
+                  <h3>Password Reset!</h3>
+                  <p>{resetMessage.text}</p>
+                  <button className="btn-primary login-btn" onClick={() => { setMode("login"); setResetMessage(null); setCode(resetCode); }}>
+                    <ArrowLeft size={16} /> Sign In Now
+                  </button>
+                </div>
+              ) : (
+                <div className="login-form">
+                  <div className="reg-title">Set New Password</div>
+                  <div className="reg-subtitle">Create a new password for dealer <strong>{resetCode}</strong>.</div>
+                  {resetMessage?.type === "error" && (
+                    <div className="reg-error"><AlertCircle size={14} /> {resetMessage.text}</div>
+                  )}
+                  <div className="field"><label>New Password</label>
+                    <input type="password" value={resetPw} onChange={(e) => setResetPw(e.target.value)} placeholder="Min 6 characters" onKeyDown={(e) => e.key === "Enter" && submitResetPassword()} />
+                  </div>
+                  <div className="field"><label>Confirm Password</label>
+                    <input type="password" value={resetConfirm} onChange={(e) => setResetConfirm(e.target.value)} placeholder="Re-enter password" onKeyDown={(e) => e.key === "Enter" && submitResetPassword()} />
+                  </div>
+                  <button className="btn-primary login-btn" onClick={submitResetPassword} disabled={resetLoading || !resetPw || !resetConfirm}>
+                    {resetLoading ? <><Loader2 size={18} className="spinner" /> Resetting...</> : <>Reset Password <ChevronRight size={18} /></>}
+                  </button>
+                </div>
+              )}
+              {resetMessage?.type !== "success" && (
+                <div className="login-register-link">
+                  <button className="link-btn" onClick={() => setMode("login")}>Back to Login</button>
+                </div>
+              )}
             </>
           ) : (
             <>
