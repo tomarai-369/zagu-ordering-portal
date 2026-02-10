@@ -184,6 +184,13 @@ export const api = {
   getBaseUrl: () => API_BASE,
   ready: backendReady,
 
+  getHolidays: async (year) => {
+    await backendReady;
+    if (IS_DEMO) return { year: year || "2026", holidays: [], count: 0 };
+    const y = year || new Date().getFullYear();
+    return proxyRequest(`/holidays?year=${y}`);
+  },
+
   getNews: async () => {
     await backendReady;
     if (IS_DEMO) return { records: [] };
