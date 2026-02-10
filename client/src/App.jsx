@@ -5,7 +5,7 @@ import {
   ArrowLeft, CreditCard, Banknote, Clock, Wifi, WifiOff, Save,
   Building2, Smartphone, Landmark, MapPin, FileText, AlertTriangle,
   BarChart3, User, Download, RefreshCw, ShieldAlert, Megaphone,
-  ChevronDown, Bell, Tag, Info, Sparkles,
+  ChevronDown, Bell, Tag, Info, Sparkles, BookOpen, CalendarDays,
 } from "lucide-react";
 import { api, session, initFirebaseMessaging } from "./api.js";
 import { generateOrderPDF } from "./OrderPDF.js";
@@ -72,6 +72,7 @@ export default function App() {
   const [news, setNews] = useState([]);
   const [showNewsModal, setShowNewsModal] = useState(false);
   const [storeSwitcherOpen, setStoreSwitcherOpen] = useState(false);
+  const [holidays, setHolidays] = useState([]);
 
   const showToast = useCallback((msg, type = "success", duration = 3000) => {
     setToast({ msg, type });
@@ -135,6 +136,45 @@ export default function App() {
     } catch { return []; }
   }, []);
 
+  // ─── Holiday / Business Day utilities ─────────────────────
+  const loadHolidays = useCallback(async () => {
+    try {
+      const d = await api.getHolidays();
+      setHolidays((d.holidays || []).map((h) => h.date));
+    } catch {}
+  }, []);
+
+  const isBusinessDay = useCallback((date) => {
+    const day = date.getDay();
+    if (day === 0) return false;
+    const dateStr = date.toISOString().split("T")[0];
+    return !holidays.includes(dateStr);
+  }, [holidays]);
+
+  const addBusinessDays = useCallback((startDate, numDays) => {
+    let d = new Date(startDate);
+    let added = 0;
+    while (added < numDays) {
+      d.setDate(d.getDate() + 1);
+      if (isBusinessDay(d)) added++;
+    }
+    return d;
+  }, [isBusinessDay]);
+
+  const canOrderToday = useCallback(() => {
+    const today = new Date();
+    if (!isBusinessDay(today)) {
+      const day = today.getDay();
+      if (day === 0) return { ok: false, reason: "Orders cannot be placed on Sundays." };
+      return { ok: false, reason: "Today is a holiday. Orders can only be placed on business days (Monday–Saturday, excluding holidays)." };
+    }
+    return { ok: true };
+  }, [isBusinessDay]);
+
+  const getEstimatedDelivery = useCallback(() => {
+    return addBusinessDays(new Date(), 5);
+  }, [addBusinessDays]);
+
   // ─── Session restoration on mount ───────────────────────────
   useEffect(() => {
     const restoreSession = async () => {
@@ -153,6 +193,7 @@ export default function App() {
         setOrders(o);
         const n = await loadNews();
         setNews(n);
+        loadHolidays();
         setScreen("catalog");
         setIsLive(true);
       } catch {
@@ -185,6 +226,7 @@ export default function App() {
       setOrders(o);
       const n = await loadNews();
       setNews(n);
+      loadHolidays();
       setScreen(d.stores.length > 1 ? "store-select" : "catalog");
       if (n.length > 0) setTimeout(() => setShowNewsModal(true), 500);
       // Initialize push notifications (fire-and-forget)
@@ -223,9 +265,15 @@ export default function App() {
   // Submit order (or save draft) — now uses composite endpoint for non-drafts
   const submitOrder = async (isDraft = false) => {
     if (cart.length === 0) return;
+    // Block ordering on holidays/Sundays (except drafts)
+    if (!isDraft) {
+      const check = canOrderToday();
+      if (!check.ok) { showToast(check.reason, "error", 5000); return; }
+    }
     setSubmitting(true);
     const today = new Date().toISOString().split("T")[0];
     const orderNum = `ORD-${Date.now().toString(36).toUpperCase()}`;
+    const estDelivery = getEstimatedDelivery().toISOString().split("T")[0];
     try {
       const record = {
         order_number: { value: orderNum },
@@ -233,6 +281,8 @@ export default function App() {
         dealer_lookup: { value: dealer.code },
         store_code_order: { value: selectedStore?.code || "" },
         store_name_order: { value: selectedStore?.name || "" },
+        sap_bp_code_order: { value: selectedStore?.sapBpCode || dealer?.sapBpCode || "" },
+        estimated_delivery: { value: estDelivery },
         is_draft: { value: isDraft ? "Yes" : "No" },
         payment_method: { value: selectedPayment },
         outstanding_balance_snapshot: { value: String(dealer.outstandingBalance || 0) },
@@ -316,6 +366,7 @@ export default function App() {
           <NavBtn icon={<ClipboardList size={18} />} label="Orders" active={screen === "history"} count={orders.length} onClick={() => { setScreen("history"); setViewOrder(null); }} />
           <NavBtn icon={<User size={16} />} label="Profile" active={screen === "profile"} onClick={() => { setScreen("profile"); setViewOrder(null); }} />
           <NavBtn icon={<Megaphone size={16} />} label="News" active={screen === "news"} count={news.filter((n) => n.pinned).length} onClick={() => { setScreen("news"); setViewOrder(null); }} />
+          <NavBtn icon={<BookOpen size={16} />} label="Guide" active={screen === "guide"} onClick={() => { setScreen("guide"); setViewOrder(null); }} />
           <button className="icon-btn cart-btn" onClick={() => setCartOpen(true)}>
             <ShoppingCart size={18} />{cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </button>
@@ -386,6 +437,8 @@ export default function App() {
 
         {screen === "news" && <NewsScreen news={news} />}
 
+        {screen === "guide" && <GuideScreen />}
+
         {screen === "profile" && (
           <DealerProfile dealer={dealer} selectedStore={selectedStore} showToast={showToast}
             onPasswordChanged={(newExpiry) => setDealer((d) => ({ ...d, passwordExpiry: newExpiry }))} />
@@ -393,6 +446,12 @@ export default function App() {
 
         {screen === "catalog" && (
           <>
+            {!canOrderToday().ok && (
+              <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 16px", marginBottom: 16, background: "#FEF3C7", borderRadius: 10, border: "1px solid #FDE68A", fontSize: 13, color: "#92400E" }}>
+                <AlertTriangle size={18} style={{ flexShrink: 0 }} />
+                <span><strong>Ordering is unavailable today.</strong> {canOrderToday().reason} You can still browse and save drafts.</span>
+              </div>
+            )}
             <div className="catalog-controls">
               <div className="search-wrapper">
                 <Search size={18} className="search-icon" />
@@ -424,7 +483,8 @@ export default function App() {
             selectedPayment={selectedPayment} setSelectedPayment={setSelectedPayment}
             orderNotes={orderNotes} setOrderNotes={setOrderNotes}
             submitting={submitting} onSubmit={() => submitOrder(false)} onSaveDraft={() => submitOrder(true)}
-            onBack={() => setScreen("catalog")} updateQty={updateQty} removeFromCart={removeFromCart} />
+            onBack={() => setScreen("catalog")} updateQty={updateQty} removeFromCart={removeFromCart}
+            estimatedDelivery={getEstimatedDelivery()} orderBlocked={canOrderToday()} />
         )}
 
         {screen === "confirmation" && (
@@ -796,9 +856,10 @@ function CartDrawer({ cart, cartTotal, updateQty, removeFromCart, onClose, onChe
   );
 }
 
-function CheckoutScreen({ cart, cartTotal, dealer, store, selectedPayment, setSelectedPayment, orderNotes, setOrderNotes, submitting, onSubmit, onSaveDraft, onBack, updateQty, removeFromCart }) {
+function CheckoutScreen({ cart, cartTotal, dealer, store, selectedPayment, setSelectedPayment, orderNotes, setOrderNotes, submitting, onSubmit, onSaveDraft, onBack, updateQty, removeFromCart, estimatedDelivery, orderBlocked }) {
   const creditTermsAvail = dealer?.creditTerms !== "None";
   const availablePayments = PAYMENT_OPTIONS.filter((p) => p.value !== "Credit Terms" || creditTermsAvail);
+  const estDate = estimatedDelivery ? estimatedDelivery.toLocaleDateString("en-PH", { weekday: "short", month: "short", day: "numeric", year: "numeric" }) : "";
 
   return (
     <div className="checkout">
@@ -860,7 +921,19 @@ function CheckoutScreen({ cart, cartTotal, dealer, store, selectedPayment, setSe
               {cart.map((i) => (<div key={i.code} className="summary-line"><span>{i.name} × {i.qty}</span><span>{peso(i.price * i.qty)}</span></div>))}
             </div>
             <div className="summary-total-row"><span>Total</span><span className="summary-total">{peso(cartTotal)}</span></div>
-            <button className="btn-primary submit-btn" onClick={onSubmit} disabled={submitting || cart.length === 0}>
+            {estDate && (
+              <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 0", fontSize: 13, color: "#6B7280", borderTop: "1px solid #F3F4F6" }}>
+                <CalendarDays size={14} style={{ color: "#8B5CF6" }} />
+                <span>Est. delivery: <strong style={{ color: "#1F2937" }}>{estDate}</strong> <span style={{ fontSize: 11, color: "#9CA3AF" }}>(5 business days)</span></span>
+              </div>
+            )}
+            {orderBlocked && !orderBlocked.ok && (
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: 12, marginBottom: 12, background: "#FEF2F2", borderRadius: 8, fontSize: 13, color: "#DC2626" }}>
+                <AlertTriangle size={16} style={{ flexShrink: 0, marginTop: 1 }} />
+                <div><strong>Ordering unavailable today</strong><br />{orderBlocked.reason}<br /><span style={{ fontSize: 12, color: "#9CA3AF" }}>You can still save as draft.</span></div>
+              </div>
+            )}
+            <button className="btn-primary submit-btn" onClick={onSubmit} disabled={submitting || cart.length === 0 || (orderBlocked && !orderBlocked.ok)}>
               {submitting ? <><Loader2 size={18} className="spinner" /> Submitting...</> : <>Submit Order <ChevronRight size={18} /></>}
             </button>
             <button className="btn-outline draft-btn" onClick={onSaveDraft} disabled={submitting}>
@@ -1013,6 +1086,35 @@ function NewsScreen({ news }) {
           })}
         </div>
       )}
+    </div>
+  );
+}
+
+function GuideScreen() {
+  const sections = [
+    { icon: "🔐", title: "Logging In", content: "Go to the Zagu Ordering Portal and enter your Dealer Code (e.g., DLR-001) and password. Complete MFA verification if enabled. Contact your Zagu representative if you forgot your credentials." },
+    { icon: "🛒", title: "Placing an Order", content: "From the Dashboard, select your Store from the dropdown. Browse the product catalog — use categories or search to find items. Enter quantities and click \"Add to Cart\". Review your cart, then click \"Submit Order\".\n\n⚠️ Orders can only be placed Monday–Saturday (no Sundays or holidays). Minimum 5 business days lead time applies." },
+    { icon: "📋", title: "Order Statuses", content: "• New — Order created (draft)\n• Submitted — Sent for processing\n• Pending ONB Approval — Awaiting Order & Billing review\n• Approved — Cleared for SAP posting\n• Posted to SAP — Sales Order created in SAP B1\n• Picking — Warehouse is preparing your order\n• Ready for Pickup — Order packed, waiting for courier\n• Completed — Order delivered\n• Rejected — Declined (see reason; you may resubmit)" },
+    { icon: "💳", title: "Payment Methods", content: "Accepted methods: Credit Card, GCash, Maya, Bank Transfer, Cash on Pick Up.\n\nPayment can be collected at order placement or upon delivery. Your payment status is visible on each order in Order History." },
+    { icon: "📄", title: "Drafts & Reorders", content: "You can save orders as drafts and submit them later — drafts are not affected by holiday/Sunday restrictions.\n\nTo reorder a previous order, go to Order History, open any completed order, and click \"Reorder Items\". All items will be added to your cart." },
+    { icon: "📥", title: "Download PDF", content: "You can download a PDF copy of any order from the Order History screen. Click on an order, then click \"Download PDF\"." },
+    { icon: "❓", title: "Need Help?", content: "Contact your assigned Zagu representative or email support@zagushakes.com.\n\nCheck the News & Announcements section for system updates, promotions, and policy changes." },
+  ];
+
+  return (
+    <div>
+      <h2 className="section-title"><BookOpen size={22} style={{ verticalAlign: "middle", marginRight: 8 }} />Authorized Dealer Guide</h2>
+      <div style={{ maxWidth: 800 }}>
+        {sections.map((s, i) => (
+          <div key={i} className="card" style={{ marginBottom: 12, padding: "20px 24px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+              <span style={{ fontSize: 24 }}>{s.icon}</span>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "#1F2937" }}>{s.title}</h3>
+            </div>
+            <div style={{ fontSize: 14, lineHeight: 1.7, color: "#4B5563", whiteSpace: "pre-line" }}>{s.content}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
