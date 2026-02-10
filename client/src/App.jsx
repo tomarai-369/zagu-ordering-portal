@@ -73,6 +73,7 @@ export default function App() {
   const [showNewsModal, setShowNewsModal] = useState(false);
   const [storeSwitcherOpen, setStoreSwitcherOpen] = useState(false);
   const [holidays, setHolidays] = useState([]);
+  const [loginError, setLoginError] = useState("");
 
   const showToast = useCallback((msg, type = "success", duration = 3000) => {
     setToast({ msg, type });
@@ -178,8 +179,10 @@ export default function App() {
   // ─── Session restoration on mount ───────────────────────────
   useEffect(() => {
     const restoreSession = async () => {
+      const hadSession = !!localStorage.getItem("zagu_session");
       const saved = session.restore();
       if (!saved || !saved.dealer) {
+        if (hadSession) setLoginError("Your session has expired. Please sign in again.");
         setRestoringSession(false);
         return;
       }
@@ -197,8 +200,9 @@ export default function App() {
         setScreen("catalog");
         setIsLive(true);
       } catch {
-        // Session restore failed — fall back to login
+        // Session restore failed — fall back to login with message
         session.clear();
+        setLoginError("Your session has expired. Please sign in again.");
       }
       setRestoringSession(false);
     };
@@ -212,6 +216,7 @@ export default function App() {
 
   const handleLogin = useCallback(async (code, password) => {
     setLoading(true);
+    setLoginError("");
     try {
       const { dealer: d } = await api.login(code, password);
       setDealer(d);
@@ -234,7 +239,10 @@ export default function App() {
         const { title, body } = payload.notification || {};
         if (title) showToast(`${title}${body ? " — " + body : ""}`, "success", 6000);
       }).catch(() => {});
-    } catch (err) { showToast(err.message || "Login failed", "error"); }
+    } catch (err) {
+      const msg = err.message || "Login failed";
+      setLoginError(msg === "Failed to fetch" ? "Unable to connect to server. Please check your internet connection." : msg);
+    }
     setLoading(false);
   }, [loadProducts, loadOrders, showToast]);
 
@@ -340,7 +348,7 @@ export default function App() {
     );
   }
 
-  if (screen === "login") return <LoginScreen onLogin={handleLogin} loading={loading} isLive={isLive} />;
+  if (screen === "login") return <LoginScreen onLogin={handleLogin} loading={loading} isLive={isLive} error={loginError} clearError={() => setLoginError("")} />;
   if (screen === "store-select") return (
     <StoreSelectScreen dealer={dealer} onSelect={(s) => {
       setSelectedStore(s);
@@ -600,10 +608,11 @@ function NavBtn({ icon, label, active, count, onClick }) {
   );
 }
 
-function LoginScreen({ onLogin, loading, isLive }) {
+function LoginScreen({ onLogin, loading, isLive, error, clearError }) {
   const [mode, setMode] = useState("login"); // "login" or "register"
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
 
   // Registration fields
   const [regEmail, setRegEmail] = useState("");
@@ -616,8 +625,9 @@ function LoginScreen({ onLogin, loading, isLive }) {
   const [regRegion, setRegRegion] = useState("NCR");
   const [regLoading, setRegLoading] = useState(false);
   const [regMessage, setRegMessage] = useState(null); // { text, type: "success"|"error" }
+  const [showRegPw, setShowRegPw] = useState(false);
 
-  const submitLogin = () => code && password && onLogin(code, password);
+  const submitLogin = () => code.trim() && password && onLogin(code.trim(), password);
 
   const submitRegister = async () => {
     if (!regEmail || !regCode || !regPassword || !regName || !regContact) {
@@ -654,13 +664,24 @@ function LoginScreen({ onLogin, loading, isLive }) {
           {mode === "login" ? (
             <>
               <div className="login-form">
+                {error && (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 14px", marginBottom: 12, background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 8, fontSize: 13, color: "#DC2626" }}>
+                    <AlertCircle size={16} style={{ flexShrink: 0 }} />
+                    <span>{error}</span>
+                  </div>
+                )}
                 <div className="field"><label>Dealer Code</label>
-                  <input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Enter your dealer code" onKeyDown={(e) => e.key === "Enter" && submitLogin()} />
+                  <input value={code} onChange={(e) => { setCode(e.target.value); if (error) clearError(); }} placeholder="Enter your dealer code" onKeyDown={(e) => e.key === "Enter" && submitLogin()} autoCapitalize="characters" />
                 </div>
                 <div className="field"><label>Password</label>
-                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter password" onKeyDown={(e) => e.key === "Enter" && submitLogin()} />
+                  <div style={{ position: "relative" }}>
+                    <input type={showPw ? "text" : "password"} value={password} onChange={(e) => { setPassword(e.target.value); if (error) clearError(); }} placeholder="Enter password" onKeyDown={(e) => e.key === "Enter" && submitLogin()} style={{ paddingRight: 40 }} />
+                    <button type="button" onClick={() => setShowPw(!showPw)} style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#9CA3AF", padding: 4 }} tabIndex={-1}>
+                      {showPw ? <X size={16} /> : <Search size={16} />}
+                    </button>
+                  </div>
                 </div>
-                <button className="btn-primary login-btn" onClick={submitLogin} disabled={loading || !code || !password}>
+                <button className="btn-primary login-btn" onClick={submitLogin} disabled={loading || !code.trim() || !password}>
                   {loading ? <><Loader2 size={18} className="spinner" /> Signing in...</> : <>Sign In <ChevronRight size={18} /></>}
                 </button>
               </div>
