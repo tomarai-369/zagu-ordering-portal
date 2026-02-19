@@ -44,7 +44,7 @@ export function generateOrderPDF(order, dealer, store) {
           {
             width: "auto",
             stack: [
-              { text: "PURCHASE ORDER", fontSize: 16, bold: true, alignment: "right", color: "#D4A017" },
+              { text: "SALES ORDER", fontSize: 16, bold: true, alignment: "right", color: "#D4A017" },
               { text: order.number, fontSize: 11, alignment: "right", color: "#555", margin: [0, 4, 0, 0] },
             ],
           },
