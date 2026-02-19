@@ -88,13 +88,15 @@ export default function App() {
       const data = await api.getProducts();
       setProducts(data.records.map((r) => {
         const imgFile = r.product_image?.value?.[0];
+        const cat = r.category.value;
         return {
           id: r.$id.value, code: r.product_code.value, name: r.product_name.value,
-          category: r.category.value, price: Number(r.unit_price.value),
+          category: cat, price: Number(r.unit_price.value),
           stock: Number(r.stock_qty.value || 0), desc: r.description.value || "",
           itemCategory: r.item_category?.value || "", variant: r.variant_label?.value || "",
           hasVariants: r.has_variants?.value === "Yes",
-          img: CATEGORY_ICONS[r.category.value] || "📦",
+          minQty: cat === "Powder Drink Mix" ? 5 : 1,
+          img: CATEGORY_ICONS[cat] || "📦",
           imageUrl: imgFile ? `${api.getBaseUrl()}/file?fileKey=${encodeURIComponent(imgFile.fileKey)}` : null,
         };
       }));
@@ -251,11 +253,11 @@ export default function App() {
     setCart((prev) => {
       const exists = prev.find((i) => i.code === product.code);
       if (exists) return prev.map((i) => (i.code === product.code ? { ...i, qty: i.qty + 1 } : i));
-      return [...prev, { ...product, qty: 1 }];
+      return [...prev, { ...product, qty: product.minQty || 1 }];
     });
-    showToast(`${product.name} added`);
+    showToast(`${product.name} added${product.minQty > 1 ? ` (min ${product.minQty})` : ""}`);
   };
-  const updateQty = (code, delta) => setCart((p) => p.map((i) => (i.code === code ? { ...i, qty: Math.max(1, i.qty + delta) } : i)));
+  const updateQty = (code, delta) => setCart((p) => p.map((i) => (i.code === code ? { ...i, qty: Math.max(i.minQty || 1, i.qty + delta) } : i)));
   const removeFromCart = (code) => setCart((p) => p.filter((i) => i.code !== code));
   const cartTotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
@@ -273,8 +275,14 @@ export default function App() {
   // Submit order (or save draft) — now uses composite endpoint for non-drafts
   const submitOrder = async (isDraft = false) => {
     if (cart.length === 0) return;
-    // Block ordering on holidays/Sundays (except drafts)
+    // Validate MOQ before submission (skip for drafts)
     if (!isDraft) {
+      const moqViolations = cart.filter(i => i.qty < (i.minQty || 1));
+      if (moqViolations.length > 0) {
+        showToast(`Minimum quantity not met for: ${moqViolations.map(i => `${i.name} (min ${i.minQty})`).join(", ")}`, "error", 5000);
+        return;
+      }
+      // Block ordering on holidays/Sundays (except drafts)
       const check = canOrderToday();
       if (!check.ok) { showToast(check.reason, "error", 5000); return; }
     }
@@ -509,11 +517,15 @@ export default function App() {
 
         {screen === "history" && <OrderHistory orders={orders} viewOrder={viewOrder} setViewOrder={setViewOrder}
           onReorder={(order) => {
-            const newItems = order.items.map((item) => ({
-              code: item.code, name: item.name, price: item.price, qty: item.qty,
-              img: CATEGORY_ICONS[products.find((p) => p.code === item.code)?.category] || "📦",
-              imageUrl: products.find((p) => p.code === item.code)?.imageUrl || null,
-            }));
+            const newItems = order.items.map((item) => {
+              const prod = products.find((p) => p.code === item.code);
+              return {
+                code: item.code, name: item.name, price: item.price, qty: Math.max(item.qty, prod?.minQty || 1),
+                minQty: prod?.minQty || 1,
+                img: CATEGORY_ICONS[prod?.category] || "📦",
+                imageUrl: prod?.imageUrl || null,
+              };
+            });
             setCart((prev) => {
               const merged = [...prev];
               newItems.forEach((ni) => {
@@ -948,6 +960,7 @@ function ProductCard({ product, onAdd, inCart }) {
           </div>
           <button className="add-btn" onClick={(e) => { e.stopPropagation(); onAdd(); }} disabled={product.stock === 0}><Plus size={20} /></button>
         </div>
+        {product.minQty > 1 && <div className="moq-notice">Min order: {product.minQty} packs</div>}
       </div>
     </div>
   );
@@ -979,6 +992,7 @@ function CartDrawer({ cart, cartTotal, updateQty, removeFromCart, onClose, onChe
                         <span>{item.qty}</span>
                         <button onClick={() => updateQty(item.code, 1)}><Plus size={14} /></button>
                       </div>
+                      {item.minQty > 1 && <span className="moq-hint">min {item.minQty}</span>}
                       <div className="cart-item-right">
                         <span className="cart-item-total">{peso(item.price * item.qty)}</span>
                         <button className="remove-btn" onClick={() => removeFromCart(item.code)}><Trash2 size={15} /></button>
