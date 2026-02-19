@@ -90,6 +90,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); }
 .add-btn { background: var(--yellow); color: var(--text); border: none; border-radius: 100px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: .2s; box-shadow: 0 2px 8px rgba(0,0,0,.1); }
 .add-btn:hover { transform: scale(1.08); background: var(--yellow-dark); }
 .add-btn:disabled { background: #eee; color: #bbb; box-shadow: none; cursor: not-allowed; }
+.moq-notice { font-size: 11px; color: #B45309; background: #FEF3C7; padding: 3px 8px; border-radius: 4px; margin-top: 6px; text-align: center; }
+.moq-hint { font-size: 10px; color: #B45309; background: #FEF3C7; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
 
 /* Cart drawer */
 .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 60; animation: fadeIn .2s; }
