@@ -1,163 +1,129 @@
 # 🥤 Zagu Shakes — Dealer Ordering Portal
 
-A Kintone-powered online ordering system for Zagu Shakes authorized dealers. Built with React + Express, backed by Kintone apps for products, dealers, and order management.
+A Kintone-powered online ordering system for Zagu Shakes' 465+ authorized dealers. Built with React (Vite) on GitHub Pages, proxied through a Cloudflare Worker to Kintone REST API.
 
-![Zagu Portal](https://img.shields.io/badge/Kintone-Powered-F5A623?style=flat-square) ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square) ![Express](https://img.shields.io/badge/Express-4-000?style=flat-square)
+![Kintone](https://img.shields.io/badge/Kintone-Powered-F5A623?style=flat-square) ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square) ![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?style=flat-square) ![Firebase](https://img.shields.io/badge/Firebase-FCM-FFCA28?style=flat-square)
 
-## Features
-
-- **Dealer Authentication** — Login with dealer code & password, validated against Kintone
-- **Product Catalog** — Browse products by category, search, view stock levels
-- **Shopping Cart** — Add/remove items, adjust quantities, running totals
-- **Checkout** — Payment method selection (Online/Cash/Credit Terms), order notes
-- **Order Submission** — Creates records in Kintone Orders app with subtable line items
-- **Process Management** — Orders follow: New → Pending Approval → Approved/Rejected
-- **Order History** — View past orders with status tracking
-- **Mobile Responsive** — Works on phones, tablets, and desktops
+**Live:** [tomarai-369.github.io/zagu-ordering-portal](https://tomarai-369.github.io/zagu-ordering-portal/)
 
 ## Architecture
 
 ```
-┌─────────────────┐     ┌──────────────┐     ┌─────────────────┐
-│  React Frontend │────▶│ Express Proxy │────▶│ Kintone REST API│
-│  (Vite + React) │     │  (Node.js)   │     │                 │
-│  Port 5173      │     │  Port 3001   │     │  Products (#1)  │
-└─────────────────┘     └──────────────┘     │  Dealers  (#2)  │
-                                              │  Orders   (#3)  │
-                                              └─────────────────┘
+GitHub Pages (React SPA)
+        │
+        ▼
+Cloudflare Worker (API proxy + business logic)
+        │
+        ├──▶ Kintone REST API (zagushakes.kintone.com)
+        │       Apps: Products (#1), Dealers (#2), Orders (#3), News (#4)
+        │
+        ├──▶ Firebase Cloud Messaging (push notifications)
+        │
+        └──▶ Resend (transactional email — password reset, order status)
 ```
 
-The Express proxy handles Kintone API authentication server-side, keeping API tokens secure and bypassing CORS restrictions.
+## Features
 
-## Quick Start
+### Dealer-Facing Portal (React SPA)
+- **Authentication** — Dealer code + password login, session management, auto-logout
+- **MFA** — TOTP via Google Authenticator / Authy
+- **Password Management** — Self-service reset via email link, change password, 90-day rotation
+- **Product Catalog** — ~300 SKUs organized by category, search, product images
+- **Shopping Cart** — Add/remove items, MOQ enforcement (5-pack regular, 1 promo), draft save
+- **Order Submission** — Auto-generated order numbers, Sales Order PDF generation
+- **Order History** — Full history with status tracking, search, filters
+- **Dashboard** — Order summaries, spending trends, ApexCharts visualizations
+- **Notifications** — FCM push notifications + email for all order status changes
+- **Reports** — Export to Excel (CSV) and PDF, time-based filtering
+- **PWA** — Installable on mobile home screen, service worker caching
+- **Mobile Responsive** — Phone, tablet, desktop optimized
+
+### Cloudflare Worker API (v2.4)
+- **Auth:** `/api/auth/login`, `/api/auth/register`, `/api/auth/change-password`, `/api/auth/forgot-password`, `/api/auth/reset-password`
+- **MFA:** `/api/auth/mfa/setup`, `/api/auth/mfa/verify-setup`, `/api/auth/mfa/verify-login`, `/api/auth/mfa/disable`
+- **Orders:** `/api/orders/submit-order`, `/api/orders/status`
+- **Dealers:** `/api/dealers/status`
+- **Data:** `/api/news`, `/api/holidays`, `/api/file`
+- **FCM:** `/api/fcm/register`, `/api/fcm/send`
+- **Kintone Portal:** `/portal.js` (custom portal dashboard JS)
+
+### Kintone Back-Office
+- **Products Master (App #1)** — Item code, description, category, UoM, pricing, images
+- **Dealers Master (App #2)** — Dealer profiles, store locations, credentials, FCM tokens, MFA secrets
+- **Orders (App #3)** — Order records with line item subtables, status workflow, approval
+- **News & Announcements (App #4)** — Broadcast messages to dealers on login
+
+## Project Structure
+
+```
+zagu-ordering-portal/
+├── client/                  # React frontend (Vite)
+│   ├── src/
+│   │   ├── App.jsx          # Main application (routes, pages, components)
+│   │   ├── api.js           # API client (Cloudflare Worker endpoints)
+│   │   ├── Dashboard.jsx    # Dealer dashboard with charts
+│   │   ├── DealerProfile.jsx # Profile management
+│   │   ├── OrderPDF.js      # PDF generation (Sales Orders, Delivery Receipts)
+│   │   ├── main.jsx         # Entry point
+│   │   └── styles.css       # Global styles
+│   ├── public/              # PWA assets, icons, service worker, manifest
+│   ├── index.html           # SPA shell
+│   ├── package.json
+│   └── vite.config.js
+├── worker.js                # Cloudflare Worker source (API proxy v2.4)
+├── wrangler.toml            # Worker configuration
+└── .github/workflows/
+    └── deploy.yml           # GitHub Actions → GitHub Pages CI/CD
+```
+
+## Development
 
 ### Prerequisites
-- Node.js 18+
-- A Kintone environment with Products, Dealers, and Orders apps configured
+- Node.js 20+
+- Wrangler CLI (`npm i -g wrangler`) for Worker deployment
 
-### 1. Clone & Install
-
+### Frontend (React)
 ```bash
-git clone https://github.com/your-org/zagu-ordering-portal.git
-cd zagu-ordering-portal
-npm run install:all
+cd client
+npm install
+npm run dev          # http://localhost:5173
 ```
 
-### 2. Configure Environment
-
+### Worker (Cloudflare)
 ```bash
-cp .env.example .env
+# Local dev (requires wrangler login)
+wrangler dev worker.js
+
+# Deploy to production
+wrangler deploy
 ```
 
-Edit `.env` with your Kintone credentials:
+### CI/CD
+Push to `main` triggers GitHub Actions which builds the React app and deploys to GitHub Pages. The Cloudflare Worker is deployed separately via `wrangler deploy`.
 
-```env
-KINTONE_BASE_URL=https://your-subdomain.kintone.com
-KINTONE_PRODUCTS_APP_ID=1
-KINTONE_DEALERS_APP_ID=2
-KINTONE_ORDERS_APP_ID=3
-KINTONE_PRODUCTS_TOKEN=your_token_here
-KINTONE_DEALERS_TOKEN=your_token_here
-KINTONE_ORDERS_TOKEN=your_token_here
-```
+## Environment
 
-### 3. Run Development
+### Worker Secrets (set via `wrangler secret put`)
+| Secret | Description |
+|--------|-------------|
+| `KINTONE_PRODUCTS_TOKEN` | API token for Products app |
+| `KINTONE_DEALERS_TOKEN` | API token for Dealers app |
+| `KINTONE_ORDERS_TOKEN` | API token for Orders app |
+| `KINTONE_AUTH` | Base64-encoded admin credentials |
+| `FCM_SERVICE_ACCOUNT` | Firebase service account JSON |
+| `FCM_VAPID_KEY` | Web push VAPID public key |
+| `RESEND_API_KEY` | Resend.com API key for email |
+| `EMAIL_FROM_DOMAIN` | Sender domain for emails |
+| `PORTAL_BASE_URL` | Frontend URL for email links |
 
-```bash
-npm run dev
-```
+## Phased Roadmap
 
-This starts both the Express proxy (port 3001) and Vite dev server (port 5173) concurrently.
+| Phase | Scope | Status |
+|-------|-------|--------|
+| **Phase 1** | Core ordering, auth (MFA), notifications, dashboard, reporting, PDF generation | ✅ Complete |
+| **Phase 2** | SAP Business One integration (via Direc Business Inc. cloud tunnel) | 🔲 Pending |
+| **Phase 3** | Payment gateway (PayMongo — GCash, Maya, credit card, bank transfer) | 🔲 Pending |
 
-Open **http://localhost:5173**
+## Built By
 
-### 4. Demo Login
-
-| Dealer Code | Store | Password |
-|-------------|-------|----------|
-| DLR-001 | Zagu SM North EDSA | zagu2026 |
-| DLR-002 | Zagu Robinsons Galleria | zagu2026 |
-| DLR-003 | Zagu SM Megamall | zagu2026 |
-| DLR-004 | Zagu Ayala Center Cebu | zagu2026 |
-| DLR-005 | Zagu SM Lanang Davao | zagu2026 |
-
-## Production Build
-
-```bash
-npm run build     # Builds React client
-npm start         # Starts Express serving the built client
-```
-
-The Express server serves the React build from `client/dist/` and proxies API calls to Kintone.
-
-## Kintone App Structure
-
-### Products Master (App #1)
-| Field | Code | Type |
-|-------|------|------|
-| Product Code | `product_code` | Text (unique) |
-| Product Name | `product_name` | Text |
-| Description | `description` | Text Area |
-| Category | `category` | Dropdown |
-| Unit Price | `unit_price` | Number |
-| Stock Quantity | `stock_qty` | Number |
-| Product Image | `product_image` | Attachment |
-| Status | `product_status` | Dropdown |
-
-### Dealers Master (App #2)
-| Field | Code | Type |
-|-------|------|------|
-| Dealer Code | `dealer_code` | Text (unique) |
-| Store Name | `dealer_name` | Text |
-| Contact Person | `contact_person` | Text |
-| Email | `email` | Text |
-| Phone | `phone` | Text |
-| Login Password | `login_password` | Text |
-| Region | `region` | Dropdown |
-| Address | `address` | Text Area |
-| Status | `dealer_status` | Dropdown |
-
-### Orders (App #3)
-| Field | Code | Type |
-|-------|------|------|
-| Order Date | `order_date` | Date |
-| Dealer Code | `dealer_lookup` | Lookup → Dealers |
-| Dealer Name | `dealer_name_display` | Text (auto) |
-| Region | `dealer_region_display` | Text (auto) |
-| Payment Method | `payment_method` | Dropdown |
-| **Subtable: Order Items** | `order_items` | |
-| ↳ Product Code | `product_lookup` | Lookup → Products |
-| ↳ Product Name | `product_name_display` | Text (auto) |
-| ↳ Qty | `quantity` | Number |
-| ↳ Unit Price | `item_unit_price` | Number (auto) |
-| ↳ Line Total | `line_total` | Calc |
-| Total Amount | `total_amount` | Calc (SUM) |
-| Notes | `notes` | Text Area |
-
-**Process Management:** New → Pending Approval → Approved / Rejected
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/health` | Health check |
-| POST | `/api/auth/login` | Dealer login |
-| GET | `/api/:app/records` | Get records |
-| GET | `/api/:app/record/:id` | Get single record |
-| POST | `/api/:app/record` | Create record |
-| PUT | `/api/:app/record` | Update record |
-
-## Tech Stack
-
-- **Frontend:** React 18, Vite, Lucide Icons
-- **Backend:** Express.js, Node.js
-- **Database:** Kintone (No-Code Platform)
-- **Fonts:** DM Sans, Playfair Display
-
-## License
-
-MIT
-
----
-
-Built by [Edamame Inc.](https://edamame-jp.com) — Cybozu/Kintone Partner, Philippines
+**Edamame Inc.** — Cybozu Kintone Partner, Philippines

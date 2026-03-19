@@ -1,10 +1,22 @@
 name = "zagu-api"
 main = "worker.js"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-09-23"
 
+# Non-secret env vars (safe to commit)
 [vars]
 KINTONE_BASE_URL = "https://zagushakes.kintone.com"
 KINTONE_PRODUCTS_APP_ID = "1"
 KINTONE_DEALERS_APP_ID = "2"
 KINTONE_ORDERS_APP_ID = "3"
 KINTONE_NEWS_APP_ID = "4"
+
+# Secrets (set via `wrangler secret put <NAME>`):
+# KINTONE_PRODUCTS_TOKEN
+# KINTONE_DEALERS_TOKEN
+# KINTONE_ORDERS_TOKEN
+# KINTONE_AUTH              — Base64(Administrator:password)
+# FCM_SERVICE_ACCOUNT       — Firebase service account JSON
+# FCM_VAPID_KEY             — Web push VAPID key
+# RESEND_API_KEY            — Resend.com email API key
+# EMAIL_FROM_DOMAIN         — Sender domain for transactional email
+# PORTAL_BASE_URL           — Frontend URL for email links
