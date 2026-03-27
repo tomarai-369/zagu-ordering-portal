@@ -1,0 +1,30 @@
+{
+    "name": "News & Announcements",
+    "description": "Internal announcements, promotions, policy updates, and system notifications. Supports pinning, priority ordering, category filtering, and scheduled expiry. Displayed on portal dashboard.",
+    "icon": {
+        "type": "FILE",
+        "file": {
+            "fileKey": "2026021006581588F745B8539B4A01A91FF3B92E896F21176",
+            "name": "news_icon.png",
+            "contentType": "image/png",
+            "size": "5899"
+        }
+    },
+    "theme": "YELLOW",
+    "titleField": {
+        "selectionMode": "AUTO",
+        "code": "title"
+    },
+    "enableThumbnails": true,
+    "enableBulkDeletion": false,
+    "enableComments": true,
+    "enableDuplicateRecord": true,
+    "enableInlineRecordEditing": true,
+    "numberPrecision": {
+        "digits": "16",
+        "decimalPlaces": "4",
+        "roundingMode": "HALF_EVEN"
+    },
+    "firstMonthOfFiscalYear": "1",
+    "revision": "13"
+}

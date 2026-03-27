@@ -1,0 +1,30 @@
+{
+    "name": "Products Master",
+    "description": "Central product catalog for Zagu dealer ordering. Manages SAP item codes, pricing, stock levels, categories, and variant configurations. Integrated with SAP B1 for inventory sync.",
+    "icon": {
+        "type": "FILE",
+        "file": {
+            "fileKey": "202602060856414F7C296C18AA4DD7A688E21D51FFE509015",
+            "name": "products_icon.png",
+            "contentType": "image/png",
+            "size": "3578"
+        }
+    },
+    "theme": "YELLOW",
+    "titleField": {
+        "selectionMode": "AUTO",
+        "code": "product_code"
+    },
+    "enableThumbnails": true,
+    "enableBulkDeletion": false,
+    "enableComments": true,
+    "enableDuplicateRecord": true,
+    "enableInlineRecordEditing": true,
+    "numberPrecision": {
+        "digits": "16",
+        "decimalPlaces": "4",
+        "roundingMode": "HALF_EVEN"
+    },
+    "firstMonthOfFiscalYear": "1",
+    "revision": "24"
+}

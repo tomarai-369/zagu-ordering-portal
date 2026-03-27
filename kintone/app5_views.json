@@ -1,0 +1,46 @@
+{
+    "views": {
+        "\ud83d\udcc6 2026": {
+            "type": "LIST",
+            "name": "\ud83d\udcc6 2026",
+            "id": "2457",
+            "filterCond": "year = \"2026\" and is_active in (\"Yes\")",
+            "sort": "holiday_date asc",
+            "index": "1",
+            "fields": [
+                "holiday_date",
+                "holiday_name",
+                "holiday_type"
+            ]
+        },
+        "\ud83d\udcc5 All Holidays": {
+            "type": "LIST",
+            "name": "\ud83d\udcc5 All Holidays",
+            "id": "2456",
+            "filterCond": "",
+            "sort": "holiday_date asc",
+            "index": "0",
+            "fields": [
+                "holiday_date",
+                "holiday_name",
+                "holiday_type",
+                "year",
+                "is_active"
+            ]
+        },
+        "\ud83d\udd34 Regular Holidays": {
+            "type": "LIST",
+            "name": "\ud83d\udd34 Regular Holidays",
+            "id": "2458",
+            "filterCond": "holiday_type in (\"Regular\") and is_active in (\"Yes\")",
+            "sort": "holiday_date asc",
+            "index": "2",
+            "fields": [
+                "holiday_date",
+                "holiday_name",
+                "year"
+            ]
+        }
+    },
+    "revision": "8"
+}

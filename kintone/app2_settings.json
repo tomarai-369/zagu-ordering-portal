@@ -1,0 +1,30 @@
+{
+    "name": "Dealers Master",
+    "description": "Authorized dealer registry with multi-store support. Manages dealer credentials, credit terms, outstanding balances, and SAP business partner sync. Includes MFA and push notification enrollment.",
+    "icon": {
+        "type": "FILE",
+        "file": {
+            "fileKey": "2026021010225184D339B4B7CE4B33B6BD7F1173300CB8280",
+            "name": "dealers_icon.png",
+            "contentType": "image/png",
+            "size": "5485"
+        }
+    },
+    "theme": "YELLOW",
+    "titleField": {
+        "selectionMode": "AUTO",
+        "code": "dealer_code"
+    },
+    "enableThumbnails": true,
+    "enableBulkDeletion": false,
+    "enableComments": true,
+    "enableDuplicateRecord": true,
+    "enableInlineRecordEditing": true,
+    "numberPrecision": {
+        "digits": "16",
+        "decimalPlaces": "4",
+        "roundingMode": "HALF_EVEN"
+    },
+    "firstMonthOfFiscalYear": "1",
+    "revision": "47"
+}

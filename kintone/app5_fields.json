@@ -1,0 +1,136 @@
+{
+    "revision": "8",
+    "properties": {
+        "Status": {
+            "type": "STATUS",
+            "code": "Status",
+            "label": "Status",
+            "enabled": false
+        },
+        "Assignee": {
+            "type": "STATUS_ASSIGNEE",
+            "code": "Assignee",
+            "label": "Assignee",
+            "enabled": false
+        },
+        "holiday_date": {
+            "type": "DATE",
+            "code": "holiday_date",
+            "label": "Holiday Date",
+            "noLabel": false,
+            "required": true,
+            "unique": true,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "is_active": {
+            "type": "DROP_DOWN",
+            "code": "is_active",
+            "label": "Active",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "1"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "0"
+                }
+            },
+            "defaultValue": "Yes"
+        },
+        "Categories": {
+            "type": "CATEGORY",
+            "code": "Categories",
+            "label": "Categories",
+            "enabled": false
+        },
+        "year": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "year",
+            "label": "Year",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Updated_by": {
+            "type": "MODIFIER",
+            "code": "Updated_by",
+            "label": "Updated by",
+            "noLabel": false
+        },
+        "holiday_name": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "holiday_name",
+            "label": "Holiday Name",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Updated_datetime": {
+            "type": "UPDATED_TIME",
+            "code": "Updated_datetime",
+            "label": "Updated datetime",
+            "noLabel": false
+        },
+        "Created_datetime": {
+            "type": "CREATED_TIME",
+            "code": "Created_datetime",
+            "label": "Created datetime",
+            "noLabel": false
+        },
+        "grp_holiday": {
+            "type": "GROUP",
+            "code": "grp_holiday",
+            "label": "Holiday Details",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "Record_number": {
+            "type": "RECORD_NUMBER",
+            "code": "Record_number",
+            "label": "Record number",
+            "noLabel": false
+        },
+        "Created_by": {
+            "type": "CREATOR",
+            "code": "Created_by",
+            "label": "Created by",
+            "noLabel": false
+        },
+        "holiday_type": {
+            "type": "DROP_DOWN",
+            "code": "holiday_type",
+            "label": "Type",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Regular": {
+                    "label": "Regular",
+                    "index": "0"
+                },
+                "Company Holiday": {
+                    "label": "Company Holiday",
+                    "index": "2"
+                },
+                "Special Non-Working": {
+                    "label": "Special Non-Working",
+                    "index": "1"
+                }
+            },
+            "defaultValue": "Regular"
+        }
+    }
+}

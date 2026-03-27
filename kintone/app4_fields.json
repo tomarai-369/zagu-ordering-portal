@@ -1,0 +1,197 @@
+{
+    "revision": "13",
+    "properties": {
+        "Status": {
+            "type": "STATUS",
+            "code": "Status",
+            "label": "Status",
+            "enabled": false
+        },
+        "Assignee": {
+            "type": "STATUS_ASSIGNEE",
+            "code": "Assignee",
+            "label": "Assignee",
+            "enabled": false
+        },
+        "is_active": {
+            "type": "DROP_DOWN",
+            "code": "is_active",
+            "label": "Active",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "1"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "0"
+                }
+            },
+            "defaultValue": "Yes"
+        },
+        "Categories": {
+            "type": "CATEGORY",
+            "code": "Categories",
+            "label": "Categories",
+            "enabled": false
+        },
+        "expiry_date": {
+            "type": "DATE",
+            "code": "expiry_date",
+            "label": "Expiry Date",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "title": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "title",
+            "label": "Title",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "priority": {
+            "type": "NUMBER",
+            "code": "priority",
+            "label": "Priority (1=highest)",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "10",
+            "displayScale": "",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "Updated_by": {
+            "type": "MODIFIER",
+            "code": "Updated_by",
+            "label": "Updated by",
+            "noLabel": false
+        },
+        "content": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "content",
+            "label": "Content",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "is_pinned": {
+            "type": "DROP_DOWN",
+            "code": "is_pinned",
+            "label": "Pinned",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "1"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "0"
+                }
+            },
+            "defaultValue": "No"
+        },
+        "grp_content": {
+            "type": "GROUP",
+            "code": "grp_content",
+            "label": "Content",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "Updated_datetime": {
+            "type": "UPDATED_TIME",
+            "code": "Updated_datetime",
+            "label": "Updated datetime",
+            "noLabel": false
+        },
+        "Created_datetime": {
+            "type": "CREATED_TIME",
+            "code": "Created_datetime",
+            "label": "Created datetime",
+            "noLabel": false
+        },
+        "grp_publishing": {
+            "type": "GROUP",
+            "code": "grp_publishing",
+            "label": "Publishing Settings",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "Record_number": {
+            "type": "RECORD_NUMBER",
+            "code": "Record_number",
+            "label": "Record number",
+            "noLabel": false
+        },
+        "Created_by": {
+            "type": "CREATOR",
+            "code": "Created_by",
+            "label": "Created by",
+            "noLabel": false
+        },
+        "category": {
+            "type": "DROP_DOWN",
+            "code": "category",
+            "label": "Category",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Policy": {
+                    "label": "Policy",
+                    "index": "2"
+                },
+                "Promo": {
+                    "label": "Promo",
+                    "index": "1"
+                },
+                "Guide": {
+                    "label": "Guide",
+                    "index": "6"
+                },
+                "System Update": {
+                    "label": "System Update",
+                    "index": "3"
+                },
+                "General": {
+                    "label": "General",
+                    "index": "0"
+                },
+                "Product Update": {
+                    "label": "Product Update",
+                    "index": "4"
+                },
+                "Maintenance": {
+                    "label": "Maintenance",
+                    "index": "5"
+                }
+            },
+            "defaultValue": ""
+        },
+        "publish_date": {
+            "type": "DATE",
+            "code": "publish_date",
+            "label": "Publish Date",
+            "noLabel": false,
+            "required": true,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": true
+        }
+    }
+}

@@ -1,0 +1,83 @@
+{
+    "enable": true,
+    "states": {
+        "New": {
+            "name": "New",
+            "index": "0",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Active": {
+            "name": "Active",
+            "index": "2",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Pending Review": {
+            "name": "Pending Review",
+            "index": "1",
+            "assignee": {
+                "type": "ONE",
+                "entities": [
+                    {
+                        "entity": {
+                            "type": "USER",
+                            "code": "Administrator"
+                        },
+                        "includeSubs": false
+                    }
+                ]
+            }
+        },
+        "Inactive": {
+            "name": "Inactive",
+            "index": "3",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        }
+    },
+    "actions": [
+        {
+            "name": "Submit for Review",
+            "from": "New",
+            "to": "Pending Review",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Approve",
+            "from": "Pending Review",
+            "to": "Active",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Reject",
+            "from": "Pending Review",
+            "to": "Inactive",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Deactivate",
+            "from": "Active",
+            "to": "Inactive",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Reactivate",
+            "from": "Inactive",
+            "to": "Pending Review",
+            "filterCond": "",
+            "type": "PRIMARY"
+        }
+    ],
+    "revision": "47"
+}

@@ -1,0 +1,406 @@
+{
+    "revision": "47",
+    "properties": {
+        "Updated_by": {
+            "type": "MODIFIER",
+            "code": "Updated_by",
+            "label": "Updated by",
+            "noLabel": false
+        },
+        "reset_token_expiry": {
+            "type": "DATETIME",
+            "code": "reset_token_expiry",
+            "label": "Reset Token Expiry",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "dealer_code": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_code",
+            "label": "Dealer Code",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "64",
+            "expression": "",
+            "hideExpression": false,
+            "unique": true,
+            "defaultValue": ""
+        },
+        "Created_datetime": {
+            "type": "CREATED_TIME",
+            "code": "Created_datetime",
+            "label": "Created datetime",
+            "noLabel": false
+        },
+        "login_password": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "login_password",
+            "label": "Login Password",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Record_number": {
+            "type": "RECORD_NUMBER",
+            "code": "Record_number",
+            "label": "Record number",
+            "noLabel": false
+        },
+        "outstanding_balance": {
+            "type": "NUMBER",
+            "code": "outstanding_balance",
+            "label": "Outstanding Balance",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "",
+            "displayScale": "2",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "credit_limit": {
+            "type": "NUMBER",
+            "code": "credit_limit",
+            "label": "Credit Limit",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "",
+            "displayScale": "2",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "sap_bp_code": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "sap_bp_code",
+            "label": "SAP BP Code",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "mfa_enabled": {
+            "type": "RADIO_BUTTON",
+            "code": "mfa_enabled",
+            "label": "MFA Enabled",
+            "noLabel": false,
+            "required": true,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "0"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "1"
+                }
+            },
+            "defaultValue": "No",
+            "align": "HORIZONTAL"
+        },
+        "Created_by": {
+            "type": "CREATOR",
+            "code": "Created_by",
+            "label": "Created by",
+            "noLabel": false
+        },
+        "grp_sap_dealer": {
+            "type": "GROUP",
+            "code": "grp_sap_dealer",
+            "label": "SAP & System",
+            "noLabel": false,
+            "openGroup": false
+        },
+        "credit_terms": {
+            "type": "DROP_DOWN",
+            "code": "credit_terms",
+            "label": "Credit Terms",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Net 60": {
+                    "label": "Net 60",
+                    "index": "3"
+                },
+                "Net 15": {
+                    "label": "Net 15",
+                    "index": "1"
+                },
+                "None": {
+                    "label": "None",
+                    "index": "0"
+                },
+                "Net 30": {
+                    "label": "Net 30",
+                    "index": "2"
+                }
+            },
+            "defaultValue": "None"
+        },
+        "grp_financial": {
+            "type": "GROUP",
+            "code": "grp_financial",
+            "label": "Financial & Credit",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "email": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "email",
+            "label": "Email",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Status": {
+            "type": "STATUS",
+            "code": "Status",
+            "label": "Status",
+            "enabled": true
+        },
+        "Assignee": {
+            "type": "STATUS_ASSIGNEE",
+            "code": "Assignee",
+            "label": "Assignee",
+            "enabled": true
+        },
+        "mfa_secret": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "mfa_secret",
+            "label": "MFA Secret (TOTP)",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "password_changed_at": {
+            "type": "DATETIME",
+            "code": "password_changed_at",
+            "label": "Password Changed",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "reset_token": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "reset_token",
+            "label": "Password Reset Token",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "address": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "address",
+            "label": "Address",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "fcm_tokens": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "fcm_tokens",
+            "label": "FCM Device Tokens (JSON)",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "Categories": {
+            "type": "CATEGORY",
+            "code": "Categories",
+            "label": "Categories",
+            "enabled": false
+        },
+        "contact_person": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "contact_person",
+            "label": "Contact Person",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "dealer_stores": {
+            "type": "SUBTABLE",
+            "code": "dealer_stores",
+            "noLabel": false,
+            "label": "Stores",
+            "fields": {
+                "ds_store_name": {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_name",
+                    "label": "Store Name",
+                    "noLabel": false,
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "expression": "",
+                    "hideExpression": false,
+                    "unique": false,
+                    "defaultValue": ""
+                },
+                "ds_store_code": {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_code",
+                    "label": "Store Code",
+                    "noLabel": false,
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "expression": "",
+                    "hideExpression": false,
+                    "unique": false,
+                    "defaultValue": ""
+                },
+                "ds_store_address": {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_address",
+                    "label": "Store Address",
+                    "noLabel": false,
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "expression": "",
+                    "hideExpression": false,
+                    "unique": false,
+                    "defaultValue": ""
+                }
+            }
+        },
+        "grp_dealer_info": {
+            "type": "GROUP",
+            "code": "grp_dealer_info",
+            "label": "Dealer Information",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "grp_security": {
+            "type": "GROUP",
+            "code": "grp_security",
+            "label": "Security & Authentication",
+            "noLabel": false,
+            "openGroup": false
+        },
+        "Updated_datetime": {
+            "type": "UPDATED_TIME",
+            "code": "Updated_datetime",
+            "label": "Updated datetime",
+            "noLabel": false
+        },
+        "phone": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "phone",
+            "label": "Phone",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "password_expiry": {
+            "type": "DATE",
+            "code": "password_expiry",
+            "label": "Password Expiry Date",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "dealer_name": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_name",
+            "label": "Business Partner Name",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "last_synced_dealer": {
+            "type": "DATETIME",
+            "code": "last_synced_dealer",
+            "label": "Last Synced from SAP",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "region": {
+            "type": "DROP_DOWN",
+            "code": "region",
+            "label": "Region (SAP)",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Mindanao": {
+                    "label": "Mindanao",
+                    "index": "4"
+                },
+                "North Luzon": {
+                    "label": "North Luzon",
+                    "index": "1"
+                },
+                "South Luzon": {
+                    "label": "South Luzon",
+                    "index": "2"
+                },
+                "NCR": {
+                    "label": "NCR",
+                    "index": "0"
+                },
+                "Visayas": {
+                    "label": "Visayas",
+                    "index": "3"
+                }
+            },
+            "defaultValue": ""
+        }
+    }
+}

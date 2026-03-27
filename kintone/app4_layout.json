@@ -1,0 +1,99 @@
+{
+    "layout": [
+        {
+            "type": "GROUP",
+            "code": "grp_content",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "title",
+                            "size": {
+                                "width": "620"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "content",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "category",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_publishing",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DATE",
+                            "code": "publish_date",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DATE",
+                            "code": "expiry_date",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "is_active",
+                            "size": {
+                                "width": "150"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "is_pinned",
+                            "size": {
+                                "width": "150"
+                            }
+                        },
+                        {
+                            "type": "NUMBER",
+                            "code": "priority",
+                            "size": {
+                                "width": "150"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "revision": "13"
+}

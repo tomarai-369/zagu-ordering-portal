@@ -1,0 +1,106 @@
+{
+    "views": {
+        "\ud83d\udccc Pinned": {
+            "type": "LIST",
+            "name": "\ud83d\udccc Pinned",
+            "id": "2364",
+            "filterCond": "is_pinned in (\"Yes\") and is_active in (\"Yes\")",
+            "sort": "priority asc",
+            "index": "1",
+            "fields": [
+                "title",
+                "category",
+                "publish_date",
+                "priority"
+            ]
+        },
+        "\u2705 Active": {
+            "type": "LIST",
+            "name": "\u2705 Active",
+            "id": "2365",
+            "filterCond": "is_active in (\"Yes\")",
+            "sort": "publish_date desc",
+            "index": "2",
+            "fields": [
+                "title",
+                "category",
+                "publish_date",
+                "is_pinned",
+                "priority"
+            ]
+        },
+        "\ud83d\udcdc Policies": {
+            "type": "LIST",
+            "name": "\ud83d\udcdc Policies",
+            "id": "2367",
+            "filterCond": "category in (\"Policy\")",
+            "sort": "publish_date desc",
+            "index": "4",
+            "fields": [
+                "title",
+                "publish_date",
+                "is_active"
+            ]
+        },
+        "\ud83d\udd15 Inactive / Expired": {
+            "type": "LIST",
+            "name": "\ud83d\udd15 Inactive / Expired",
+            "id": "2368",
+            "filterCond": "is_active in (\"No\")",
+            "sort": "publish_date desc",
+            "index": "5",
+            "fields": [
+                "title",
+                "category",
+                "publish_date",
+                "expiry_date"
+            ]
+        },
+        "\ud83d\udcd6 Guides": {
+            "type": "LIST",
+            "name": "\ud83d\udcd6 Guides",
+            "id": "2465",
+            "filterCond": "category in (\"Guide\") and is_active in (\"Yes\")",
+            "sort": "priority asc",
+            "index": "6",
+            "fields": [
+                "title",
+                "content",
+                "publish_date",
+                "is_active"
+            ]
+        },
+        "\ud83c\udff7\ufe0f Promos": {
+            "type": "LIST",
+            "name": "\ud83c\udff7\ufe0f Promos",
+            "id": "2366",
+            "filterCond": "category in (\"Promo\")",
+            "sort": "publish_date desc",
+            "index": "3",
+            "fields": [
+                "title",
+                "publish_date",
+                "expiry_date",
+                "is_active",
+                "is_pinned"
+            ]
+        },
+        "\ud83d\udcf0 All Announcements": {
+            "type": "LIST",
+            "name": "\ud83d\udcf0 All Announcements",
+            "id": "2363",
+            "filterCond": "",
+            "sort": "priority asc",
+            "index": "0",
+            "fields": [
+                "title",
+                "category",
+                "publish_date",
+                "is_active",
+                "is_pinned",
+                "priority"
+            ]
+        }
+    },
+    "revision": "13"
+}

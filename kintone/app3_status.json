@@ -1,0 +1,159 @@
+{
+    "enable": true,
+    "states": {
+        "New": {
+            "name": "New",
+            "index": "0",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Submitted": {
+            "name": "Submitted",
+            "index": "1",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Pending ONB Approval": {
+            "name": "Pending ONB Approval",
+            "index": "2",
+            "assignee": {
+                "type": "ONE",
+                "entities": [
+                    {
+                        "entity": {
+                            "type": "USER",
+                            "code": "Administrator"
+                        },
+                        "includeSubs": false
+                    }
+                ]
+            }
+        },
+        "Picking": {
+            "name": "Picking",
+            "index": "6",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Ready for Pickup": {
+            "name": "Ready for Pickup",
+            "index": "7",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Approved": {
+            "name": "Approved",
+            "index": "3",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Completed": {
+            "name": "Completed",
+            "index": "8",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Posted to SAP": {
+            "name": "Posted to SAP",
+            "index": "5",
+            "assignee": {
+                "type": "ONE",
+                "entities": []
+            }
+        },
+        "Rejected": {
+            "name": "Rejected",
+            "index": "4",
+            "assignee": {
+                "type": "ONE",
+                "entities": [
+                    {
+                        "entity": {
+                            "type": "CREATOR",
+                            "code": null
+                        },
+                        "includeSubs": false
+                    }
+                ]
+            }
+        }
+    },
+    "actions": [
+        {
+            "name": "Submit Order",
+            "from": "New",
+            "to": "Submitted",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Send for Approval",
+            "from": "Submitted",
+            "to": "Pending ONB Approval",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Approve",
+            "from": "Pending ONB Approval",
+            "to": "Approved",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Reject",
+            "from": "Pending ONB Approval",
+            "to": "Rejected",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Resubmit",
+            "from": "Rejected",
+            "to": "Pending ONB Approval",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Post to SAP",
+            "from": "Approved",
+            "to": "Posted to SAP",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Start Picking",
+            "from": "Posted to SAP",
+            "to": "Picking",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Mark Ready",
+            "from": "Picking",
+            "to": "Ready for Pickup",
+            "filterCond": "",
+            "type": "PRIMARY"
+        },
+        {
+            "name": "Complete",
+            "from": "Ready for Pickup",
+            "to": "Completed",
+            "filterCond": "",
+            "type": "PRIMARY"
+        }
+    ],
+    "revision": "37"
+}

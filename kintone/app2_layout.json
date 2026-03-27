@@ -1,0 +1,258 @@
+{
+    "layout": [
+        {
+            "type": "GROUP",
+            "code": "grp_dealer_info",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_code",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_name",
+                            "size": {
+                                "width": "400"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "contact_person",
+                            "size": {
+                                "width": "250"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "email",
+                            "size": {
+                                "width": "250"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "phone",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "region",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "address",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "60"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "SUBTABLE",
+            "code": "dealer_stores",
+            "fields": [
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_code",
+                    "size": {
+                        "width": "150"
+                    }
+                },
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_name",
+                    "size": {
+                        "width": "250"
+                    }
+                },
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "ds_store_address",
+                    "size": {
+                        "width": "350"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_financial",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "NUMBER",
+                            "code": "credit_limit",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "NUMBER",
+                            "code": "outstanding_balance",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "credit_terms",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_security",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "login_password",
+                            "size": {
+                                "width": "250"
+                            }
+                        },
+                        {
+                            "type": "DATE",
+                            "code": "password_expiry",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "RADIO_BUTTON",
+                            "code": "mfa_enabled",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "mfa_secret",
+                            "size": {
+                                "width": "300"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "fcm_tokens",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "60"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_sap_dealer",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "sap_bp_code",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DATETIME",
+                            "code": "last_synced_dealer",
+                            "size": {
+                                "width": "300"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ROW",
+            "fields": [
+                {
+                    "type": "DATETIME",
+                    "code": "password_changed_at",
+                    "size": {
+                        "width": "185"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "ROW",
+            "fields": [
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "reset_token",
+                    "size": {
+                        "width": "193"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "ROW",
+            "fields": [
+                {
+                    "type": "DATETIME",
+                    "code": "reset_token_expiry",
+                    "size": {
+                        "width": "185"
+                    }
+                }
+            ]
+        }
+    ],
+    "revision": "47"
+}

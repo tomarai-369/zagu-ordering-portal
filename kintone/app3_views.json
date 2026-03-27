@@ -1,0 +1,245 @@
+{
+    "views": {
+        "\ud83d\udccb Pending My Approval": {
+            "type": "LIST",
+            "name": "\ud83d\udccb Pending My Approval",
+            "id": "2237",
+            "filterCond": "Status in (\"Pending ONB Approval\") and Assignee in (LOGINUSER())",
+            "sort": "order_date asc",
+            "index": "1",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "notes"
+            ]
+        },
+        "\ud83d\udcb3 Unpaid Orders": {
+            "type": "LIST",
+            "name": "\ud83d\udcb3 Unpaid Orders",
+            "id": "2241",
+            "filterCond": "payment_status in (\"Pending\", \"Unpaid\", \"COD Pending\", \"Partial\") and Status not in (\"Rejected\")",
+            "sort": "order_date desc",
+            "index": "5",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "outstanding_balance_snapshot",
+                "Status"
+            ]
+        },
+        "\ud83d\udcb0 High-Value Orders (\u20b15K+)": {
+            "type": "LIST",
+            "name": "\ud83d\udcb0 High-Value Orders (\u20b15K+)",
+            "id": "2246",
+            "filterCond": "total_amount >= \"5000\" and Status not in (\"Rejected\")",
+            "sort": "total_amount desc",
+            "index": "10",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "Status"
+            ]
+        },
+        "\ud83d\udd14 Needs Action": {
+            "type": "LIST",
+            "name": "\ud83d\udd14 Needs Action",
+            "id": "2238",
+            "filterCond": "Status in (\"Submitted\", \"Pending ONB Approval\")",
+            "sort": "order_date asc",
+            "index": "2",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "payment_method",
+                "Status",
+                "fulfillment_status"
+            ]
+        },
+        "\ud83d\udeab Rejected Orders": {
+            "type": "LIST",
+            "name": "\ud83d\udeab Rejected Orders",
+            "id": "2242",
+            "filterCond": "Status in (\"Rejected\")",
+            "sort": "order_date desc",
+            "index": "6",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "rejection_reason",
+                "payment_method",
+                "Status"
+            ]
+        },
+        "\ud83c\udfc6 Completed Orders": {
+            "type": "LIST",
+            "name": "\ud83c\udfc6 Completed Orders",
+            "id": "2244",
+            "filterCond": "Status in (\"Completed\")",
+            "sort": "order_date desc",
+            "index": "8",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "sap_sales_order_no"
+            ]
+        },
+        "All Orders": {
+            "type": "LIST",
+            "name": "All Orders",
+            "id": "2236",
+            "filterCond": "",
+            "sort": "order_date desc",
+            "index": "0",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "fulfillment_status",
+                "Status"
+            ]
+        },
+        "\ud83d\udcc5 Today's Orders": {
+            "type": "LIST",
+            "name": "\ud83d\udcc5 Today's Orders",
+            "id": "2245",
+            "filterCond": "order_date = TODAY()",
+            "sort": "Created_datetime desc",
+            "index": "9",
+            "fields": [
+                "order_number",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "Status",
+                "fulfillment_status"
+            ]
+        },
+        "\ud83d\udce6 Warehouse Pipeline": {
+            "type": "LIST",
+            "name": "\ud83d\udce6 Warehouse Pipeline",
+            "id": "2240",
+            "filterCond": "Status in (\"Posted to SAP\", \"Picking\", \"Ready for Pickup\")",
+            "sort": "fulfillment_status asc, order_date asc",
+            "index": "4",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "fulfillment_status",
+                "sap_sales_order_no",
+                "Status"
+            ]
+        },
+        "\ud83d\udcdd Draft Orders": {
+            "type": "LIST",
+            "name": "\ud83d\udcdd Draft Orders",
+            "id": "2243",
+            "filterCond": "is_draft in (\"Yes\")",
+            "sort": "Updated_datetime desc",
+            "index": "7",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "payment_method",
+                "notes",
+                "Updated_datetime"
+            ]
+        },
+        "\u2705 Approved \u2014 Ready to Post": {
+            "type": "LIST",
+            "name": "\u2705 Approved \u2014 Ready to Post",
+            "id": "2239",
+            "filterCond": "Status in (\"Approved\")",
+            "sort": "order_date asc",
+            "index": "3",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "dealer_region_display",
+                "total_amount",
+                "payment_method",
+                "payment_status",
+                "sap_sales_order_no"
+            ]
+        },
+        "\u26a0\ufe0f Outstanding Balance Dealers": {
+            "type": "LIST",
+            "name": "\u26a0\ufe0f Outstanding Balance Dealers",
+            "id": "2247",
+            "filterCond": "outstanding_balance_snapshot != \"0\" and outstanding_balance_snapshot != \"\"",
+            "sort": "outstanding_balance_snapshot desc",
+            "index": "11",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "dealer_region_display",
+                "total_amount",
+                "outstanding_balance_snapshot",
+                "payment_method",
+                "payment_status",
+                "Status"
+            ]
+        },
+        "(Assigned to me)": {
+            "type": "LIST",
+            "name": "(Assigned to me)",
+            "id": "2069",
+            "filterCond": "Assignee in (LOGINUSER())",
+            "sort": "order_date desc",
+            "index": "12",
+            "fields": [
+                "order_number",
+                "order_date",
+                "dealer_name_display",
+                "store_name_order",
+                "total_amount",
+                "payment_method",
+                "Status",
+                "Assignee"
+            ],
+            "builtinType": "ASSIGNEE"
+        }
+    },
+    "revision": "37"
+}

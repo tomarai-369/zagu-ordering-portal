@@ -1,0 +1,325 @@
+{
+    "layout": [
+        {
+            "type": "GROUP",
+            "code": "grp_order_info",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "order_number",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DATE",
+                            "code": "order_date",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "RADIO_BUTTON",
+                            "code": "is_draft",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_lookup",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_name_display",
+                            "size": {
+                                "width": "300"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_region_display",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "dealer_email_display",
+                            "size": {
+                                "width": "300"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "store_code_order",
+                            "size": {
+                                "width": "150"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "store_name_order",
+                            "size": {
+                                "width": "250"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "sap_bp_code_order",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "SUBTABLE",
+            "code": "order_items",
+            "fields": [
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "product_lookup",
+                    "size": {
+                        "width": "130"
+                    }
+                },
+                {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "product_name_display",
+                    "size": {
+                        "width": "250"
+                    }
+                },
+                {
+                    "type": "NUMBER",
+                    "code": "quantity",
+                    "size": {
+                        "width": "80"
+                    }
+                },
+                {
+                    "type": "NUMBER",
+                    "code": "item_unit_price",
+                    "size": {
+                        "width": "120"
+                    }
+                },
+                {
+                    "type": "CALC",
+                    "code": "line_total",
+                    "size": {
+                        "width": "130"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_payment",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "CALC",
+                            "code": "total_amount",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "payment_method",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "payment_status",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "payment_transaction_ref",
+                            "size": {
+                                "width": "250"
+                            }
+                        },
+                        {
+                            "type": "NUMBER",
+                            "code": "outstanding_balance_snapshot",
+                            "size": {
+                                "width": "250"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_fulfillment",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "fulfillment_status",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "sap_sales_order_no",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DATE",
+                            "code": "estimated_delivery",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DATE",
+                            "code": "actual_pickup_date",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "delivery_receipt_no",
+                            "size": {
+                                "width": "250"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_admin",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "approved_by",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DATETIME",
+                            "code": "approved_date",
+                            "size": {
+                                "width": "250"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "rejection_reason",
+                            "size": {
+                                "width": "620"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "notes",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "60"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "internal_notes",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "60"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ROW",
+            "fields": [
+                {
+                    "type": "MULTI_LINE_TEXT",
+                    "code": "rejection_reason_detail",
+                    "size": {
+                        "width": "315",
+                        "innerHeight": "125"
+                    }
+                }
+            ]
+        }
+    ],
+    "revision": "37"
+}

@@ -1,0 +1,56 @@
+{
+    "layout": [
+        {
+            "type": "GROUP",
+            "code": "grp_holiday",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DATE",
+                            "code": "holiday_date",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "holiday_name",
+                            "size": {
+                                "width": "350"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "holiday_type",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "year",
+                            "size": {
+                                "width": "100"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "is_active",
+                            "size": {
+                                "width": "100"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "revision": "8"
+}

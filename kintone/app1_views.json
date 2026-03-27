@@ -1,0 +1,162 @@
+{
+    "views": {
+        "\ud83d\udd34 Inactive": {
+            "type": "LIST",
+            "name": "\ud83d\udd34 Inactive",
+            "id": "2267",
+            "filterCond": "product_status in (\"Inactive\")",
+            "sort": "product_code asc",
+            "index": "9",
+            "fields": [
+                "product_code",
+                "product_name",
+                "category",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\ud83e\udd64 Beverages": {
+            "type": "LIST",
+            "name": "\ud83e\udd64 Beverages",
+            "id": "2260",
+            "filterCond": "category in (\"Beverages\")",
+            "sort": "product_code asc",
+            "index": "2",
+            "fields": [
+                "product_code",
+                "product_name",
+                "variant_label",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\ud83c\udf6f Toppings & Syrups": {
+            "type": "LIST",
+            "name": "\ud83c\udf6f Toppings & Syrups",
+            "id": "2263",
+            "filterCond": "category in (\"Toppings & Syrups\")",
+            "sort": "product_code asc",
+            "index": "5",
+            "fields": [
+                "product_code",
+                "product_name",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\ud83d\udfe2 Active Products": {
+            "type": "LIST",
+            "name": "\ud83d\udfe2 Active Products",
+            "id": "2259",
+            "filterCond": "product_status in (\"Active\")",
+            "sort": "category asc, product_code asc",
+            "index": "1",
+            "fields": [
+                "product_code",
+                "product_name",
+                "category",
+                "variant_label",
+                "unit_price",
+                "stock_qty"
+            ]
+        },
+        "\ud83e\udd5b Packaging": {
+            "type": "LIST",
+            "name": "\ud83e\udd5b Packaging",
+            "id": "2262",
+            "filterCond": "category in (\"Packaging\")",
+            "sort": "product_code asc",
+            "index": "4",
+            "fields": [
+                "product_code",
+                "product_name",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "All Products": {
+            "type": "LIST",
+            "name": "All Products",
+            "id": "2258",
+            "filterCond": "",
+            "sort": "product_code asc",
+            "index": "0",
+            "fields": [
+                "product_image",
+                "product_code",
+                "product_name",
+                "category",
+                "variant_label",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\ud83e\udee7 Food Ingredients": {
+            "type": "LIST",
+            "name": "\ud83e\udee7 Food Ingredients",
+            "id": "2261",
+            "filterCond": "category in (\"Food Ingredients\")",
+            "sort": "product_code asc",
+            "index": "3",
+            "fields": [
+                "product_code",
+                "product_name",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\u2699\ufe0f Equipment & Parts": {
+            "type": "LIST",
+            "name": "\u2699\ufe0f Equipment & Parts",
+            "id": "2264",
+            "filterCond": "category in (\"Equipment & Parts\")",
+            "sort": "product_code asc",
+            "index": "6",
+            "fields": [
+                "product_code",
+                "product_name",
+                "unit_price",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\ud83d\udeab Out of Stock": {
+            "type": "LIST",
+            "name": "\ud83d\udeab Out of Stock",
+            "id": "2266",
+            "filterCond": "stock_qty = \"0\" and product_status in (\"Active\")",
+            "sort": "product_code asc",
+            "index": "8",
+            "fields": [
+                "product_code",
+                "product_name",
+                "category",
+                "stock_qty",
+                "product_status"
+            ]
+        },
+        "\u26a0\ufe0f Low Stock (\u226450)": {
+            "type": "LIST",
+            "name": "\u26a0\ufe0f Low Stock (\u226450)",
+            "id": "2265",
+            "filterCond": "stock_qty <= \"50\" and product_status in (\"Active\")",
+            "sort": "stock_qty asc",
+            "index": "7",
+            "fields": [
+                "product_code",
+                "product_name",
+                "category",
+                "stock_qty",
+                "unit_price",
+                "product_status"
+            ]
+        }
+    },
+    "revision": "24"
+}

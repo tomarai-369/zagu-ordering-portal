@@ -1,0 +1,30 @@
+{
+    "name": "Orders",
+    "description": "End-to-end order lifecycle from submission through fulfillment. 9-step process management: New \u2192 Submitted \u2192 ONB Approval \u2192 Approved \u2192 SAP Posted \u2192 Picking \u2192 Ready \u2192 Completed (with Reject/Resubmit branch). Supports multiple payment methods and warehouse workflow tracking.",
+    "icon": {
+        "type": "FILE",
+        "file": {
+            "fileKey": "2026021007380770A6FC76EA8B4EE88D97D0D87CF4F101055",
+            "name": "orders_icon.png",
+            "contentType": "image/png",
+            "size": "3861"
+        }
+    },
+    "theme": "YELLOW",
+    "titleField": {
+        "selectionMode": "AUTO",
+        "code": "order_number"
+    },
+    "enableThumbnails": true,
+    "enableBulkDeletion": false,
+    "enableComments": true,
+    "enableDuplicateRecord": true,
+    "enableInlineRecordEditing": true,
+    "numberPrecision": {
+        "digits": "16",
+        "decimalPlaces": "4",
+        "roundingMode": "HALF_EVEN"
+    },
+    "firstMonthOfFiscalYear": "1",
+    "revision": "37"
+}

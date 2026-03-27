@@ -1,0 +1,588 @@
+{
+    "revision": "37",
+    "properties": {
+        "notes": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "notes",
+            "label": "Notes",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "fulfillment_status": {
+            "type": "DROP_DOWN",
+            "code": "fulfillment_status",
+            "label": "Fulfillment Status",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Warehouse Picking": {
+                    "label": "Warehouse Picking",
+                    "index": "6"
+                },
+                "Packed": {
+                    "label": "Packed",
+                    "index": "0"
+                },
+                "Picking": {
+                    "label": "Picking",
+                    "index": "1"
+                },
+                "Ready for Pickup": {
+                    "label": "Ready for Pickup",
+                    "index": "2"
+                },
+                "Completed": {
+                    "label": "Completed",
+                    "index": "3"
+                },
+                "Posted to SAP": {
+                    "label": "Posted to SAP",
+                    "index": "5"
+                },
+                "Pending": {
+                    "label": "Pending",
+                    "index": "4"
+                }
+            },
+            "defaultValue": "Pending"
+        },
+        "delivery_receipt_no": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "delivery_receipt_no",
+            "label": "Delivery Receipt #",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "order_number": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "order_number",
+            "label": "Order Number",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "approved_date": {
+            "type": "DATETIME",
+            "code": "approved_date",
+            "label": "Approved Date",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "Updated_by": {
+            "type": "MODIFIER",
+            "code": "Updated_by",
+            "label": "Updated by",
+            "noLabel": false
+        },
+        "Created_datetime": {
+            "type": "CREATED_TIME",
+            "code": "Created_datetime",
+            "label": "Created datetime",
+            "noLabel": false
+        },
+        "internal_notes": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "internal_notes",
+            "label": "Internal Notes (Admin Only)",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "rejection_reason_detail": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "rejection_reason_detail",
+            "label": "Rejection Details",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "is_draft": {
+            "type": "RADIO_BUTTON",
+            "code": "is_draft",
+            "label": "Draft Order",
+            "noLabel": false,
+            "required": true,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "0"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "1"
+                }
+            },
+            "defaultValue": "No",
+            "align": "HORIZONTAL"
+        },
+        "dealer_region_display": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_region_display",
+            "label": "Region",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Record_number": {
+            "type": "RECORD_NUMBER",
+            "code": "Record_number",
+            "label": "Record number",
+            "noLabel": false
+        },
+        "payment_transaction_ref": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "payment_transaction_ref",
+            "label": "Payment Ref",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "dealer_name_display": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_name_display",
+            "label": "Dealer Name",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "dealer_lookup": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_lookup",
+            "label": "Dealer Code",
+            "noLabel": false,
+            "required": false,
+            "lookup": {
+                "relatedApp": {
+                    "app": "2",
+                    "code": ""
+                },
+                "relatedKeyField": "dealer_code",
+                "fieldMappings": [
+                    {
+                        "field": "dealer_name_display",
+                        "relatedField": "dealer_name"
+                    },
+                    {
+                        "field": "dealer_region_display",
+                        "relatedField": "region"
+                    },
+                    {
+                        "field": "dealer_email_display",
+                        "relatedField": "email"
+                    }
+                ],
+                "lookupPickerFields": [
+                    "dealer_code",
+                    "dealer_name",
+                    "region"
+                ],
+                "filterCond": "",
+                "sort": "dealer_code asc"
+            }
+        },
+        "rejection_reason": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "rejection_reason",
+            "label": "Rejection Reason",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "sap_bp_code_order": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "sap_bp_code_order",
+            "label": "SAP BP Code (Auto)",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Created_by": {
+            "type": "CREATOR",
+            "code": "Created_by",
+            "label": "Created by",
+            "noLabel": false
+        },
+        "payment_method": {
+            "type": "DROP_DOWN",
+            "code": "payment_method",
+            "label": "Payment Method",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Credit Card": {
+                    "label": "Credit Card",
+                    "index": "0"
+                },
+                "Bank Transfer": {
+                    "label": "Bank Transfer",
+                    "index": "1"
+                },
+                "GCash": {
+                    "label": "GCash",
+                    "index": "2"
+                },
+                "Credit Terms": {
+                    "label": "Credit Terms",
+                    "index": "5"
+                },
+                "Maya": {
+                    "label": "Maya",
+                    "index": "3"
+                },
+                "Cash on Pick Up": {
+                    "label": "Cash on Pick Up",
+                    "index": "4"
+                },
+                "PDC": {
+                    "label": "PDC",
+                    "index": "6"
+                }
+            },
+            "defaultValue": ""
+        },
+        "order_items": {
+            "type": "SUBTABLE",
+            "code": "order_items",
+            "noLabel": false,
+            "label": "Order Items",
+            "fields": {
+                "product_lookup": {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "product_lookup",
+                    "label": "Product Code",
+                    "noLabel": false,
+                    "required": false,
+                    "lookup": {
+                        "relatedApp": {
+                            "app": "1",
+                            "code": ""
+                        },
+                        "relatedKeyField": "product_code",
+                        "fieldMappings": [
+                            {
+                                "field": "product_name_display",
+                                "relatedField": "product_name"
+                            },
+                            {
+                                "field": "item_unit_price",
+                                "relatedField": "unit_price"
+                            }
+                        ],
+                        "lookupPickerFields": [
+                            "product_code",
+                            "product_name",
+                            "category"
+                        ],
+                        "filterCond": "",
+                        "sort": "product_code asc"
+                    }
+                },
+                "quantity": {
+                    "type": "NUMBER",
+                    "code": "quantity",
+                    "label": "Qty",
+                    "noLabel": false,
+                    "required": true,
+                    "minValue": "1",
+                    "maxValue": "",
+                    "digit": false,
+                    "unique": false,
+                    "defaultValue": "",
+                    "displayScale": "",
+                    "unit": "",
+                    "unitPosition": "BEFORE"
+                },
+                "item_unit_price": {
+                    "type": "NUMBER",
+                    "code": "item_unit_price",
+                    "label": "Unit Price",
+                    "noLabel": false,
+                    "required": false,
+                    "minValue": "",
+                    "maxValue": "",
+                    "digit": false,
+                    "unique": false,
+                    "defaultValue": "",
+                    "displayScale": "2",
+                    "unit": "",
+                    "unitPosition": "BEFORE"
+                },
+                "product_name_display": {
+                    "type": "SINGLE_LINE_TEXT",
+                    "code": "product_name_display",
+                    "label": "Product Name",
+                    "noLabel": false,
+                    "required": false,
+                    "minLength": "",
+                    "maxLength": "",
+                    "expression": "",
+                    "hideExpression": false,
+                    "unique": false,
+                    "defaultValue": ""
+                },
+                "line_total": {
+                    "type": "CALC",
+                    "code": "line_total",
+                    "label": "Line Total",
+                    "noLabel": false,
+                    "required": false,
+                    "expression": "quantity * item_unit_price",
+                    "format": "NUMBER_DIGIT",
+                    "displayScale": "2",
+                    "hideExpression": false,
+                    "unit": "",
+                    "unitPosition": "BEFORE"
+                }
+            }
+        },
+        "grp_admin": {
+            "type": "GROUP",
+            "code": "grp_admin",
+            "label": "Approval & Admin",
+            "noLabel": false,
+            "openGroup": false
+        },
+        "Status": {
+            "type": "STATUS",
+            "code": "Status",
+            "label": "Status",
+            "enabled": true
+        },
+        "Assignee": {
+            "type": "STATUS_ASSIGNEE",
+            "code": "Assignee",
+            "label": "Assignee",
+            "enabled": true
+        },
+        "Categories": {
+            "type": "CATEGORY",
+            "code": "Categories",
+            "label": "Categories",
+            "enabled": false
+        },
+        "grp_order_info": {
+            "type": "GROUP",
+            "code": "grp_order_info",
+            "label": "Order Information",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "dealer_email_display": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "dealer_email_display",
+            "label": "Dealer Email",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "payment_status": {
+            "type": "DROP_DOWN",
+            "code": "payment_status",
+            "label": "Payment Status",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "N/A": {
+                    "label": "N/A",
+                    "index": "5"
+                },
+                "Partial": {
+                    "label": "Partial",
+                    "index": "0"
+                },
+                "Paid": {
+                    "label": "Paid",
+                    "index": "1"
+                },
+                "Unpaid": {
+                    "label": "Unpaid",
+                    "index": "2"
+                },
+                "Pending": {
+                    "label": "Pending",
+                    "index": "4"
+                },
+                "COD Pending": {
+                    "label": "COD Pending",
+                    "index": "3"
+                }
+            },
+            "defaultValue": "Unpaid"
+        },
+        "sap_sales_order_no": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "sap_sales_order_no",
+            "label": "SAP Sales Order #",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "store_code_order": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "store_code_order",
+            "label": "Store Code",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "order_date": {
+            "type": "DATE",
+            "code": "order_date",
+            "label": "Order Date",
+            "noLabel": false,
+            "required": true,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": true
+        },
+        "Updated_datetime": {
+            "type": "UPDATED_TIME",
+            "code": "Updated_datetime",
+            "label": "Updated datetime",
+            "noLabel": false
+        },
+        "store_name_order": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "store_name_order",
+            "label": "Store Name",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "approved_by": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "approved_by",
+            "label": "Approved By",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "grp_fulfillment": {
+            "type": "GROUP",
+            "code": "grp_fulfillment",
+            "label": "Fulfillment & Delivery",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "total_amount": {
+            "type": "CALC",
+            "code": "total_amount",
+            "label": "Total Amount",
+            "noLabel": false,
+            "required": false,
+            "expression": "SUM(line_total)",
+            "format": "NUMBER_DIGIT",
+            "displayScale": "2",
+            "hideExpression": false,
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "actual_pickup_date": {
+            "type": "DATE",
+            "code": "actual_pickup_date",
+            "label": "Actual Pickup Date",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "grp_payment": {
+            "type": "GROUP",
+            "code": "grp_payment",
+            "label": "Payment & Billing",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "estimated_delivery": {
+            "type": "DATE",
+            "code": "estimated_delivery",
+            "label": "Estimated Delivery Date",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "outstanding_balance_snapshot": {
+            "type": "NUMBER",
+            "code": "outstanding_balance_snapshot",
+            "label": "Outstanding Balance (at order)",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "",
+            "displayScale": "2",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        }
+    }
+}

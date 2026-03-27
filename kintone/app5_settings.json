@@ -1,0 +1,25 @@
+{
+    "name": "Holiday Calendar",
+    "description": "Philippine holiday calendar for order date validation. Orders cannot be placed on holidays or Sundays. Used by the dealer portal to enforce business day rules and 5-day lead time calculations.",
+    "icon": {
+        "type": "PRESET",
+        "key": "APP34"
+    },
+    "theme": "YELLOW",
+    "titleField": {
+        "selectionMode": "AUTO",
+        "code": "holiday_name"
+    },
+    "enableThumbnails": true,
+    "enableBulkDeletion": false,
+    "enableComments": true,
+    "enableDuplicateRecord": true,
+    "enableInlineRecordEditing": true,
+    "numberPrecision": {
+        "digits": "16",
+        "decimalPlaces": "4",
+        "roundingMode": "HALF_EVEN"
+    },
+    "firstMonthOfFiscalYear": "1",
+    "revision": "8"
+}

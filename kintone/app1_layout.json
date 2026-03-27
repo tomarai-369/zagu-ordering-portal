@@ -1,0 +1,201 @@
+{
+    "layout": [
+        {
+            "type": "GROUP",
+            "code": "grp_product_info",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "product_code",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "product_name",
+                            "size": {
+                                "width": "400"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "product_status",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "category",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "uom",
+                            "size": {
+                                "width": "150"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "MULTI_LINE_TEXT",
+                            "code": "description",
+                            "size": {
+                                "width": "620",
+                                "innerHeight": "80"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "FILE",
+                            "code": "product_image",
+                            "size": {
+                                "width": "310"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_pricing_inv",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "NUMBER",
+                            "code": "unit_price",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "NUMBER",
+                            "code": "stock_qty",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "NUMBER",
+                            "code": "reorder_point",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "NUMBER",
+                            "code": "min_order_qty",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "price_list_id",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_variants",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DROP_DOWN",
+                            "code": "has_variants",
+                            "size": {
+                                "width": "150"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "parent_item_code",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "variant_label",
+                            "size": {
+                                "width": "250"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "GROUP",
+            "code": "grp_sap_sync",
+            "layout": [
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "item_category",
+                            "size": {
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "type": "SINGLE_LINE_TEXT",
+                            "code": "item_property_code",
+                            "size": {
+                                "width": "200"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "ROW",
+                    "fields": [
+                        {
+                            "type": "DATETIME",
+                            "code": "last_synced",
+                            "size": {
+                                "width": "300"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "revision": "24"
+}

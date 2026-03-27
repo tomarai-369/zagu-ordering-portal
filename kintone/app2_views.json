@@ -1,0 +1,158 @@
+{
+    "views": {
+        "\ud83d\udd12 Password Expiring": {
+            "type": "LIST",
+            "name": "\ud83d\udd12 Password Expiring",
+            "id": "2356",
+            "filterCond": "Status in (\"Active\") and password_expiry < FROM_TODAY(30, DAYS) and password_expiry != \"\"",
+            "sort": "password_expiry asc",
+            "index": "7",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "email",
+                "password_expiry",
+                "login_password",
+                "mfa_enabled"
+            ]
+        },
+        "\u23f3 Pending Approval": {
+            "type": "LIST",
+            "name": "\u23f3 Pending Approval",
+            "id": "2286",
+            "filterCond": "Status not in (\"Active\")",
+            "sort": "Created_datetime desc",
+            "index": "2",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "region",
+                "email",
+                "Created_datetime"
+            ]
+        },
+        "\ud83d\uddfa\ufe0f By Region - NCR": {
+            "type": "LIST",
+            "name": "\ud83d\uddfa\ufe0f By Region - NCR",
+            "id": "2353",
+            "filterCond": "region in (\"NCR\")",
+            "sort": "dealer_name asc",
+            "index": "4",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "phone",
+                "outstanding_balance",
+                "Status"
+            ]
+        },
+        "\u26a0\ufe0f Outstanding Balances": {
+            "type": "LIST",
+            "name": "\u26a0\ufe0f Outstanding Balances",
+            "id": "2352",
+            "filterCond": "outstanding_balance != \"0\"",
+            "sort": "outstanding_balance desc",
+            "index": "3",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "outstanding_balance",
+                "credit_limit",
+                "credit_terms",
+                "region"
+            ]
+        },
+        "\ud83d\uddfa\ufe0f By Region - Luzon": {
+            "type": "LIST",
+            "name": "\ud83d\uddfa\ufe0f By Region - Luzon",
+            "id": "2354",
+            "filterCond": "region in (\"North Luzon\", \"South Luzon\")",
+            "sort": "dealer_name asc",
+            "index": "5",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "phone",
+                "outstanding_balance",
+                "Status"
+            ]
+        },
+        "\ud83d\uddfa\ufe0f By Region - VisMin": {
+            "type": "LIST",
+            "name": "\ud83d\uddfa\ufe0f By Region - VisMin",
+            "id": "2355",
+            "filterCond": "region in (\"Visayas\", \"Mindanao\")",
+            "sort": "dealer_name asc",
+            "index": "6",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "phone",
+                "outstanding_balance",
+                "Status"
+            ]
+        },
+        "\ud83d\udccb All Dealers": {
+            "type": "LIST",
+            "name": "\ud83d\udccb All Dealers",
+            "id": "2350",
+            "filterCond": "",
+            "sort": "dealer_code asc",
+            "index": "0",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "region",
+                "email",
+                "outstanding_balance",
+                "credit_limit",
+                "Status"
+            ]
+        },
+        "\u2705 Active Dealers": {
+            "type": "LIST",
+            "name": "\u2705 Active Dealers",
+            "id": "2351",
+            "filterCond": "Status in (\"Active\")",
+            "sort": "dealer_code asc",
+            "index": "1",
+            "fields": [
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "region",
+                "outstanding_balance",
+                "credit_limit",
+                "phone"
+            ]
+        },
+        "(Assigned to me)": {
+            "type": "LIST",
+            "name": "(Assigned to me)",
+            "id": "2294",
+            "filterCond": "Assignee in (LOGINUSER())",
+            "sort": "Record_number desc",
+            "index": "8",
+            "fields": [
+                "Record_number",
+                "dealer_code",
+                "dealer_name",
+                "contact_person",
+                "email",
+                "phone",
+                "region",
+                "outstanding_balance",
+                "credit_limit",
+                "Status",
+                "Assignee"
+            ],
+            "builtinType": "ASSIGNEE"
+        }
+    },
+    "revision": "47"
+}

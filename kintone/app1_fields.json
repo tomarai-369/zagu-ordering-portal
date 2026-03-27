@@ -1,0 +1,341 @@
+{
+    "revision": "24",
+    "properties": {
+        "min_order_qty": {
+            "type": "NUMBER",
+            "code": "min_order_qty",
+            "label": "Min Order Qty",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": true,
+            "unique": false,
+            "defaultValue": "1",
+            "displayScale": "",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "product_image": {
+            "type": "FILE",
+            "code": "product_image",
+            "label": "Product Image",
+            "noLabel": false,
+            "required": false,
+            "thumbnailSize": "50"
+        },
+        "description": {
+            "type": "MULTI_LINE_TEXT",
+            "code": "description",
+            "label": "Description",
+            "noLabel": false,
+            "required": false,
+            "defaultValue": ""
+        },
+        "product_status": {
+            "type": "DROP_DOWN",
+            "code": "product_status",
+            "label": "Status",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Active": {
+                    "label": "Active",
+                    "index": "0"
+                },
+                "Inactive": {
+                    "label": "Inactive",
+                    "index": "1"
+                }
+            },
+            "defaultValue": "Active"
+        },
+        "product_code": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "product_code",
+            "label": "SAP Item Code",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "64",
+            "expression": "",
+            "hideExpression": false,
+            "unique": true,
+            "defaultValue": ""
+        },
+        "Updated_by": {
+            "type": "MODIFIER",
+            "code": "Updated_by",
+            "label": "Updated by",
+            "noLabel": false
+        },
+        "item_category": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "item_category",
+            "label": "Item Category",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Created_datetime": {
+            "type": "CREATED_TIME",
+            "code": "Created_datetime",
+            "label": "Created datetime",
+            "noLabel": false
+        },
+        "uom": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "uom",
+            "label": "Unit of Measure",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": "PC"
+        },
+        "variant_label": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "variant_label",
+            "label": "Variant (Size/Flavor)",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "stock_qty": {
+            "type": "NUMBER",
+            "code": "stock_qty",
+            "label": "Stock Quantity",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "",
+            "displayScale": "",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "Record_number": {
+            "type": "RECORD_NUMBER",
+            "code": "Record_number",
+            "label": "Record number",
+            "noLabel": false
+        },
+        "grp_product_info": {
+            "type": "GROUP",
+            "code": "grp_product_info",
+            "label": "Product Information",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "Created_by": {
+            "type": "CREATOR",
+            "code": "Created_by",
+            "label": "Created by",
+            "noLabel": false
+        },
+        "last_synced": {
+            "type": "DATETIME",
+            "code": "last_synced",
+            "label": "Last Synced from SAP",
+            "noLabel": false,
+            "required": false,
+            "unique": false,
+            "defaultValue": "",
+            "defaultNowValue": false
+        },
+        "Status": {
+            "type": "STATUS",
+            "code": "Status",
+            "label": "Status",
+            "enabled": false
+        },
+        "Assignee": {
+            "type": "STATUS_ASSIGNEE",
+            "code": "Assignee",
+            "label": "Assignee",
+            "enabled": false
+        },
+        "item_property_code": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "item_property_code",
+            "label": "Item Property Code",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "Categories": {
+            "type": "CATEGORY",
+            "code": "Categories",
+            "label": "Categories",
+            "enabled": false
+        },
+        "has_variants": {
+            "type": "DROP_DOWN",
+            "code": "has_variants",
+            "label": "Has Variants",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "No": {
+                    "label": "No",
+                    "index": "1"
+                },
+                "Yes": {
+                    "label": "Yes",
+                    "index": "0"
+                }
+            },
+            "defaultValue": "No"
+        },
+        "unit_price": {
+            "type": "NUMBER",
+            "code": "unit_price",
+            "label": "Unit Price",
+            "noLabel": false,
+            "required": true,
+            "minValue": "",
+            "maxValue": "",
+            "digit": false,
+            "unique": false,
+            "defaultValue": "",
+            "displayScale": "2",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "price_list_id": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "price_list_id",
+            "label": "SAP Price List",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "reorder_point": {
+            "type": "NUMBER",
+            "code": "reorder_point",
+            "label": "Reorder Point",
+            "noLabel": false,
+            "required": false,
+            "minValue": "",
+            "maxValue": "",
+            "digit": true,
+            "unique": false,
+            "defaultValue": "50",
+            "displayScale": "",
+            "unit": "",
+            "unitPosition": "BEFORE"
+        },
+        "product_name": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "product_name",
+            "label": "Item Description",
+            "noLabel": false,
+            "required": true,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        },
+        "grp_pricing_inv": {
+            "type": "GROUP",
+            "code": "grp_pricing_inv",
+            "label": "Pricing & Inventory",
+            "noLabel": false,
+            "openGroup": true
+        },
+        "Updated_datetime": {
+            "type": "UPDATED_TIME",
+            "code": "Updated_datetime",
+            "label": "Updated datetime",
+            "noLabel": false
+        },
+        "grp_variants": {
+            "type": "GROUP",
+            "code": "grp_variants",
+            "label": "Variants & Classification",
+            "noLabel": false,
+            "openGroup": false
+        },
+        "grp_sap_sync": {
+            "type": "GROUP",
+            "code": "grp_sap_sync",
+            "label": "SAP Integration",
+            "noLabel": false,
+            "openGroup": false
+        },
+        "category": {
+            "type": "DROP_DOWN",
+            "code": "category",
+            "label": "Item Group (SAP)",
+            "noLabel": false,
+            "required": false,
+            "options": {
+                "Toppings & Syrups": {
+                    "label": "Toppings & Syrups",
+                    "index": "3"
+                },
+                "Food Ingredients": {
+                    "label": "Food Ingredients",
+                    "index": "1"
+                },
+                "Packaging": {
+                    "label": "Packaging",
+                    "index": "2"
+                },
+                "Equipment & Parts": {
+                    "label": "Equipment & Parts",
+                    "index": "4"
+                },
+                "Beverages": {
+                    "label": "Beverages",
+                    "index": "0"
+                },
+                "Promotional Items": {
+                    "label": "Promotional Items",
+                    "index": "5"
+                }
+            },
+            "defaultValue": ""
+        },
+        "parent_item_code": {
+            "type": "SINGLE_LINE_TEXT",
+            "code": "parent_item_code",
+            "label": "Parent Item Code",
+            "noLabel": false,
+            "required": false,
+            "minLength": "",
+            "maxLength": "",
+            "expression": "",
+            "hideExpression": false,
+            "unique": false,
+            "defaultValue": ""
+        }
+    }
+}

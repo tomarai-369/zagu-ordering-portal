@@ -1,0 +1,22 @@
+{
+    "scope": "ALL",
+    "desktop": {
+        "js": [
+            {
+                "type": "FILE",
+                "file": {
+                    "fileKey": "20260210073807F6B4F72616E844E780801CF355EF7747144",
+                    "name": "zagu-admin-dashboard.js",
+                    "contentType": "application/javascript",
+                    "size": "12411"
+                }
+            }
+        ],
+        "css": []
+    },
+    "mobile": {
+        "js": [],
+        "css": []
+    },
+    "revision": "37"
+}
