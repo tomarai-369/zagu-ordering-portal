@@ -1,0 +1,30 @@
+{
+    "notifications": [
+        {
+            "entity": {
+                "type": "FIELD_ENTITY",
+                "code": "Updated_by"
+            },
+            "includeSubs": false,
+            "recordAdded": false,
+            "recordEdited": false,
+            "commentAdded": true,
+            "statusChanged": false,
+            "fileImported": false
+        },
+        {
+            "entity": {
+                "type": "FIELD_ENTITY",
+                "code": "Created_by"
+            },
+            "includeSubs": false,
+            "recordAdded": false,
+            "recordEdited": false,
+            "commentAdded": true,
+            "statusChanged": false,
+            "fileImported": false
+        }
+    ],
+    "notifyToCommenter": true,
+    "revision": "13"
+}

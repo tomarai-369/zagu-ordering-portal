@@ -1,0 +1,30 @@
+{
+    "notifications": [
+        {
+            "entity": {
+                "type": "USER",
+                "code": "Administrator"
+            },
+            "includeSubs": false,
+            "recordAdded": true,
+            "recordEdited": false,
+            "commentAdded": true,
+            "statusChanged": true,
+            "fileImported": false
+        },
+        {
+            "entity": {
+                "type": "FIELD_ENTITY",
+                "code": "Assignee"
+            },
+            "includeSubs": false,
+            "recordAdded": false,
+            "recordEdited": false,
+            "commentAdded": false,
+            "statusChanged": true,
+            "fileImported": false
+        }
+    ],
+    "notifyToCommenter": true,
+    "revision": "47"
+}
