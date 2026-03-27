@@ -1,0 +1,1699 @@
+{
+  "records": [
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-0010"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-11T03:53:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "20"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "None"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "misdatazagu@gmail.com"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Pending Review"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": [
+          {
+            "code": "Administrator",
+            "name": "Administrator"
+          }
+        ]
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": ""
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Data Associate"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": []
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "3"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-11T03:53:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09123456789"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Zagu Test"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": ""
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "20"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLK19238"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-04T03:59:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "19"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "None"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "tom_arai@edamame-jp.com"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": ""
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Tom"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": []
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "8"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T11:20:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09177037559"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "EDAMAME INC."
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": ""
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "19"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-10298"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T23:30:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "16"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "None"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "tomu.arai333@gmail.com"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": ""
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Tom Arai"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "129",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": ""
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": ""
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": ""
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "7"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09177037559"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "EDAMAME INC."
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": ""
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "16"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-008"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "13"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "0"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "40000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10230"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "None"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "james.carino@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Session Road, Baguio City"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "James Carino"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "63",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Baguio Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-008A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "3F SM City Baguio, Luneta Hill"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09451234574"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Baguio Pearl Drinks"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "North Luzon"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "13"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-007"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "12"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "67500"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "100000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10215"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 30"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "teresa.santos@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Inactive"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Unit 12, Ortigas Center, Pasig City"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Teresa Santos"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "61",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Megamall (Closed)"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-007A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Previously at SM Megamall Bldg B"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09281234573"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Santos Beverages Inc."
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "12"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-006"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "11"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "45000"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "200000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10201"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 60"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "michael.chen@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "88 Makati Ave, Makati City"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Michael Chen"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "56",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Glorietta Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-006A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF Glorietta 4, Makati City"
+              }
+            }
+          },
+          {
+            "id": "57",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Greenbelt Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-006B"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "2F Greenbelt 3, Makati City"
+              }
+            }
+          },
+          {
+            "id": "58",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Megamall Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-006C"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF SM Megamall Bldg A, Mandaluyong"
+              }
+            }
+          },
+          {
+            "id": "59",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Eastwood Mall"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-006D"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF Eastwood Mall, Libis, QC"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09171234572"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Chen's Franchise Group"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "11"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-005"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "10"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "0"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "60000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10189"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 15"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ricky.garcia@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "456 Bolton St, Davao City"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ricardo Garcia"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "54",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Lanang Premier"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-005A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF SM Lanang Premier, Davao City"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09561234571"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ricky's Zagu Express"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "Mindanao"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "10"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-004"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "9"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "28000"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "80000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10156"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 30"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ana.lim@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "78 Colon St, Cebu City, Cebu"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ana Lim"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "51",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM City Cebu"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-004A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF SM City Cebu, North Reclamation"
+              }
+            }
+          },
+          {
+            "id": "52",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Ayala Center Cebu"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-004B"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "2F Ayala Center Cebu, Cebu Business Park"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09451234570"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ana's Shake Hub"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "Visayas"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "9"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-003"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "8"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "5200"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "50000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10102"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 30"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "pedro.reyes@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "45 McArthur Highway, San Fernando, Pampanga"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Pedro Reyes"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "49",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Clark Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-003A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM City Clark, Angeles, Pampanga"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09351234569"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Pedro's Zagu Corner"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "North Luzon"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "8"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-002"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "7"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "0"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "75000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10078"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 15"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "maria.santos@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "123 National Highway, Calamba, Laguna"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Maria Santos"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "46",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM Calamba Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-002A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF SM City Calamba, Laguna"
+              }
+            }
+          },
+          {
+            "id": "47",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Robinsons Sta. Rosa"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-002B"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "2F Robinsons Place Sta. Rosa"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "6"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:40:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09281234568"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Maria's Pearl Shakes"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "South Luzon"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "7"
+      }
+    },
+    {
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "reset_token_expiry": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "dealer_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "DLR-001"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "login_password": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "6"
+      },
+      "outstanding_balance": {
+        "type": "NUMBER",
+        "value": "12500"
+      },
+      "credit_limit": {
+        "type": "NUMBER",
+        "value": "100000"
+      },
+      "sap_bp_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "BP-10045"
+      },
+      "mfa_enabled": {
+        "type": "RADIO_BUTTON",
+        "value": "[REDACTED]"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "credit_terms": {
+        "type": "DROP_DOWN",
+        "value": "Net 30"
+      },
+      "email": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "juan.dc@zagudealers.ph"
+      },
+      "Status": {
+        "type": "STATUS",
+        "value": "Active"
+      },
+      "Assignee": {
+        "type": "STATUS_ASSIGNEE",
+        "value": []
+      },
+      "mfa_secret": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "password_changed_at": {
+        "type": "DATETIME",
+        "value": "[REDACTED]"
+      },
+      "reset_token": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "address": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Unit 205, Cityland Bldg, Shaw Blvd, Mandaluyong City"
+      },
+      "fcm_tokens": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "[REDACTED]"
+      },
+      "contact_person": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Juan Dela Cruz"
+      },
+      "dealer_stores": {
+        "type": "SUBTABLE",
+        "value": [
+          {
+            "id": "42",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "SM North EDSA Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-001A"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "2F SM North EDSA, Quezon City"
+              }
+            }
+          },
+          {
+            "id": "43",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Trinoma Branch"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-001B"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "GF Trinoma, North Triangle, QC"
+              }
+            }
+          },
+          {
+            "id": "44",
+            "value": {
+              "ds_store_name": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "Fairview Terraces"
+              },
+              "ds_store_code": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "STR-001C"
+              },
+              "ds_store_address": {
+                "type": "SINGLE_LINE_TEXT",
+                "value": "3F Fairview Terraces, Quezon City"
+              }
+            }
+          }
+        ]
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "36"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-03-06T05:36:00Z"
+      },
+      "phone": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "09171234567"
+      },
+      "password_expiry": {
+        "type": "DATE",
+        "value": "[REDACTED]"
+      },
+      "dealer_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Juan's Zagu Franchise"
+      },
+      "last_synced_dealer": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "region": {
+        "type": "DROP_DOWN",
+        "value": "NCR"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "6"
+      }
+    }
+  ],
+  "totalCount": "11"
+}

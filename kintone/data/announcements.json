@@ -1,0 +1,481 @@
+{
+  "records": [
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "📖 Authorized Dealer User Guide"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "AUTHORIZED DEALER ORDERING GUIDE\n═══════════════════════════════\n\n1. LOGGING IN\n• Go to the Zagu Ordering Portal\n• Enter your Dealer Code (e.g., DLR-001) and password\n• Complete MFA verification if enabled\n• Contact your Zagu representative if you forgot your credentials\n\n2. PLACING AN ORDER\n• From the Dashboard, click \"Place New Order\"\n• Select your Store from the dropdown\n• Browse the product catalog — use categories or search to find items\n• Enter quantities and click \"Add to Cart\"\n• Review your cart, then click \"Submit Order\"\n• Note: Orders can only be placed Monday–Saturday (no Sundays or holidays)\n• Minimum 5 business days lead time applies\n\n3. ORDER STATUSES\n• New — Order created (draft)\n• Submitted — Sent for processing\n• Pending ONB Approval — Awaiting Order & Billing team review\n• Approved — Cleared for SAP posting\n• Posted to SAP — Sales Order created in SAP B1\n• Picking — Warehouse is preparing your order\n• Ready for Pickup — Order packed and waiting for courier\n• Completed — Order delivered\n• Rejected — Order declined (see rejection reason; you may resubmit)\n\n4. PAYMENT\n• Accepted methods: Credit Card, GCash, Maya, Bank Transfer, Cash on Pick Up\n• Payment is collected at order placement or upon delivery\n• Your payment status is visible on each order\n\n5. NEED HELP?\n• Email: support@zagushakes.com\n• Contact your assigned Zagu representative\n• Check News & Announcements for system updates and promotions"
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:58:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:58:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "7"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Guide"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2026-02-10"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "7"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "🚀 Portal Dashboard & Workflow Diagram Now Live"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "2"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "We have deployed a custom Kintone Portal dashboard for the Zagu Ordering System!\n\n━━━ WHATS NEW ━━━\n\n✅ Branded Portal Dashboard\n→ Live KPI strip showing todays orders, pending approvals, active products & dealers\n→ One-click navigation cards to all 4 apps with live record counts\n→ Interactive order workflow diagram — click any stage to jump to filtered orders\n→ Quick action links to your most-used views\n\n✅ Comprehensive Order Views\n→ 13 pre-built views covering every angle: approvals, payments, warehouse, drafts, high-value orders\n→ Process management with clear action buttons at every stage\n\n✅ Product & Dealer Views\n→ Products: by category, stock status, active/inactive\n→ Dealers: by region (NCR, Luzon, VisMin), balance status, approval status\n\n━━━ HOW TO ACCESS ━━━\nJust go to your Kintone portal home page — the dashboard loads automatically.\n\nFor any questions, check the pinned Quick Start Guide or contact your administrator."
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-05T23:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-05T23:54:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "6"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "System Update"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2025-02-06"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "6"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "📖 Quick Start Guide — How to Use the Zagu Ordering System"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Welcome to the Zagu Ordering System! This guide walks you through everything you need to know.\n\n━━━ ORDER WORKFLOW ━━━\nEvery order follows this lifecycle:\n\n1️⃣ NEW → Dealer places order via portal\n2️⃣ SUBMITTED → Order confirmed by dealer\n3️⃣ PENDING ONB APPROVAL → Waiting for management review\n4️⃣ APPROVED → Order cleared for processing\n5️⃣ POSTED TO SAP → Synced to SAP Business One\n6️⃣ PICKING → Warehouse staff preparing items\n7️⃣ READY FOR PICKUP → Items packed and waiting\n8️⃣ COMPLETED → Order fulfilled and closed\n\n❌ REJECTED → Sent back to dealer with reason (can resubmit)\n\n━━━ YOUR APPS ━━━\n\n🥤 Products Master (App #1)\nhttps://zagushakes.kintone.com/k/1/\n→ Full product catalog with SAP sync, pricing, stock levels\n→ Views: Active Products | By Category | Low Stock | Out of Stock\n\n🏪 Dealers Master (App #2)\nhttps://zagushakes.kintone.com/k/2/\n→ Dealer accounts, login credentials, credit limits, regions\n→ Views: Active Dealers | By Region | Outstanding Balances | Pending Approval\n\n📦 Orders (App #3)\nhttps://zagushakes.kintone.com/k/3/\n→ Order processing hub — place, approve, track, fulfill\n→ Key Views:\n   • Pending My Approval — orders waiting for your action\n   • Todays Orders — everything placed today\n   • Warehouse Pipeline — picking → ready → complete\n   • Unpaid Orders — payment follow-ups needed\n   • High-Value Orders — orders ₱5K+\n   • Approved Ready to Post — clear to sync to SAP\n\n📢 Announcements (App #4)\nhttps://zagushakes.kintone.com/k/4/\n→ News, promos, policy updates, system announcements\n\n━━━ PROCESS MANAGEMENT ━━━\nOrders use Kintone Process Management — you will see action buttons at the top of each order record:\n• Submit Order (New → Submitted)\n• Send for Approval (Submitted → Pending ONB Approval)\n• Approve / Reject (Pending → Approved or Rejected)\n• Post to SAP (Approved → Posted to SAP)\n• Start Picking → Mark Ready → Complete\n\nJust click the button — the system handles the rest!\n\n━━━ TIPS ━━━\n• Use the Views dropdown at the top of each app to switch between filtered lists\n• The portal dashboard shows live KPIs and quick links\n• Orders are auto-linked to Dealers via lookup — no manual entry needed\n• Check Outstanding Balances view before approving large orders\n\n━━━ NEED HELP? ━━━\nContact your system administrator or reach out to the Edamame support team.\n\nPowered by Kintone • Built by Edamame Inc."
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-05T23:54:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-05T23:54:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "5"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "General"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2025-02-06"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "5"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Updated Payment Terms Policy"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "3"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Effective February 1, 2026, all dealers with outstanding balances exceeding their credit limit will need to clear their balance before placing new orders. Please coordinate with the ONB team for any concerns.\n\nPayment channels accepted: GCash, Maya, Bank Transfer, or Cash on Pick Up."
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "4"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Policy"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2026-02-01"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "4"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "New Flavor Alert: Matcha Pearl Shake Coming Soon"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "5"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "We are working on a new Matcha Pearl Shake flavor that will be available in the catalog by March 2026. Stay tuned for pricing and availability updates!"
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "3"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Product Update"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2026-02-03"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "3"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Summer Promo: Buy 5 Cases, Get 1 Free!"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "2"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Starting February 15, 2026 — Buy any 5 cases of Classic Pearl Shake (Regular or Large) and get 1 case FREE!\n\nThis promo is valid for all authorized dealers nationwide. Promo period runs until March 31, 2026.\n\nTo avail, simply place your order through the portal and our ONB team will apply the discount during approval."
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "2"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Promo"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2026-02-04"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "2"
+      }
+    },
+    {
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "expiry_date": {
+        "type": "DATE",
+        "value": null
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "title": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Welcome to the New Zagu Dealer Portal!"
+      },
+      "priority": {
+        "type": "NUMBER",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "content": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "We are excited to launch the new Zagu Online Ordering Portal! This system allows you to browse our full product catalog, place orders, track order status, and manage your account — all from your phone or desktop.\n\nKey features:\n• Browse 300+ products with images\n• Place orders and save drafts\n• Track order status in real-time\n• View your order history and dashboard\n\nFor questions or support, contact your Authorized Dealer Supervisor."
+      },
+      "is_pinned": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-04T06:06:00Z"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "1"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "General"
+      },
+      "publish_date": {
+        "type": "DATE",
+        "value": "2026-02-01"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "1"
+      }
+    }
+  ],
+  "totalCount": "7"
+}

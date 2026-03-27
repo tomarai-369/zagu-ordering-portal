@@ -1,0 +1,1293 @@
+{
+  "records": [
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-05-27"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "23"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Eid'l Adha (estimated)"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "23"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-03-20"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "22"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Eid'l Fitr (estimated)"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "22"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-12-31"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "21"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Last Day of the Year"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "21"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-12-24"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "20"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Christmas Eve"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "20"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-12-08"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "19"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Feast of the Immaculate Conception"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "19"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-11-02"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "18"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "All Souls' Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "18"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-11-01"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "17"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "All Saints' Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "17"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-08-21"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "16"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ninoy Aquino Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "16"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-04-04"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "15"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Easter Sunday"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "15"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-02-25"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "14"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "EDSA People Power Revolution Anniversary"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "14"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-01-29"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "13"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Chinese New Year"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "13"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-01-02"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "12"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Additional Special Day (after New Year)"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Special Non-Working"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "12"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-12-30"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "11"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Rizal Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "11"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-12-25"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "10"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Christmas Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "10"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-11-30"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "9"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Bonifacio Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "9"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-08-31"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "8"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "National Heroes Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "8"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-06-12"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "7"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Independence Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "7"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-05-01"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "6"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Labor Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "6"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-04-09"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "5"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Araw ng Kagitingan (Day of Valor)"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "5"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-04-03"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "4"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Black Saturday"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "4"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-04-02"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "3"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Good Friday"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "3"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-04-01"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "2"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Maundy Thursday"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "2"
+      }
+    },
+    {
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-10T06:55:00Z"
+      },
+      "holiday_date": {
+        "type": "DATE",
+        "value": "2026-01-01"
+      },
+      "is_active": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "year": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "2026"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "1"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "holiday_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "New Year's Day"
+      },
+      "holiday_type": {
+        "type": "DROP_DOWN",
+        "value": "Regular"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "1"
+      }
+    }
+  ],
+  "totalCount": "23"
+}

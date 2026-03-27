@@ -1,0 +1,2221 @@
+{
+  "records": [
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Automatic cup sealing machine"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-EP-001"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Machines"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "15"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "35"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "EQ"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "12500"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-04"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Cup Sealer Machine"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Equipment & Parts"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "35"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Wide bore straws for tapioca pearls"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-PK-004"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Supplies"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "800"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "34"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PK"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "120"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-03"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Fat Straws - 100pcs"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Packaging"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "34"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Zagu branded paper carry bags"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-PK-003"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Bags"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "500"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "33"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PK"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "280"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-03"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Paper Bags - 200pcs"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Packaging"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "33"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Plastic sealing film for automatic cup sealer"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-PK-002"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Supplies"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "400"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "32"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PK"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "380"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-03"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Cup Sealer Film - 1 Roll"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Packaging"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "32"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Zagu branded 22oz plastic cups"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-PK-001"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Cups"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "600"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "31"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PK"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "550"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-03"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "22oz Printed Cups - 100pcs"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Packaging"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "31"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Crushed Oreo cookies for shake toppings"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-TS-003"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Toppings"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "220"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "30"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "280"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Crushed Oreo Topping - 500g"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Toppings & Syrups"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "30"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Rich chocolate syrup for toppings"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-TS-002"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Syrups"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "190"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "29"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "320"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Chocolate Syrup - 1L"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Toppings & Syrups"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "29"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Caramel flavored syrup for toppings"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-TS-001"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Syrups"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "180"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "28"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "320"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Caramel Syrup - 1L"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Toppings & Syrups"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "28"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Taro flavoring powder concentrate"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-FI-004"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Flavoring"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "260"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "27"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "450"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Taro Flavor Powder - 1kg"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Food Ingredients"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "27"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Ube flavoring powder concentrate"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-FI-003"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Flavoring"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "280"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "26"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "450"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ube Flavor Powder - 1kg"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Food Ingredients"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "26"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Powdered milk base for shake blending"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-FI-002"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Raw Materials"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "150"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "25"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "980"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Milk Base Powder - 5kg"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Food Ingredients"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "25"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": []
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Raw tapioca pearl mix for shake preparation"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-FI-001"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Raw Materials"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "200"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "24"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "RM"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "1"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "1250"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-02"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Tapioca Pearl Mix - 10kg"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Food Ingredients"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "24"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "202602041455371A46316CED1643F8A3075992EA7DDD24318",
+            "name": "crop_strawberry.jpg",
+            "contentType": "image/jpeg",
+            "size": "35297"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Strawberry flavored pearl shake (seasonal)"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Inactive"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-008"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "0"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "23"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "95"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Strawberry Pearl Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "23"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "2026020414553731D771AEEDFB42D2838243A527016B92223",
+            "name": "crop_matcha.jpg",
+            "contentType": "image/jpeg",
+            "size": "25793"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Japanese matcha flavored pearl shake"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-007"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "280"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "22"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "105"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Matcha Pearl Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "22"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "202602041455362CCEB7CB3EA24056BFDD2D805E863E0C044",
+            "name": "crop_taro.jpg",
+            "contentType": "image/jpeg",
+            "size": "25967"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Taro flavored pearl shake"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-006"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "350"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "21"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "95"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Taro Pearl Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "21"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "20260204145536B766185B426B45249F71C522064EDB3B092",
+            "name": "crop_ube.jpg",
+            "contentType": "image/jpeg",
+            "size": "28096"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Ube flavored pearl shake with tapioca pearls"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-005"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "320"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "20"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "95"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Ube Pearl Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "20"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "20260204145535E23FEC8F75D146DF9B7F0CA465160B9A244",
+            "name": "drink-2_2.jpg",
+            "contentType": "image/jpeg",
+            "size": "122807"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Mango graham flavored pearl shake"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-004"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "420"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "19"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "95"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Mango Graham Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "19"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "20260204145534564AE51FAF00488DAE091013A34C95B7221",
+            "name": "drink-4_4.jpg",
+            "contentType": "image/jpeg",
+            "size": "149199"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Cookies and cream flavored pearl shake"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-003"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "380"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "18"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "No"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "95"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Cookies & Cream Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "18"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "202602041455332404E7CD93AA4BC381CC1DA6D366D10B321",
+            "name": "drink-2_1.jpg",
+            "contentType": "image/jpeg",
+            "size": "115769"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Signature Zagu tapioca pearl shake in large 22oz size"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-002"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Large"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "450"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "17"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "110"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Classic Pearl Shake - Large"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-04T14:55:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-001"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "17"
+      }
+    },
+    {
+      "min_order_qty": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_image": {
+        "type": "FILE",
+        "value": [
+          {
+            "fileKey": "20260203235802D2A7C166FA7942708C3122D12947B14D355",
+            "name": "drinksArtboard-1-copy-2_1.jpg",
+            "contentType": "image/jpeg",
+            "size": "115769"
+          }
+        ]
+      },
+      "description": {
+        "type": "MULTI_LINE_TEXT",
+        "value": "Signature Zagu tapioca pearl shake in regular 16oz size"
+      },
+      "product_status": {
+        "type": "DROP_DOWN",
+        "value": "Active"
+      },
+      "product_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-001"
+      },
+      "Updated_by": {
+        "type": "MODIFIER",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "item_category": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Shakes"
+      },
+      "Created_datetime": {
+        "type": "CREATED_TIME",
+        "value": "2026-02-03T09:58:00Z"
+      },
+      "uom": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": ""
+      },
+      "variant_label": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Regular"
+      },
+      "stock_qty": {
+        "type": "NUMBER",
+        "value": "500"
+      },
+      "Record_number": {
+        "type": "RECORD_NUMBER",
+        "value": "16"
+      },
+      "Created_by": {
+        "type": "CREATOR",
+        "value": {
+          "code": "Administrator",
+          "name": "Administrator"
+        }
+      },
+      "last_synced": {
+        "type": "DATETIME",
+        "value": "2026-02-03T00:00:00Z"
+      },
+      "item_property_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "FG"
+      },
+      "has_variants": {
+        "type": "DROP_DOWN",
+        "value": "Yes"
+      },
+      "$revision": {
+        "type": "__REVISION__",
+        "value": "2"
+      },
+      "unit_price": {
+        "type": "NUMBER",
+        "value": "85"
+      },
+      "price_list_id": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "PL-01"
+      },
+      "reorder_point": {
+        "type": "NUMBER",
+        "value": ""
+      },
+      "product_name": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "Classic Pearl Shake - Regular"
+      },
+      "Updated_datetime": {
+        "type": "UPDATED_TIME",
+        "value": "2026-02-03T23:58:00Z"
+      },
+      "category": {
+        "type": "DROP_DOWN",
+        "value": "Beverages"
+      },
+      "parent_item_code": {
+        "type": "SINGLE_LINE_TEXT",
+        "value": "ITM-BV-001"
+      },
+      "$id": {
+        "type": "__ID__",
+        "value": "16"
+      }
+    }
+  ],
+  "totalCount": "20"
+}
